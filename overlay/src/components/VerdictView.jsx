@@ -11,7 +11,7 @@ const TIER_CLASS = {
 // confirmed one next, an unverified one last. The verdict shows its work.
 const TIER_PRIORITY = { DISPROVEN: 0, CONFIRMED: 1, UNVERIFIED: 2 };
 
-// The overall verdict word for the worse of the two scores.
+// The verdict word for the code-computed overall score.
 function verdictTier(score) {
   if (score <= 33) return { word: 'CLEAR', mod: 'clear' };
   if (score <= 66) return { word: 'SUS', mod: 'sus' };
@@ -27,6 +27,8 @@ function topReceipts(claims) {
 export default function VerdictView({
   founderScore,
   companyScore,
+  overallScore,
+  companyAssessments = [],
   verdictText,
   error,
   claims = [],
@@ -38,14 +40,17 @@ export default function VerdictView({
   const isShallow = scanDepth === 'shallow';
   const hasFounder = typeof founderScore === 'number';
   const hasCompany = typeof companyScore === 'number';
+  const hasOverall = typeof overallScore === 'number';
   // A shallow scan's NUMBER is exactly the artifact the owner does not want
   // screenshotted as a real finding: suppress the dial/chip and show a badge
   // instead. The verdict text and receipts still render (a contradiction found
   // on a shallow scan is still real), but the score is never shown.
-  const showScores = (hasFounder || hasCompany) && !isShallow;
-  const hasScores = hasFounder || hasCompany;
-  const worst = Math.max(hasFounder ? founderScore : 0, hasCompany ? companyScore : 0);
-  const tier = verdictTier(worst);
+  const showScores = (hasOverall || hasFounder || hasCompany) && !isShallow;
+  const hasScores = hasOverall || hasFounder || hasCompany;
+  const effectiveOverall = hasOverall
+    ? overallScore
+    : Math.max(hasFounder ? founderScore : 0, hasCompany ? companyScore : 0);
+  const tier = verdictTier(effectiveOverall);
   const receipts = topReceipts(claims);
 
   const [copied, setCopied] = useState(false);
@@ -60,9 +65,29 @@ export default function VerdictView({
       // Never let a shallow scan's number be copied out as a real score.
       lines.push('', 'SHALLOW SCAN (not a full check): score withheld.');
     } else {
+      if (hasOverall) lines.push('Overall LARP: ' + Math.round(overallScore) + '/100');
       if (hasFounder) lines.push('Founder LARP: ' + Math.round(founderScore) + '/100');
       if (hasCompany) lines.push('Company LARP: ' + Math.round(companyScore) + '/100');
-      if (hasScores) lines.push('Overall: ' + tier.word);
+      if (companyAssessments.length) {
+        lines.push('Company checks:');
+        companyAssessments.forEach((assessment) => {
+          const score =
+            typeof assessment.larp_score === 'number'
+              ? Math.round(assessment.larp_score) + '/100'
+              : 'unscored';
+          lines.push(
+            '- ' +
+              assessment.company_name +
+              ': ' +
+              score +
+              ' (' +
+              assessment.relationship +
+              (assessment.affects_overall ? ', affects overall' : ', context only') +
+              ')'
+          );
+        });
+      }
+      if (hasScores) lines.push('Verdict band: ' + tier.word);
     }
     if (verdictText) lines.push('', verdictText);
     if (receipts.length) {
@@ -104,8 +129,46 @@ export default function VerdictView({
 
       {showScores && (
         <div className="meters">
-          {hasFounder && <MeterBar label="Founder LARP" value={founderScore} index={0} />}
-          {hasCompany && <MeterBar label="Company LARP" value={companyScore} index={hasFounder ? 1 : 0} />}
+          <MeterBar label="Overall LARP" value={effectiveOverall} index={0} />
+          <div className="score-breakdown" aria-label="Overall score breakdown">
+            {hasFounder && (
+              <div className="score-breakdown__item">
+                <span>Founder</span>
+                <strong>{Math.round(founderScore)}</strong>
+              </div>
+            )}
+            {hasCompany && (
+              <div className="score-breakdown__item">
+                <span>Company</span>
+                <strong>{Math.round(companyScore)}</strong>
+              </div>
+            )}
+          </div>
+          {companyAssessments.length > 1 && (
+            <div className="company-breakdown">
+              {companyAssessments.map((assessment) => (
+                <span
+                  className={
+                    'company-breakdown__item' +
+                    (assessment.affects_overall
+                      ? ' company-breakdown__item--weighted'
+                      : '')
+                  }
+                  key={assessment.company_name}
+                  title={
+                    assessment.affects_overall
+                      ? 'Included in the company component'
+                      : 'Checked for context, not included in the overall score'
+                  }
+                >
+                  {assessment.company_name}{' '}
+                  {typeof assessment.larp_score === 'number'
+                    ? Math.round(assessment.larp_score)
+                    : 'n/a'}
+                </span>
+              ))}
+            </div>
+          )}
         </div>
       )}
 

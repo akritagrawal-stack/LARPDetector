@@ -228,19 +228,25 @@ def _print_dossier(d: Dossier) -> None:
         safe_print(f"Headline  : {ident.get('headline', '')}")
         safe_print(f"Company   : {ident.get('current_company', '')}")
         safe_print(f"Location  : {ident.get('location', '')}")
-    if d.scan_type == "company_app":
-        safe_print(
-            f"COMPANY LARP score: "
-            f"{d.company_larp_score if d.company_larp_score is not None else 'UNSCORED (pending operator)'}"
-        )
-    else:
-        safe_print(
-            f"FOUNDER LARP score: "
-            f"{d.founder_larp_score if d.founder_larp_score is not None else 'UNSCORED (pending operator)'}"
-        )
     safe_print(
-        f"legacy larp_score : {d.larp_score if d.larp_score is not None else 'UNSCORED (pending operator)'}"
+        f"OVERALL LARP score: "
+        f"{d.overall_larp_score if d.overall_larp_score is not None else 'UNSCORED (pending operator)'}"
     )
+    safe_print(
+        f"FOUNDER component : "
+        f"{d.founder_larp_score if d.founder_larp_score is not None else 'N/A'}"
+    )
+    safe_print(
+        f"COMPANY component : "
+        f"{d.company_larp_score if d.company_larp_score is not None else 'N/A'}"
+    )
+    for assessment in d.company_assessments:
+        inclusion = "affects overall" if assessment.affects_overall else "context only"
+        safe_print(
+            f"  {assessment.company_name}: "
+            f"{assessment.larp_score if assessment.larp_score is not None else 'UNSCORED'} "
+            f"({assessment.relationship}, {inclusion})"
+        )
     if d.buildability is not None:
         b = d.buildability
         safe_print(f"Buildability meter: {b.tier or 'UNFILLED (pending operator)'}")

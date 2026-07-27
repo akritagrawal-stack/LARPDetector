@@ -44,6 +44,7 @@ from urllib.parse import urlparse
 from .models import (
     Buildability,
     Claim,
+    CompanyAssessment,
     Dossier,
     EvidenceTier,
     MetricEntry,
@@ -744,6 +745,20 @@ _COMPANY_OPERATOR_INSTRUCTIONS = (
     "top band. So reserve DISPROVEN for real contradictions, exactly as the\n"
     "discipline above requires. You may also edit the mechanically-decomposed\n"
     "claims themselves if they are wrong.\n"
+)
+
+_PERSON_COMPANY_OPERATOR_INSTRUCTIONS = (
+    _OPERATOR_INSTRUCTIONS
+    + "\nADDITIONAL COMPANY-SIDE TASK. This person dossier also carries one "
+    "company_assessment per named employment company. Score EVERY assessment "
+    "independently using the company/app rubric below. Read only the linked "
+    "claim_indices for that company, and never treat a disproven employment "
+    "relationship as proof that the company itself is fake. A historical "
+    "company remains visible but affects_overall=false means it will not alter "
+    "the subject's combined score. Current and founder-linked companies may "
+    "affect it. Missing or unavailable evidence is not a zero and not proof of "
+    "fabrication; follow the rubric's partial-coverage rules.\n\n"
+    + _COMPANY_OPERATOR_INSTRUCTIONS
 )
 
 
@@ -1679,6 +1694,106 @@ def build_metric_breakdown(claims: list[Claim]) -> list[MetricEntry]:
     ]
 
 
+_FOUNDER_RELATIONSHIP_TOKENS = (
+    "founder",
+    "co-founder",
+    "cofounder",
+    "founding partner",
+    "owner",
+)
+_COMPANY_ASSESSMENT_CLAIM_TYPES = frozenset(
+    {
+        "employment",
+        "company_overview",
+        "funding",
+        "user_count",
+        "revenue_metric",
+        "headcount",
+        "pricing",
+        "proprietary_tech",
+    }
+)
+
+
+def build_person_company_assessments(
+    raw_profile: dict, claims: list[Claim]
+) -> list[CompanyAssessment]:
+    """Create one independently scored company unit per named employer.
+
+    Every employment company is included. Only a current or founder-linked
+    company affects the subject's combined overall score. That distinction
+    prevents a former employee from inheriting the risk of an unrelated past
+    employer while still making the company check visible and auditable.
+    """
+    identity = raw_profile.get("identity") or {}
+    current_company = str(identity.get("current_company", "") or "").strip()
+    current_key = current_company.casefold()
+    grouped: dict[str, dict[str, Any]] = {}
+
+    for index, claim in enumerate(claims):
+        if claim.type not in _COMPANY_ASSESSMENT_CLAIM_TYPES:
+            continue
+        company_name = (claim.employer or "").strip()
+        if not company_name:
+            continue
+        key = company_name.casefold()
+        founder_linked = False
+        current = bool(current_key and key == current_key)
+        if claim.type == "employment":
+            title_text = (
+                f"{claim.title or ''} {claim.assertion or ''}".casefold()
+            )
+            founder_linked = any(
+                token in title_text for token in _FOUNDER_RELATIONSHIP_TOKENS
+            )
+            end_text = (claim.end or "").strip().casefold()
+            current = current or end_text in {"present", "current", "now"}
+        # Runtime-only connector gate. Current and founder-linked companies get
+        # product-market lookups such as App Store checks; historical employers
+        # still get the ordinary web dossier without multiplying network work.
+        if claim.type == "employment":
+            claim._company_component_relevant = bool(
+                founder_linked or current
+            )
+        row = grouped.setdefault(
+            key,
+            {
+                "company_name": company_name,
+                "claim_indices": [],
+                "founder_linked": False,
+                "current": False,
+                "company_url": "",
+            },
+        )
+        row["claim_indices"].append(index)
+        row["founder_linked"] = bool(row["founder_linked"] or founder_linked)
+        row["current"] = bool(row["current"] or current)
+        if not row["company_url"] and (claim.product_url or "").strip():
+            row["company_url"] = claim.product_url.strip()
+
+    assessments: list[CompanyAssessment] = []
+    for row in grouped.values():
+        relevant_claims = [claims[index] for index in row["claim_indices"]]
+        if row["founder_linked"]:
+            relationship = "founder"
+        elif row["current"]:
+            relationship = "current"
+        else:
+            relationship = "historical"
+        assessments.append(
+            CompanyAssessment(
+                company_name=row["company_name"],
+                company_url=row["company_url"],
+                claim_indices=list(row["claim_indices"]),
+                relationship=relationship,
+                affects_overall=bool(row["founder_linked"] or row["current"]),
+                buildability=Buildability(),
+                metric_breakdown=build_metric_breakdown(relevant_claims),
+            )
+        )
+    return assessments
+
+
 def sync_buildability_metric(metric_breakdown: list[MetricEntry], buildability: Buildability) -> None:
     """Mirror dossier.buildability (tier, note) onto the "buildability" row.
 
@@ -1794,12 +1909,83 @@ def compute_company_score(
         if any_disproven:
             disproven_floor = max(0, min(100, round(100.0 * (1.0 - disproven_combined))))
             return max(base, disproven_floor)
-        # Code-enforced defamation boundary: operator-supplied metric numbers
-        # may express a suspicious gap, but without one evidence-backed
-        # DISPROVEN claim they cannot enter the top LARP band.
+        # Operator-supplied metric numbers may express a suspicious gap, but
+        # without one evidence-backed DISPROVEN claim they cannot enter the
+        # top LARP band.
         return min(base, _COMPANY_UNPROVEN_MAX_SCORE)
 
     return base
+
+
+def compute_overall_larp_score(
+    founder_score: Optional[int], company_score: Optional[int]
+) -> Optional[int]:
+    """Blend subject and company risk on the same 0 to 100 scale.
+
+    The person component carries 60 percent and the company component 40
+    percent when both exist. A missing component never becomes a silent zero.
+    Band preservation keeps an evidence-backed LARP component from being
+    diluted below 67, and keeps two absence-only SUS components below 67.
+    """
+    if founder_score is None and company_score is None:
+        return None
+    if founder_score is None:
+        return max(0, min(100, int(company_score)))
+    if company_score is None:
+        return max(0, min(100, int(founder_score)))
+
+    founder = max(0, min(100, int(founder_score)))
+    company = max(0, min(100, int(company_score)))
+    blended = round((0.60 * founder) + (0.40 * company))
+    if max(founder, company) >= 67:
+        return max(67, blended)
+    return min(66, blended)
+
+
+def finalize_dossier_scores(dossier: Dossier) -> None:
+    """Compute all formal scores from provider-filled inputs in one place."""
+    if dossier.scan_type == "company_app":
+        if dossier.metric_breakdown:
+            if dossier.buildability is not None:
+                sync_buildability_metric(
+                    dossier.metric_breakdown, dossier.buildability
+                )
+            dossier.company_larp_score = compute_company_score(
+                dossier.metric_breakdown, claims=dossier.claims
+            )
+    else:
+        if (
+            dossier.larp_score is not None
+            and dossier.founder_larp_score is None
+        ):
+            dossier.founder_larp_score = compute_founder_score(
+                dossier.claims,
+                scan_depth=getattr(dossier, "scan_depth", "full") or "full",
+            )
+
+        relevant_scores: list[int] = []
+        for assessment in dossier.company_assessments:
+            sync_buildability_metric(
+                assessment.metric_breakdown, assessment.buildability
+            )
+            # A disproven employment relationship is about the subject, not
+            # proof that the employer itself is fake. Person-side company
+            # scores therefore enforce the unproven cap with an empty company
+            # claim set rather than using employment tiers as a disproof floor.
+            assessment.larp_score = compute_company_score(
+                assessment.metric_breakdown, claims=[]
+            )
+            if assessment.larp_score is None:
+                continue
+            if assessment.affects_overall:
+                relevant_scores.append(assessment.larp_score)
+        dossier.company_larp_score = (
+            max(relevant_scores) if relevant_scores else None
+        )
+
+    dossier.overall_larp_score = compute_overall_larp_score(
+        dossier.founder_larp_score, dossier.company_larp_score
+    )
 
 
 # ---------------------------------------------------------------------------
@@ -2385,11 +2571,12 @@ class ManualProvider(LLMProvider):
             logger.info("ManualProvider: found completed job %s", path.name)
             return existing
 
-        instructions = (
-            _COMPANY_OPERATOR_INSTRUCTIONS
-            if dossier.scan_type == "company_app"
-            else _OPERATOR_INSTRUCTIONS
-        )
+        if dossier.scan_type == "company_app":
+            instructions = _COMPANY_OPERATOR_INSTRUCTIONS
+        elif dossier.company_assessments:
+            instructions = _PERSON_COMPANY_OPERATOR_INSTRUCTIONS
+        else:
+            instructions = _OPERATOR_INSTRUCTIONS
         payload = {
             "job_id": self.job_id,
             "schema_version": _SCHEMA_VERSION,
@@ -2811,6 +2998,33 @@ _JSON_FORMAT_COMPANY = (
     "deterministically, from what you fill in.\n"
 )
 
+_JSON_FORMAT_PERSON_COMPANIES = (
+    _JSON_FORMAT_ADDENDUM
+    + "RESPONSE FORMAT (person scan with company assessments):\n"
+    "{\n"
+    '  "claims": [\n'
+    '    {"index": 0, "tier": "DISPROVEN|UNVERIFIED|CONFIRMED",\n'
+    '     "expected_footprint": "high|low", "notes": "..."},\n'
+    "    ...\n"
+    "  ],\n"
+    '  "company_assessments": [\n'
+    '    {"company_name": "Acme",\n'
+    '     "buildability": {"tier": "TRIVIAL|MODERATE|HARD", "note": "..."},\n'
+    '     "metric_breakdown": [\n'
+    '       {"name": "product_realness", "score_0_10": 0, "note": "..."},\n'
+    "       ...\n"
+    "     ]},\n"
+    "    ...\n"
+    "  ],\n"
+    '  "verdict": "..."\n'
+    "}\n"
+    "Return exactly one company_assessments entry for every assessment listed "
+    "below, matching company_name exactly. For each one, return exactly its "
+    "listed ACTIVE metrics except buildability, which code derives from the "
+    "buildability tier. Do not invent founder, company, or overall scores; "
+    "code computes them from these inputs.\n"
+)
+
 
 def _scrub_key(text: str, key: str) -> str:
     """Remove a live API key from an error string before it is logged or
@@ -3012,7 +3226,13 @@ def _build_prompt(dossier: Dossier) -> str:
     followed by the JSON response-format addendum.
     """
     is_company = dossier.scan_type == "company_app"
-    instructions = _COMPANY_OPERATOR_INSTRUCTIONS if is_company else _OPERATOR_INSTRUCTIONS
+    has_company_assessments = bool(dossier.company_assessments)
+    if is_company:
+        instructions = _COMPANY_OPERATOR_INSTRUCTIONS
+    elif has_company_assessments:
+        instructions = _PERSON_COMPANY_OPERATOR_INSTRUCTIONS
+    else:
+        instructions = _OPERATOR_INSTRUCTIONS
     claims_block = _claims_prompt_block(dossier.claims)
 
     parts = [
@@ -3031,10 +3251,71 @@ def _build_prompt(dossier: Dossier) -> str:
             + "\n"
         )
         parts.append(_JSON_FORMAT_COMPANY)
+    elif has_company_assessments:
+        assessment_rows = [
+            {
+                "company_name": assessment.company_name,
+                "company_url": assessment.company_url,
+                "relationship": assessment.relationship,
+                "affects_overall": assessment.affects_overall,
+                "claim_indices": assessment.claim_indices,
+                "active_metrics": _active_metric_names(
+                    assessment.metric_breakdown
+                ),
+            }
+            for assessment in dossier.company_assessments
+        ]
+        parts.append(
+            "\nCOMPANY ASSESSMENTS TO SCORE:\n"
+            + json.dumps(assessment_rows, indent=2)
+            + "\n"
+        )
+        parts.append(_JSON_FORMAT_PERSON_COMPANIES)
     else:
         parts.append(_JSON_FORMAT_PERSON)
 
     return "".join(parts)
+
+
+def _apply_company_inputs(
+    buildability: Buildability,
+    metric_breakdown: list[MetricEntry],
+    buildability_raw: Any,
+    metrics_raw: Any,
+    *,
+    label: str,
+) -> None:
+    if not isinstance(buildability_raw, dict):
+        raise ValueError(f"{label}: missing 'buildability' object")
+    tier = str(buildability_raw.get("tier", "")).strip().upper()
+    if tier not in ("TRIVIAL", "MODERATE", "HARD"):
+        raise ValueError(f"{label}: invalid buildability tier {tier!r}")
+    buildability.tier = tier
+    buildability.note = str(buildability_raw.get("note", "") or "")
+
+    if not isinstance(metrics_raw, list):
+        raise ValueError(f"{label}: missing 'metric_breakdown' list")
+    by_name = {
+        row["name"]: row
+        for row in metrics_raw
+        if isinstance(row, dict) and row.get("name")
+    }
+    for metric in metric_breakdown:
+        if not metric.active or metric.name == "buildability":
+            continue
+        entry = by_name.get(metric.name)
+        if entry is None:
+            raise ValueError(
+                f"{label}: missing metric_breakdown entry for active metric "
+                f"{metric.name!r}"
+            )
+        score = entry.get("score_0_10")
+        if not isinstance(score, (int, float)) or isinstance(score, bool):
+            raise ValueError(
+                f"{label}: metric {metric.name!r} score is missing or not numeric"
+            )
+        metric.score_0_10 = max(0, min(10, round(float(score))))
+        metric.note = str(entry.get("note", "") or "")
 
 
 def _apply_result(dossier: Dossier, parsed: dict) -> None:
@@ -3090,36 +3371,43 @@ def _apply_result(dossier: Dossier, parsed: dict) -> None:
 
     if not is_company:
         dossier.larp_score = compute_founder_score(dossier.claims)
-        enforce_reasoning_safety(dossier)
-        return
 
-    buildability_raw = parsed.get("buildability")
-    if not isinstance(buildability_raw, dict):
-        raise ValueError("missing 'buildability' object")
-    tier = str(buildability_raw.get("tier", "")).strip().upper()
-    if tier not in ("TRIVIAL", "MODERATE", "HARD"):
-        raise ValueError(f"invalid buildability tier {tier!r}")
-    if dossier.buildability is None:
-        dossier.buildability = Buildability()
-    dossier.buildability.tier = tier
-    dossier.buildability.note = str(buildability_raw.get("note", "") or "")
-
-    metrics_raw = parsed.get("metric_breakdown")
-    if not isinstance(metrics_raw, list):
-        raise ValueError("missing 'metric_breakdown' list")
-    by_name = {m["name"]: m for m in metrics_raw if isinstance(m, dict) and m.get("name")}
-
-    for row in dossier.metric_breakdown:
-        if not row.active or row.name == "buildability":
-            continue
-        entry = by_name.get(row.name)
-        if entry is None:
-            raise ValueError(f"missing metric_breakdown entry for active metric {row.name!r}")
-        score = entry.get("score_0_10")
-        if not isinstance(score, (int, float)) or isinstance(score, bool):
-            raise ValueError(f"metric {row.name!r}: score_0_10 missing or not numeric")
-        row.score_0_10 = max(0, min(10, round(float(score))))
-        row.note = str(entry.get("note", "") or "")
+        if dossier.company_assessments:
+            raw_assessments = parsed.get("company_assessments")
+            if not isinstance(raw_assessments, list):
+                raise ValueError("missing 'company_assessments' list")
+            by_company = {
+                str(item.get("company_name", "")).casefold(): item
+                for item in raw_assessments
+                if isinstance(item, dict) and item.get("company_name")
+            }
+            if len(by_company) != len(dossier.company_assessments):
+                raise ValueError(
+                    "company_assessments count did not match the dossier"
+                )
+            for assessment in dossier.company_assessments:
+                item = by_company.get(assessment.company_name.casefold())
+                if item is None:
+                    raise ValueError(
+                        f"missing company assessment for {assessment.company_name!r}"
+                    )
+                _apply_company_inputs(
+                    assessment.buildability,
+                    assessment.metric_breakdown,
+                    item.get("buildability"),
+                    item.get("metric_breakdown"),
+                    label=assessment.company_name,
+                )
+    else:
+        if dossier.buildability is None:
+            dossier.buildability = Buildability()
+        _apply_company_inputs(
+            dossier.buildability,
+            dossier.metric_breakdown,
+            parsed.get("buildability"),
+            parsed.get("metric_breakdown"),
+            label="company",
+        )
     enforce_reasoning_safety(dossier)
 
 
@@ -3169,33 +3457,56 @@ def _codex_score_schema(dossier: Dossier) -> dict:
         "verdict": {"type": "string"},
     }
     required = ["claims", "verdict"]
-    if dossier.scan_type == "company_app":
-        properties["buildability"] = _object_schema(
+    buildability_schema = _object_schema(
+        {
+            "tier": {
+                "type": "string",
+                "enum": ["TRIVIAL", "MODERATE", "HARD"],
+            },
+            "note": {"type": "string"},
+        },
+        ["tier", "note"],
+    )
+    metric_schema = {
+        "type": "array",
+        "items": _object_schema(
             {
-                "tier": {
-                    "type": "string",
-                    "enum": ["TRIVIAL", "MODERATE", "HARD"],
+                "name": {"type": "string"},
+                "score_0_10": {
+                    "type": "number",
+                    "minimum": 0,
+                    "maximum": 10,
                 },
                 "note": {"type": "string"},
             },
-            ["tier", "note"],
-        )
-        properties["metric_breakdown"] = {
+            ["name", "score_0_10", "note"],
+        ),
+    }
+    if dossier.scan_type == "company_app":
+        properties["buildability"] = buildability_schema
+        properties["metric_breakdown"] = metric_schema
+        required.extend(["buildability", "metric_breakdown"])
+    elif dossier.company_assessments:
+        properties["company_assessments"] = {
             "type": "array",
             "items": _object_schema(
                 {
-                    "name": {"type": "string"},
-                    "score_0_10": {
-                        "type": "number",
-                        "minimum": 0,
-                        "maximum": 10,
+                    "company_name": {
+                        "type": "string",
+                        "enum": [
+                            assessment.company_name
+                            for assessment in dossier.company_assessments
+                        ],
                     },
-                    "note": {"type": "string"},
+                    "buildability": buildability_schema,
+                    "metric_breakdown": metric_schema,
                 },
-                ["name", "score_0_10", "note"],
+                ["company_name", "buildability", "metric_breakdown"],
             ),
+            "minItems": len(dossier.company_assessments),
+            "maxItems": len(dossier.company_assessments),
         }
-        required.extend(["buildability", "metric_breakdown"])
+        required.append("company_assessments")
     return _object_schema(properties, required)
 
 

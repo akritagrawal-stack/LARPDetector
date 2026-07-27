@@ -1755,7 +1755,59 @@ button {
 .meters {
   display: flex;
   flex-direction: column;
-  gap: 13px;
+  gap: 10px;
+}
+
+.score-breakdown {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.score-breakdown__item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 9px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius-control);
+  background: rgba(255, 255, 255, 0.045);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.07);
+  font-size: var(--text-2xs);
+  color: var(--text-dim);
+}
+
+.score-breakdown__item strong {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+}
+
+.company-breakdown {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.company-breakdown::-webkit-scrollbar {
+  display: none;
+}
+
+.company-breakdown__item {
+  flex: 0 0 auto;
+  padding: 3px 7px;
+  border-radius: var(--radius-control);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  color: var(--text-faint);
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+}
+
+.company-breakdown__item--weighted {
+  border-color: rgba(255, 255, 255, 0.23);
+  color: var(--text-dim);
 }
 
 .meter {

@@ -21,9 +21,8 @@ from .llm import (
     LLMProvider,
     ManualProvider,
     build_metric_breakdown,
-    compute_company_score,
-    compute_founder_score,
-    sync_buildability_metric,
+    build_person_company_assessments,
+    finalize_dossier_scores,
 )
 from . import verify
 from . import pitchbook
@@ -224,6 +223,11 @@ def run(
     for index, claim in enumerate(claims):
         claim._attempt_ledger = ledger
         claim._claim_index = index
+    person_company_assessments = (
+        build_person_company_assessments(raw_profile, claims)
+        if effective_scan_type == "person"
+        else []
+    )
 
     # 3. Gather evidence per claim (no tier set here).
     # One PitchBookBudget is shared across every claim in this profile so the
@@ -261,6 +265,8 @@ def run(
     if effective_scan_type == "company_app":
         dossier.buildability = Buildability()
         dossier.metric_breakdown = build_metric_breakdown(claims)
+    else:
+        dossier.company_assessments = person_company_assessments
 
     # 4. Assign tiers + larp_score + verdict (the reasoning step). For a
     # company scan this is also where buildability and each active
@@ -274,30 +280,7 @@ def run(
 
     # 5. Formalized composite scores, computed here in code (never by the
     # provider) from whatever the reasoning step just filled in.
-    if dossier.scan_type == "company_app":
-        if dossier.buildability is not None and dossier.metric_breakdown:
-            sync_buildability_metric(dossier.metric_breakdown, dossier.buildability)
-        # Self-gating: compute_company_score returns None on its own until
-        # every active metric's score_0_10 is filled, so no extra "is this
-        # job done yet" check is needed here. claims are passed so a
-        # DISPROVEN core claim (a real, evidence-backed contradiction, e.g. a
-        # contradicted claimed-autonomy assertion) can floor the composite
-        # into the top band, mirroring the person path.
-        dossier.company_larp_score = compute_company_score(
-            dossier.metric_breakdown, claims=dossier.claims
-        )
-    else:
-        # Claim tiers default to UNVERIFIED, which is not itself a reliable
-        # "is this job done yet" signal the way an unfilled score_0_10 is for
-        # the company path above. dossier.larp_score is only ever set once
-        # the operator (or ApiProvider) completes the job (see
-        # llm._OPERATOR_INSTRUCTIONS), so it doubles as that signal here:
-        # skip computing founder_larp_score on a still-pending dossier rather
-        # than surface a premature, all-default-tier provisional number.
-        if dossier.larp_score is not None:
-            dossier.founder_larp_score = compute_founder_score(
-                dossier.claims, scan_depth=depth
-            )
+    finalize_dossier_scores(dossier)
 
     dossier.attempt_ledger = ledger.snapshot()
     emit("verdict", dossier)

@@ -287,6 +287,61 @@ class MetricEntry:
 
 
 @dataclass
+class CompanyAssessment:
+    """One company named on a person profile, scored as its own evidence unit.
+
+    `claim_indices` links the assessment back to the profile claims whose
+    employer is this company. `affects_overall` is deliberately explicit:
+    current and founder-linked companies can inform the subject's overall
+    score, while a historical rank-and-file employer is still checked and
+    shown without making the employee responsible for that company's quality.
+    """
+
+    company_name: str
+    company_url: str = ""
+    claim_indices: list[int] = field(default_factory=list)
+    relationship: str = "historical"
+    affects_overall: bool = False
+    buildability: Buildability = field(default_factory=Buildability)
+    metric_breakdown: list[MetricEntry] = field(default_factory=list)
+    larp_score: Optional[int] = None
+
+    def to_dict(self) -> dict[str, Any]:
+        return {
+            "company_name": self.company_name,
+            "company_url": self.company_url,
+            "claim_indices": list(self.claim_indices),
+            "relationship": self.relationship,
+            "affects_overall": self.affects_overall,
+            "buildability": self.buildability.to_dict(),
+            "metric_breakdown": [m.to_dict() for m in self.metric_breakdown],
+            "larp_score": self.larp_score,
+        }
+
+    @classmethod
+    def from_dict(cls, d: dict[str, Any]) -> "CompanyAssessment":
+        buildability_raw = d.get("buildability") or {}
+        return cls(
+            company_name=str(d.get("company_name", "") or ""),
+            company_url=str(d.get("company_url", "") or ""),
+            claim_indices=[
+                int(index)
+                for index in d.get("claim_indices", []) or []
+                if isinstance(index, int) and not isinstance(index, bool)
+            ],
+            relationship=str(d.get("relationship", "historical") or "historical"),
+            affects_overall=bool(d.get("affects_overall", False)),
+            buildability=Buildability.from_dict(buildability_raw),
+            metric_breakdown=[
+                MetricEntry.from_dict(m)
+                for m in d.get("metric_breakdown", []) or []
+                if isinstance(m, dict)
+            ],
+            larp_score=d.get("larp_score"),
+        )
+
+
+@dataclass
 class Dossier:
     """The full evidence file produced for one profile or company/app scan.
 
@@ -319,10 +374,17 @@ class Dossier:
                      tiers: DISPROVEN claims drive it up hard, UNVERIFIED
                      contributes little, CONFIRMED contributes nothing. None
                      until the operator has assigned tiers.
-    company_larp_score : 0 to 100, company/app scans only. Deterministically
-                     derived (see llm.compute_company_score) as a weighted
-                     composite over metric_breakdown's active rows. None
-                     until every active metric's score_0_10 is filled.
+    company_larp_score : 0 to 100. On a company/app scan, deterministically
+                     derived from top-level metric_breakdown. On a person
+                     scan, aggregates the relevant per-company assessments.
+                     None until every required active metric is filled.
+    overall_larp_score : 0 to 100 combined result. A person scan blends the
+                     subject score with the relevant company score; a
+                     company-only scan uses the company score directly.
+    company_assessments : per-company checks for every named employment
+                     company on a person scan. Historical companies remain
+                     visible but only current or founder-linked companies
+                     affect the overall score.
     metric_breakdown : list[MetricEntry], company/app scans only. The 8
                      company-LARP metrics (see MetricEntry), built by
                      llm.build_metric_breakdown from the decomposed claims
@@ -352,6 +414,8 @@ class Dossier:
     buildability: Optional[Buildability] = None
     founder_larp_score: Optional[int] = None
     company_larp_score: Optional[int] = None
+    overall_larp_score: Optional[int] = None
+    company_assessments: list[CompanyAssessment] = field(default_factory=list)
     metric_breakdown: list[MetricEntry] = field(default_factory=list)
     mismatches: list[dict[str, Any]] = field(default_factory=list)
     # Execution provenance. Each row records a bounded connector or reasoning
@@ -382,6 +446,10 @@ class Dossier:
             ),
             "founder_larp_score": self.founder_larp_score,
             "company_larp_score": self.company_larp_score,
+            "overall_larp_score": self.overall_larp_score,
+            "company_assessments": [
+                assessment.to_dict() for assessment in self.company_assessments
+            ],
             "metric_breakdown": [m.to_dict() for m in self.metric_breakdown],
             "mismatches": [dict(m) for m in self.mismatches],
             "attempt_ledger": [dict(item) for item in self.attempt_ledger],
@@ -407,6 +475,12 @@ class Dossier:
             buildability=buildability,
             founder_larp_score=d.get("founder_larp_score"),
             company_larp_score=d.get("company_larp_score"),
+            overall_larp_score=d.get("overall_larp_score"),
+            company_assessments=[
+                CompanyAssessment.from_dict(item)
+                for item in d.get("company_assessments", []) or []
+                if isinstance(item, dict)
+            ],
             metric_breakdown=[
                 MetricEntry.from_dict(m) for m in d.get("metric_breakdown", []) or []
             ],

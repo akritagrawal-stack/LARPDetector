@@ -1199,8 +1199,14 @@ def _gather_app_store_evidence(claim: Claim) -> list[dict]:
     a claim with no product name has nothing to look up on the App Store.
     """
     product_claim = claim.type in ("user_count", "revenue_metric", "company_overview")
-    founder_claim = claim.type == "employment" and _looks_founder_flavored(claim)
-    if not (product_claim or founder_claim):
+    employment_company = (
+        claim.type == "employment"
+        and (
+            _looks_founder_flavored(claim)
+            or bool(getattr(claim, "_company_component_relevant", False))
+        )
+    )
+    if not (product_claim or employment_company):
         return []
     product = (claim.employer or "").strip()
     if not product:
@@ -1484,7 +1490,12 @@ def _connector_applicable(
                 claim.type in ("user_count", "revenue_metric", "company_overview")
                 or (
                     claim.type == "employment"
-                    and _looks_founder_flavored(claim)
+                    and (
+                        _looks_founder_flavored(claim)
+                        or bool(
+                            getattr(claim, "_company_component_relevant", False)
+                        )
+                    )
                 )
             )
         )

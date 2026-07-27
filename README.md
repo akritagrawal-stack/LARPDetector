@@ -24,6 +24,23 @@ subject-controlled. People-data aggregators are labeled republications, not
 independent reporting. A live product proves that the product exists, not that
 the named person founded or built it.
 
+Every completed scan reports three numbers:
+
+- **Overall LARP**: the headline score.
+- **Founder/person**: claim credibility from role, identity, education, and
+  technical-substance evidence.
+- **Company**: product realness, liveness, public footprint, App Store or web
+  app evidence, and buildability.
+
+On a person scan the dossier engine creates a separate assessment for every
+named employment company. Current and founder-linked companies can affect the
+overall score. Historical employers are still checked and shown, but remain
+context-only so a former employee does not inherit an old employer's risk.
+When both main components are available, overall is 60% person and 40% company.
+The code preserves the accusation boundary: two suspicion-only components
+cannot combine into the top LARP band, and a proven contradiction cannot be
+diluted out of that band.
+
 Use the app only for lawful review of public professional claims. Do not use a
 score as the sole basis for employment, housing, credit, education, or another
 high-impact decision.

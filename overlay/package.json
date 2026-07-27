@@ -1,7 +1,7 @@
 {
   "name": "larp-detector-overlay",
   "version": "0.1.0",
-  "description": "Floating desktop overlay for the LARP Detector: scans a founder or company URL plus a screenshot, streams evidence as it is found, then renders two LARP score meters and a verdict.",
+  "description": "Floating macOS overlay for the LARP Detector: streams evidence, then renders an overall LARP score with founder and company breakdowns.",
   "private": true,
   "main": "electron/main.js",
   "scripts": {

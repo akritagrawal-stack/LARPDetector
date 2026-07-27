@@ -4,7 +4,14 @@ from __future__ import annotations
 
 import json
 
-from detective.models import Buildability, Claim, Dossier, EvidenceTier, MetricEntry
+from detective.models import (
+    Buildability,
+    Claim,
+    CompanyAssessment,
+    Dossier,
+    EvidenceTier,
+    MetricEntry,
+)
 
 
 def test_claim_roundtrip_serializes_tier_to_string():
@@ -151,7 +158,43 @@ def test_dossier_new_score_fields_default_none_and_empty():
     dossier = Dossier(profile_url="https://x.test")
     assert dossier.founder_larp_score is None
     assert dossier.company_larp_score is None
+    assert dossier.overall_larp_score is None
+    assert dossier.company_assessments == []
     assert dossier.metric_breakdown == []
+
+
+def test_person_company_assessments_roundtrip():
+    dossier = Dossier(
+        profile_url="https://example.test/person",
+        overall_larp_score=37,
+        company_assessments=[
+            CompanyAssessment(
+                company_name="Acme",
+                company_url="https://acme.test",
+                claim_indices=[1],
+                relationship="founder",
+                affects_overall=True,
+                buildability=Buildability(tier="MODERATE", note="real integration"),
+                metric_breakdown=[
+                    MetricEntry(
+                        name="product_realness",
+                        weight=3,
+                        score_0_10=2,
+                        active=True,
+                        note="live application",
+                    )
+                ],
+                larp_score=20,
+            )
+        ],
+    )
+
+    back = Dossier.from_dict(json.loads(json.dumps(dossier.to_dict())))
+
+    assert back.overall_larp_score == 37
+    assert back.company_assessments[0].company_name == "Acme"
+    assert back.company_assessments[0].affects_overall is True
+    assert back.company_assessments[0].metric_breakdown[0].score_0_10 == 2
 
 
 def test_dossier_company_scan_with_metric_breakdown_roundtrip():
@@ -188,6 +231,8 @@ def test_dossier_backward_compat_old_queue_file_missing_new_fields():
     old_shape = dict(d)
     del old_shape["founder_larp_score"]
     del old_shape["company_larp_score"]
+    del old_shape["overall_larp_score"]
+    del old_shape["company_assessments"]
     del old_shape["metric_breakdown"]
 
     back = Dossier.from_dict(old_shape)
@@ -195,4 +240,6 @@ def test_dossier_backward_compat_old_queue_file_missing_new_fields():
     assert back.verdict == "Mostly real."
     assert back.founder_larp_score is None
     assert back.company_larp_score is None
+    assert back.overall_larp_score is None
+    assert back.company_assessments == []
     assert back.metric_breakdown == []

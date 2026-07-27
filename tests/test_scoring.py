@@ -1,7 +1,6 @@
-"""Tests for the two-score LARP scoring system: founder_larp_score (person
-scans, from claim tiers) and company_larp_score (company scans, a weighted
-composite over metric_breakdown). Offline, no network. No em dashes (house
-rule).
+"""Tests for founder, company, and overall LARP scoring.
+
+Offline, no network. No em dashes (house rule).
 """
 
 from __future__ import annotations
@@ -11,14 +10,197 @@ from pathlib import Path
 
 from detective.llm import (
     build_metric_breakdown,
+    build_person_company_assessments,
     compute_company_score,
     compute_founder_score,
+    compute_overall_larp_score,
+    finalize_dossier_scores,
     normalize_expected_footprints,
     sync_buildability_metric,
 )
-from detective.models import Buildability, Claim, Dossier, EvidenceTier, MetricEntry
+from detective.models import (
+    Buildability,
+    Claim,
+    CompanyAssessment,
+    Dossier,
+    EvidenceTier,
+    MetricEntry,
+)
 
 _FIXTURES_DIR = Path(__file__).resolve().parent / "fixtures"
+
+
+def test_overall_score_blends_founder_and_company_without_silent_zero():
+    assert compute_overall_larp_score(20, 70) == 67
+    assert compute_overall_larp_score(20, None) == 20
+    assert compute_overall_larp_score(None, 45) == 45
+    assert compute_overall_larp_score(None, None) is None
+
+
+def test_overall_score_cannot_turn_two_sus_components_into_larp():
+    assert compute_overall_larp_score(66, 66) == 66
+
+
+def test_person_company_assessments_include_every_company_but_weight_relevance():
+    claims = [
+        Claim(
+            type="employment",
+            employer="Current Co",
+            title="Engineer",
+            end="Present",
+        ),
+        Claim(
+            type="employment",
+            employer="Founder Co",
+            title="Co-founder",
+            end="2022",
+        ),
+        Claim(
+            type="employment",
+            employer="Old Co",
+            title="Analyst",
+            end="2020",
+        ),
+        Claim(
+            type="funding",
+            employer="Current Co",
+            assertion="Current Co raised $5M.",
+        ),
+    ]
+    assessments = build_person_company_assessments(
+        {"identity": {"current_company": "Current Co"}}, claims
+    )
+    by_name = {item.company_name: item for item in assessments}
+
+    assert set(by_name) == {"Current Co", "Founder Co", "Old Co"}
+    assert by_name["Current Co"].affects_overall is True
+    assert by_name["Founder Co"].affects_overall is True
+    assert by_name["Old Co"].affects_overall is False
+    assert by_name["Current Co"].claim_indices == [0, 3]
+    assert next(
+        metric
+        for metric in by_name["Current Co"].metric_breakdown
+        if metric.name == "raise_inflation"
+    ).active is True
+
+
+def test_finalize_scores_uses_relevant_company_max_and_keeps_breakdown():
+    claim = Claim(type="employment", employer="Current Co", title="Engineer")
+    claim.tier = EvidenceTier.CONFIRMED
+    active_metrics = [
+        MetricEntry(
+            name="product_realness",
+            weight=3,
+            score_0_10=4,
+            active=True,
+        ),
+        MetricEntry(
+            name="zombie_liveness",
+            weight=2,
+            score_0_10=4,
+            active=True,
+        ),
+        MetricEntry(
+            name="buildability",
+            weight=1,
+            active=True,
+        ),
+    ]
+    historical_metrics = [
+        MetricEntry(
+            name="product_realness",
+            weight=3,
+            score_0_10=9,
+            active=True,
+        ),
+        MetricEntry(
+            name="zombie_liveness",
+            weight=2,
+            score_0_10=9,
+            active=True,
+        ),
+        MetricEntry(
+            name="buildability",
+            weight=1,
+            active=True,
+        ),
+    ]
+    dossier = Dossier(
+        profile_url="https://example.test/person",
+        claims=[claim],
+        larp_score=0,
+        company_assessments=[
+            CompanyAssessment(
+                company_name="Current Co",
+                claim_indices=[0],
+                relationship="current",
+                affects_overall=True,
+                buildability=Buildability(tier="HARD"),
+                metric_breakdown=active_metrics,
+            ),
+            CompanyAssessment(
+                company_name="Old Co",
+                relationship="historical",
+                affects_overall=False,
+                buildability=Buildability(tier="HARD"),
+                metric_breakdown=historical_metrics,
+            ),
+        ],
+    )
+
+    finalize_dossier_scores(dossier)
+
+    assert dossier.founder_larp_score == 0
+    assert dossier.company_assessments[0].larp_score == 34
+    assert dossier.company_assessments[1].larp_score == 65
+    assert dossier.company_larp_score == 34
+    assert dossier.overall_larp_score == 14
+
+
+def test_historical_company_is_scored_but_cannot_affect_overall():
+    dossier = Dossier(
+        profile_url="https://example.test/person",
+        claims=[
+            Claim(
+                type="employment",
+                employer="Old Co",
+                title="Analyst",
+                tier=EvidenceTier.CONFIRMED,
+            )
+        ],
+        larp_score=0,
+        company_assessments=[
+            CompanyAssessment(
+                company_name="Old Co",
+                relationship="historical",
+                affects_overall=False,
+                buildability=Buildability(tier="HARD"),
+                metric_breakdown=[
+                    MetricEntry(
+                        name="product_realness",
+                        weight=3,
+                        score_0_10=8,
+                        active=True,
+                    ),
+                    MetricEntry(
+                        name="zombie_liveness",
+                        weight=2,
+                        score_0_10=8,
+                        active=True,
+                    ),
+                    MetricEntry(
+                        name="buildability", weight=1, active=True
+                    ),
+                ],
+            )
+        ],
+    )
+
+    finalize_dossier_scores(dossier)
+
+    assert dossier.company_assessments[0].larp_score == 65
+    assert dossier.company_larp_score is None
+    assert dossier.overall_larp_score == 0
 
 
 # ---------------------------------------------------------------------------

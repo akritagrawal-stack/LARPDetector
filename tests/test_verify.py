@@ -552,7 +552,7 @@ def test_company_overview_claim_fires_app_store_with_product_name(monkeypatch):
     assert captured == {"product_name": "Acme App"}
 
 
-def test_plain_employment_claim_does_not_fire_app_store(monkeypatch):
+def test_plain_employment_claim_fires_company_app_store_check(monkeypatch):
     _no_web_search(monkeypatch)
     _stub_out_source_connectors(monkeypatch)
 
@@ -564,12 +564,14 @@ def test_plain_employment_claim_does_not_fire_app_store(monkeypatch):
 
     monkeypatch.setattr(verify.app_store_source, "verify_app_store", fake_app_store)
 
-    # A NON-founder employment claim (a rank-and-file role) still must not fire
-    # the App Store lookup: the employer is not a product the person shipped.
+    # A current non-founder company gets the company-side footprint check. This
+    # evidence says something about the company, never whether the person held
+    # the role. Historical non-founder employers keep the general web check.
     claim = Claim(type="employment", employer="Acme Widgets", title="Software Engineer", assertion="Software Engineer at Acme Widgets.")
+    claim._company_component_relevant = True
     gather_evidence(claim, identity={"name": "Jane Doe"})
 
-    assert fired["app_store"] is False
+    assert fired["app_store"] is True
 
 
 def test_founder_employment_claim_fires_app_store(monkeypatch):
@@ -929,9 +931,9 @@ def test_founder_claim_with_a_resolved_product_url_fires_the_url_connectors(monk
 
 
 def test_a_plain_non_founder_job_never_fires_them_even_with_a_url(monkeypatch):
-    # Scope guard: resolution is about a claimed PRODUCT. A rank-and-file role
-    # at a big employer is not a product claim, and fingerprinting the
-    # employer's website would say nothing about the person either way.
+    # Website fingerprinting is reserved for company scans and founder-linked
+    # product claims. General company and App Store checks still cover every
+    # employer without trusting an ambiguous product URL.
     _no_web_search(monkeypatch)
     _stub_out_source_connectors(monkeypatch)
 

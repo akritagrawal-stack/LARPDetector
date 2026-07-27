@@ -122,7 +122,9 @@ def test_demo_person_scan_streams_to_scores_verdict_done():
     scores_event = next(e for e in events if e["type"] == "scores")
     assert scores_event["founder_larp_score"] is not None
     assert isinstance(scores_event["founder_larp_score"], int)
-    assert scores_event["company_larp_score"] is None
+    assert isinstance(scores_event["company_larp_score"], int)
+    assert isinstance(scores_event["overall_larp_score"], int)
+    assert scores_event["company_assessments"]
 
     verdict_event = next(e for e in events if e["type"] == "verdict")
     assert verdict_event["text"]

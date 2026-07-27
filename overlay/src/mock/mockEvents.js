@@ -196,7 +196,23 @@ export const MOCK_EVENTS = [
     event: { type: 'claim', assertion: "'40 person team': 2 employees findable on LinkedIn", tier: 'DISPROVEN' }
   },
   { delay: 600, event: { type: 'status', text: 'Weighing evidence, compiling verdict...' } },
-  { delay: 650, event: { type: 'scores', founder_larp_score: 82, company_larp_score: 61 } },
+  {
+    delay: 650,
+    event: {
+      type: 'scores',
+      founder_larp_score: 82,
+      company_larp_score: 61,
+      overall_larp_score: 74,
+      company_assessments: [
+        {
+          company_name: 'Acme',
+          relationship: 'founder',
+          affects_overall: true,
+          larp_score: 61
+        }
+      ]
+    }
+  },
   {
     delay: 500,
     event: {
@@ -260,7 +276,23 @@ export const MOCK_SCORING_EVENTS = [
   { delay: 500, event: { type: 'status', text: 'Weighing evidence, compiling verdict...' } },
   // The long scoring/reasoning wait: no events stream for ~9s, which is what
   // drives the "Scoring the evidence" status the scoring shot captures.
-  { delay: 9000, event: { type: 'scores', founder_larp_score: 84, company_larp_score: 63 } },
+  {
+    delay: 9000,
+    event: {
+      type: 'scores',
+      founder_larp_score: 84,
+      company_larp_score: 63,
+      overall_larp_score: 76,
+      company_assessments: [
+        {
+          company_name: 'Acme',
+          relationship: 'founder',
+          affects_overall: true,
+          larp_score: 63
+        }
+      ]
+    }
+  },
   {
     delay: 500,
     event: {

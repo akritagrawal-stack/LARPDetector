@@ -75,10 +75,9 @@ from .llm import (
     ManualProvider,
     _claim_has_confirmation_basis,
     build_metric_breakdown,
-    compute_company_score,
-    compute_founder_score,
+    build_person_company_assessments,
+    finalize_dossier_scores,
     normalize_expected_footprints,
-    sync_buildability_metric,
 )
 from . import verify
 from . import search
@@ -2100,8 +2099,10 @@ _RESOLVE_CONTEXT_CHARS = 400
 
 def _is_product_claim(claim: Claim) -> bool:
     """True for a claim whose weight rests on a PRODUCT actually existing: a
-    metric claim, or a founder-flavored employment claim. A degree or a plain
-    non-founder job is not a product and gets no probes spent on it."""
+    metric claim, or a founder-flavored employment claim. Every employment
+    company still gets the general company and App Store checks, but ambiguous
+    website resolution is reserved for a role whose claim rests on shipping
+    that product."""
     if claim.type in ("user_count", "revenue_metric"):
         return True
     if claim.type == "employment":
@@ -2678,6 +2679,12 @@ def build_dossier(
         )
         product_site_records = {}
 
+    person_company_assessments = (
+        build_person_company_assessments(raw_profile, claims)
+        if effective_scan_type == "person"
+        else []
+    )
+
     # 2. AGGREGATE: one broad, bounded, parallel gather over ALL claims.
     pb_budget = pitchbook.PitchBookBudget() if pitchbook.is_enabled() else None
     company_url = (
@@ -2791,6 +2798,8 @@ def build_dossier(
     if effective_scan_type == "company_app":
         dossier.buildability = Buildability()
         dossier.metric_breakdown = build_metric_breakdown(claims)
+    else:
+        dossier.company_assessments = person_company_assessments
 
     # 3.5 COVERAGE DISCLOSURE. Scoring continues UNCHANGED: unsearched claims
     # already contribute nothing, a dark scan already lands CLEAR rather than
@@ -2817,19 +2826,10 @@ def build_dossier(
     # 5. SCORE: the SAME code-computed scorers, unchanged, so the number is
     # A/B-comparable to pipeline.run and every scoring guard (only DISPROVEN
     # reaches the top band, GAP/absence capped below it) carries over.
-    if dossier.scan_type == "company_app":
-        if dossier.buildability is not None and dossier.metric_breakdown:
-            sync_buildability_metric(dossier.metric_breakdown, dossier.buildability)
-        dossier.company_larp_score = compute_company_score(
-            dossier.metric_breakdown, claims=dossier.claims
-        )
-    else:
-        if dossier.larp_score is not None:
-            final_score = compute_founder_score(
-                dossier.claims, scan_depth=depth
-            )
-            dossier.larp_score = final_score
-            dossier.founder_larp_score = final_score
+    finalize_dossier_scores(dossier)
+    if dossier.scan_type == "person" and dossier.founder_larp_score is not None:
+        # Preserve the legacy field's person-score meaning for old consumers.
+        dossier.larp_score = dossier.founder_larp_score
 
     # 6. SURFACE the typed findings (deliverable only, never scored here).
     resolve_findings(dossier, findings)

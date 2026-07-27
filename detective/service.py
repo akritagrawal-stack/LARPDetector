@@ -74,7 +74,10 @@ API CONTRACT:
         Omitted defaults to True on the overlay side (mock-mode's fixture
         sequence relies on every image it sends becoming the hero in turn).
       {"type":"claim","assertion":"...","tier":"DISPROVEN|UNVERIFIED|CONFIRMED"}
-      {"type":"scores","founder_larp_score": int|null, "company_larp_score": int|null,
+      {"type":"scores","overall_larp_score": int|null,
+                        "founder_larp_score": int|null,
+                        "company_larp_score": int|null,
+                        "company_assessments": [...],
                         "scan_depth": "full"|"shallow"}
       {"type":"verdict","text":"..."}
       {"type":"needs_url","text":"..."}
@@ -108,9 +111,9 @@ BRAIN / SCORING (the reasoning step)
   file for status == "completed" (a human or fresh Codex reviewer fills in
   judgment fields and flips status), restores the mechanical scan evidence,
   applies reasoning safety, and only then computes
-  founder_larp_score / company_larp_score (mirroring pipeline.run's own
-  finalize step exactly, see _finalize_scores) and emits scores + verdict +
-  done.
+  founder_larp_score / company_larp_score / overall_larp_score (mirroring
+  pipeline.run's own finalize step exactly, see _finalize_scores) and emits
+  scores + verdict + done.
 
   Set LARP_SERVICE_PROVIDER=api (with GEMINI_API_KEY configured) to route a
   REAL (non-demo) scan through ApiProvider (Gemini) instead of the queue
@@ -213,9 +216,7 @@ from .llm import (
     CodexProvider,
     ManualProvider,
     QUEUE_DIR,
-    compute_company_score,
-    compute_founder_score,
-    sync_buildability_metric,
+    finalize_dossier_scores,
 )
 from .models import Dossier, EvidenceTier
 
@@ -833,6 +834,11 @@ async def _run_job(
             logger.warning("job %s: %s", job_id, dossier.coverage_warning)
             emit({"type": "status", "text": dossier.coverage_warning})
 
+        # Normal pipeline paths already finalize, but provider/test adapters and
+        # old completed queue files may carry only the legacy component score.
+        # The centralized finalizer is idempotent and fills overall_larp_score
+        # before the completion predicate or websocket payload reads it.
+        _finalize_scores(dossier)
         if _dossier_is_scored(dossier):
             # ApiProvider path, or a queue file that was already completed
             # (e.g. a re-run of a job_id an operator already finished).
@@ -1741,8 +1747,19 @@ def _manual_provider_for_scan(
 
 def _dossier_is_scored(dossier: Dossier) -> bool:
     if dossier.scan_type == "company_app":
-        return dossier.company_larp_score is not None
-    return dossier.founder_larp_score is not None
+        return (
+            dossier.company_larp_score is not None
+            and dossier.overall_larp_score is not None
+        )
+    company_complete = all(
+        assessment.larp_score is not None
+        for assessment in dossier.company_assessments
+    )
+    return (
+        dossier.founder_larp_score is not None
+        and company_complete
+        and dossier.overall_larp_score is not None
+    )
 
 
 def _finalize_scores(dossier: Dossier) -> None:
@@ -1751,20 +1768,7 @@ def _finalize_scores(dossier: Dossier) -> None:
     exactly, for a dossier read back from a completed queue file after
     pipeline.run has already returned once (unscored).
     """
-    if dossier.scan_type == "company_app":
-        if dossier.buildability is not None and dossier.metric_breakdown:
-            sync_buildability_metric(dossier.metric_breakdown, dossier.buildability)
-        dossier.company_larp_score = compute_company_score(
-            dossier.metric_breakdown, claims=dossier.claims
-        )
-    else:
-        if dossier.larp_score is not None:
-            # Honor scan_depth read back from the queue file (default "full" for
-            # old files): a shallow scan must not accrue absence-based suspicion
-            # even when scored later by the operator queue path.
-            dossier.founder_larp_score = compute_founder_score(
-                dossier.claims, scan_depth=getattr(dossier, "scan_depth", "full") or "full"
-            )
+    finalize_dossier_scores(dossier)
 
 
 def _persist_completed_dossier(dossier: Dossier, job_id: str) -> Optional[Path]:
@@ -1802,6 +1806,16 @@ def _emit_final(emit, dossier: Dossier, *, job_id: str = "") -> None:
             "type": "scores",
             "founder_larp_score": dossier.founder_larp_score,
             "company_larp_score": dossier.company_larp_score,
+            "overall_larp_score": dossier.overall_larp_score,
+            "company_assessments": [
+                {
+                    "company_name": assessment.company_name,
+                    "relationship": assessment.relationship,
+                    "affects_overall": assessment.affects_overall,
+                    "larp_score": assessment.larp_score,
+                }
+                for assessment in dossier.company_assessments
+            ],
             # scan_depth rides the verdict payload so the overlay can brand a
             # shallow result (a degraded scan must never be screenshottable as a
             # real SUS finding). "full" for a normal live scan; "shallow" for an
@@ -1986,6 +2000,15 @@ def _auto_complete_demo_job(queue_path: Path) -> None:
         )
     else:
         dossier_dict["larp_score"] = 5
+        for assessment in dossier_dict.get("company_assessments", []) or []:
+            assessment["buildability"] = {
+                "tier": "MODERATE",
+                "note": _DEMO_AUTO_SCORE_NOTE,
+            }
+            for metric in assessment.get("metric_breakdown", []) or []:
+                if metric.get("active") and metric.get("name") != "buildability":
+                    metric["score_0_10"] = 1
+                    metric["note"] = _DEMO_AUTO_SCORE_NOTE
         dossier_dict["verdict"] = (
             "Demo scan (auto-scored, not a real reasoning pass): bundled fixture profile, "
             "no contradicting evidence found for any claim."

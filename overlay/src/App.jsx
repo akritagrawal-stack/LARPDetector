@@ -126,8 +126,8 @@ function friendlyError(text) {
   return raw || 'Something went wrong running that scan. Click New scan and try again.';
 }
 
-// The verdict retints the whole pane's accent bleed to the tier color of the
-// worse of the two scores: the panel subtly "runs hot" on a bad verdict.
+// The verdict retints the whole pane's accent bleed to the code-computed
+// overall tier, so the panel subtly "runs hot" on a bad verdict.
 function bleedForScore(score) {
   if (score <= 33) return 'rgba(52, 208, 107, 0.10)';
   if (score <= 66) return 'rgba(255, 170, 51, 0.10)';
@@ -145,6 +145,8 @@ export default function App() {
   const [claims, setClaims] = useState([]);
   const [founderScore, setFounderScore] = useState(null);
   const [companyScore, setCompanyScore] = useState(null);
+  const [overallScore, setOverallScore] = useState(null);
+  const [companyAssessments, setCompanyAssessments] = useState([]);
   const [verdictText, setVerdictText] = useState('');
   const [error, setError] = useState(null);
   // Set when the service emits needs_url (a URL could not be confirmed): an
@@ -240,6 +242,8 @@ export default function App() {
     setClaims([]);
     setFounderScore(null);
     setCompanyScore(null);
+    setOverallScore(null);
+    setCompanyAssessments([]);
     setVerdictText('');
     setError(null);
     setNeedsUrlNotice(null);
@@ -307,6 +311,12 @@ export default function App() {
           setCompanyScore(
             typeof evt.company_larp_score === 'number' ? evt.company_larp_score : null
           );
+          setOverallScore(
+            typeof evt.overall_larp_score === 'number' ? evt.overall_larp_score : null
+          );
+          setCompanyAssessments(
+            Array.isArray(evt.company_assessments) ? evt.company_assessments : []
+          );
           setScanDepth(evt.scan_depth === 'shallow' ? 'shallow' : 'full');
           setPhase('verdict');
           break;
@@ -324,6 +334,8 @@ export default function App() {
           setClaims([]);
           setFounderScore(null);
           setCompanyScore(null);
+          setOverallScore(null);
+          setCompanyAssessments([]);
           setVerdictText('');
           setError(null);
           setScanDepth('full');
@@ -1075,12 +1087,15 @@ export default function App() {
   const latestStatus = statuses.length > 0 ? statuses[statuses.length - 1] : '';
   const hasFounder = typeof founderScore === 'number';
   const hasCompany = typeof companyScore === 'number';
+  const hasOverall = typeof overallScore === 'number';
   const sourceCount = feed.filter((f) => f.kind === 'website').length;
 
   const panelStyle = { '--panel-h': panelH != null ? panelH + 'px' : undefined };
-  if (renderedPhase === 'verdict' && (hasFounder || hasCompany)) {
-    const worst = Math.max(hasFounder ? founderScore : 0, hasCompany ? companyScore : 0);
-    panelStyle['--accent-bleed'] = bleedForScore(worst);
+  if (renderedPhase === 'verdict' && (hasOverall || hasFounder || hasCompany)) {
+    const accentScore = hasOverall
+      ? overallScore
+      : Math.max(hasFounder ? founderScore : 0, hasCompany ? companyScore : 0);
+    panelStyle['--accent-bleed'] = bleedForScore(accentScore);
   }
 
   const panelClass =
@@ -1163,6 +1178,8 @@ export default function App() {
             <VerdictView
               founderScore={founderScore}
               companyScore={companyScore}
+              overallScore={overallScore}
+              companyAssessments={companyAssessments}
               verdictText={verdictText}
               error={error}
               claims={claims}

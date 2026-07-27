@@ -4,7 +4,14 @@ from types import SimpleNamespace
 
 from detective import llm
 from detective.llm import CodexProvider
-from detective.models import Claim, Dossier, EvidenceTier
+from detective.models import (
+    Buildability,
+    Claim,
+    CompanyAssessment,
+    Dossier,
+    EvidenceTier,
+    MetricEntry,
+)
 
 
 def _fake_run_with(payload, seen):
@@ -94,3 +101,74 @@ def test_codex_scoring_uses_existing_safety_and_deterministic_score(monkeypatch)
     assert out.claims[0].expected_footprint == "high"
     assert isinstance(out.larp_score, int)
     assert out.verdict == "The public role has no independent receipts."
+
+
+def test_codex_person_scan_scores_company_assessment_in_same_reasoning_pass(
+    monkeypatch,
+):
+    seen = {}
+    payload = {
+        "claims": [
+            {
+                "index": 0,
+                "tier": "CONFIRMED",
+                "expected_footprint": "high",
+                "notes": "Independent role evidence exists.",
+            }
+        ],
+        "company_assessments": [
+            {
+                "company_name": "Acme",
+                "buildability": {"tier": "MODERATE", "note": "Real integration."},
+                "metric_breakdown": [
+                    {
+                        "name": "product_realness",
+                        "score_0_10": 2,
+                        "note": "Live product.",
+                    },
+                    {
+                        "name": "zombie_liveness",
+                        "score_0_10": 1,
+                        "note": "Recently active.",
+                    },
+                ],
+            }
+        ],
+        "verdict": "The role and product have independent receipts.",
+    }
+    monkeypatch.setattr(llm.subprocess, "run", _fake_run_with(payload, seen))
+    dossier = Dossier(
+        profile_url="https://example.test/jane",
+        claims=[
+            Claim(
+                type="employment",
+                employer="Acme",
+                title="Founder",
+                assertion="Founder at Acme",
+            )
+        ],
+        company_assessments=[
+            CompanyAssessment(
+                company_name="Acme",
+                claim_indices=[0],
+                relationship="founder",
+                affects_overall=True,
+                buildability=Buildability(),
+                metric_breakdown=[
+                    MetricEntry(
+                        name="product_realness", weight=3, active=True
+                    ),
+                    MetricEntry(
+                        name="zombie_liveness", weight=2, active=True
+                    ),
+                    MetricEntry(name="buildability", weight=1, active=True),
+                ],
+            )
+        ],
+    )
+
+    out = CodexProvider(cli_path="/fake/codex").assign_tiers_and_verdict(dossier)
+
+    assert "company_assessments" in seen["prompt"]
+    assert out.company_assessments[0].buildability.tier == "MODERATE"
+    assert out.company_assessments[0].metric_breakdown[0].score_0_10 == 2

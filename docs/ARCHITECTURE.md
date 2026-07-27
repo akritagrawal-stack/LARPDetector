@@ -2,7 +2,7 @@
 
 A working reference for the detection engine under `detective/`. It documents,
 accurately from the source: every data source connector, the full scan
-pipeline, the two-score model, and the provider abstraction. Read this to
+pipeline, the component-score model, and the provider abstraction. Read this to
 re-understand the system end to end.
 
 House rule: no em dashes anywhere in this file.
@@ -30,10 +30,13 @@ Two design commitments run through the whole system:
 
 ---
 
-## 2. The two-score model
+## 2. Component scores and overall score
 
-A Dossier carries `scan_type` = `"person"` or `"company_app"`, and each path
-computes its own score. Both are 0 to 100, higher = more likely LARP.
+A Dossier carries `scan_type` = `"person"` or `"company_app"`. Every completed
+scan has `overall_larp_score`; person scans also have
+`founder_larp_score`, `company_larp_score`, and a per-company
+`company_assessments` breakdown. All are 0 to 100, higher means more likely
+LARP.
 
 ### 2.1 Person: `founder_larp_score` (`llm.compute_founder_score`)
 
@@ -104,6 +107,36 @@ section 4). Weights: HIGH = 3, MED = 2, LOW = 1.
   still cannot reach the top band. Frozen-fixture recomputes that omit
   `claims` get the pure metric composite.
 
+For a person scan, the dossier engine creates one `CompanyAssessment` for
+every distinct employer named by an employment claim. Each assessment records
+its linked claim indices, relationship (`current`, `founder`, or `historical`),
+buildability, metric rows, and company score. Current and founder-linked
+assessments have `affects_overall=true`. Historical employers are still
+reasoned over and surfaced, but cannot make the employee look suspicious.
+
+The aggregate person-side `company_larp_score` is the highest completed score
+among assessments that affect overall. If none is relevant, it remains `None`
+rather than making a historical employer affect the person. The historical
+scores remain visible in `company_assessments`. Employment disproof never
+floors a company score: a false role claim says something about the person, not
+that the company is fake. These person-side company metrics remain capped below
+the accusation band unless a future company-native contradiction path supplies
+actual company disproof.
+
+### 2.3 Overall: `overall_larp_score`
+
+`llm.compute_overall_larp_score` is deterministic:
+
+- both components present: `round(0.60 * founder + 0.40 * company)`
+- one component present: use that component without treating the missing side
+  as zero
+- if either component is in the evidence-backed LARP band, overall remains in
+  that band
+- if neither component reaches the LARP band, the blend is capped below it
+
+The overlay renders Overall as the primary meter, with compact Founder and
+Company component cards and per-company chips.
+
 ---
 
 ## 3. The scan pipeline (`detective/pipeline.run`)
@@ -114,10 +147,11 @@ diverge only where noted.
 ```
 fetch (or accept injected raw_profile)
   -> decompose claims (mechanical, provider.decompose_claims)
+  -> [person] build one company assessment per named employer
   -> gather evidence per claim (verify.gather_evidence, concurrent connectors)
   -> [company only] scaffold Buildability + build_metric_breakdown
   -> assign tiers + verdict (provider.assign_tiers_and_verdict; the reasoning step)
-  -> compute composite score in code (compute_founder_score / compute_company_score)
+  -> compute component and overall scores in code
   -> emit verdict, return Dossier
 ```
 
@@ -145,8 +179,12 @@ Step by step:
    wayback/domain_age/techstack site-history connectors).
 
 4. **Company scaffold.** A company scan gets an empty `Buildability` and the
-   8-row `metric_breakdown` skeleton (active flags decided from the claims).
-   Person scans keep `buildability = None` and `metric_breakdown = []`.
+   8-row `metric_breakdown` skeleton. A person scan keeps those legacy
+   top-level fields empty but gets one `CompanyAssessment` per named employer,
+   each with its own buildability and metric skeleton. Current and
+   founder-linked employment claims receive the product-market connector
+   checks; historical employers retain the general evidence search without
+   multiplying ambiguous website probes.
 
 5. **Assign tiers + verdict (the reasoning step).**
    `provider.assign_tiers_and_verdict(dossier)` is where a `tier` is set on
@@ -154,12 +192,14 @@ Step by step:
    companies) the buildability tier and each active metric's `score_0_10` are
    filled. This is the only step that decides truth. See section 5.
 
-6. **Compute composite (in code).** For a company scan,
+6. **Compute components and overall (in code).** For a company scan,
    `sync_buildability_metric` derives the buildability row's `score_0_10` from
    the tier (TRIVIAL -> 3, MODERATE -> 1, HARD -> 0), then
    `compute_company_score` runs. For a person scan, `compute_founder_score`
    runs, but only once `larp_score` is set (the signal that the reasoning step
-   actually completed), avoiding a premature all-default-tier number.
+   actually completed), avoiding a premature all-default-tier number. Person
+   company assessments are scored independently, aggregated under the
+   relationship guard above, then blended by `compute_overall_larp_score`.
 
 Progress is emitted through a `(event, payload)` callback (`status`, `claim`,
 `verdict`) so the same shape maps onto a future websocket stream. `safe_print`
