@@ -1,0 +1,95 @@
+{
+  "profile_url": "https://www.linkedin.com/in/jordan-vaeltari-synthetic/",
+  "scan_type": "person",
+  "identity": {
+    "name": "Jordan Vaeltari",
+    "headline": "Senior technology executive",
+    "current_company": "Stripe",
+    "location": "San Francisco, California, United States"
+  },
+  "raw_experience": [],
+  "claims": [
+    {
+      "type": "identity",
+      "employer": "",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "A real person named Jordan Vaeltari exists and matches this profile.",
+      "tier": "UNVERIFIED",
+      "expected_footprint": "",
+      "notes": "",
+      "evidence": [
+        {"source_url": "https://www.google.com/search?q=Jordan+Vaeltari", "snippet": "Your search did not match any well-known public profile. Showing generic results for the surname Vaeltari."},
+        {"source_url": "https://example.com/directory", "snippet": "No matching entry found for the name Jordan Vaeltari in this public directory."}
+      ]
+    },
+    {
+      "type": "employment",
+      "employer": "Google",
+      "title": "Senior Software Engineer",
+      "start": "Jan 2016",
+      "end": "Dec 2019",
+      "assertion": "Worked as Senior Software Engineer at Google (Jan 2016 to Dec 2019).",
+      "tier": "UNVERIFIED",
+      "expected_footprint": "",
+      "notes": "",
+      "evidence": [
+        {"source_url": "https://en.wikipedia.org/wiki/Google", "snippet": "<strong>Google</strong> LLC is an American multinational technology company focusing on online advertising, search engine technology, cloud computing, and more."},
+        {"source_url": "https://careers.google.com", "snippet": "Google hires software engineers across many teams worldwide. This page describes engineering roles in general and does not list individual employees."}
+      ]
+    },
+    {
+      "type": "employment",
+      "employer": "McKinsey & Company",
+      "title": "Engagement Manager",
+      "start": "Jan 2020",
+      "end": "Jun 2022",
+      "assertion": "Worked as Engagement Manager at McKinsey & Company (Jan 2020 to Jun 2022).",
+      "tier": "UNVERIFIED",
+      "expected_footprint": "",
+      "notes": "",
+      "evidence": [
+        {"source_url": "https://en.wikipedia.org/wiki/McKinsey_%26_Company", "snippet": "<strong>McKinsey &amp; Company</strong> is a global management consulting firm founded in 1926 that advises corporations, governments, and other organizations."},
+        {"source_url": "https://www.mckinsey.com/careers", "snippet": "Engagement Manager is a standard role in McKinsey's consulting track. This overview page does not name individual consultants."}
+      ]
+    },
+    {
+      "type": "employment",
+      "employer": "Stripe",
+      "title": "Vice President of Product",
+      "start": "Jul 2022",
+      "end": "Present",
+      "assertion": "Works as Vice President of Product at Stripe (Jul 2022 to Present).",
+      "tier": "UNVERIFIED",
+      "expected_footprint": "",
+      "notes": "",
+      "evidence": [
+        {"source_url": "https://en.wikipedia.org/wiki/Stripe,_Inc.", "snippet": "<strong>Stripe</strong>, Inc. is an Irish-American financial services and software as a service company that offers payment-processing software and APIs."},
+        {"source_url": "https://stripe.com/about", "snippet": "Stripe's leadership and product teams are described in general terms on the company's about page, which does not enumerate every vice president."}
+      ]
+    },
+    {
+      "type": "education",
+      "employer": "Stanford Graduate School of Business",
+      "title": "Master of Business Administration",
+      "start": "2014",
+      "end": "2016",
+      "assertion": "Earned a Master of Business Administration at Stanford Graduate School of Business (2014 to 2016).",
+      "tier": "UNVERIFIED",
+      "expected_footprint": "",
+      "notes": "",
+      "evidence": [
+        {"source_url": "https://en.wikipedia.org/wiki/Stanford_Graduate_School_of_Business", "snippet": "The <strong>Stanford Graduate School of Business</strong> is the business school of Stanford University, offering a two-year MBA program among other degrees."},
+        {"source_url": "https://www.gsb.stanford.edu/programs/mba", "snippet": "Stanford GSB describes its MBA program on this page. It does not publish a searchable public roster of individual graduates."}
+      ]
+    }
+  ],
+  "larp_score": null,
+  "verdict": null,
+  "buildability": null,
+  "founder_larp_score": null,
+  "company_larp_score": null,
+  "metric_breakdown": [],
+  "generated_at": "2026-07-18T00:00:00+00:00"
+}

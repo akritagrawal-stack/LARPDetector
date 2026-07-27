@@ -1,0 +1,40 @@
+<!--
+  Anti-false-positive case: a single (non-grouped) role whose entry contains
+  a nested <ul> that is NOT a promotion sub-role list, it's a "Skills"
+  bullet list LinkedIn sometimes renders under a position. None of its <li>
+  items have their own bold title marker, so the parser must NOT mistake
+  this for a grouped/multi-role company header. No em dashes in this file
+  (house rule).
+-->
+<section data-section="experience">
+  <ul class="pvs-list">
+    <li class="artdeco-list__item pvs-list__paged-list-item">
+      <div class="pvs-entity">
+        <div class="display-flex flex-column">
+          <div class="t-bold">
+            <span aria-hidden="true">Backend Engineer</span>
+            <span class="visually-hidden">Backend Engineer</span>
+          </div>
+          <span class="t-14 t-normal">
+            <span aria-hidden="true">Netflix &middot; Full-time</span>
+            <span class="visually-hidden">Netflix &middot; Full-time</span>
+          </span>
+          <span class="t-14 t-normal t-black--light">
+            <span aria-hidden="true">Jan 2018 - Mar 2022 &middot; 4 yrs 3 mos</span>
+            <span class="visually-hidden">Jan 2018 - Mar 2022 &middot; 4 yrs 3 mos</span>
+          </span>
+        </div>
+        <ul class="pvs-list__skills">
+          <li class="pvs-skill-pill">
+            <span aria-hidden="true">Python</span>
+            <span class="visually-hidden">Python</span>
+          </li>
+          <li class="pvs-skill-pill">
+            <span aria-hidden="true">Kafka</span>
+            <span class="visually-hidden">Kafka</span>
+          </li>
+        </ul>
+      </div>
+    </li>
+  </ul>
+</section>

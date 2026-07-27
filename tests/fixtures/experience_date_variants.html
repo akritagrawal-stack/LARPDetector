@@ -1,0 +1,53 @@
+<!--
+  Real-world date-range variants that are NOT covered by
+  experience_section.html (which only uses full "Mon YYYY" dates). Covers:
+    1. year-only range with a "Present" end date: "2020 - Present"
+    2. year-only closed range with no months at all: "2019 - 2021"
+  No em dashes in this file (house rule); LinkedIn's own separator is
+  matched by the parser's dash-class regex regardless of which one it uses.
+-->
+<section data-section="experience">
+  <ul class="pvs-list">
+
+    <!-- year-only, Present -->
+    <li class="artdeco-list__item pvs-list__paged-list-item">
+      <div class="pvs-entity">
+        <div class="display-flex flex-column">
+          <div class="t-bold">
+            <span aria-hidden="true">Product Manager</span>
+            <span class="visually-hidden">Product Manager</span>
+          </div>
+          <span class="t-14 t-normal">
+            <span aria-hidden="true">Meta &middot; Full-time</span>
+            <span class="visually-hidden">Meta &middot; Full-time</span>
+          </span>
+          <span class="t-14 t-normal t-black--light">
+            <span aria-hidden="true">2020 - Present &middot; 5 yrs 6 mos</span>
+            <span class="visually-hidden">2020 - Present &middot; 5 yrs 6 mos</span>
+          </span>
+        </div>
+      </div>
+    </li>
+
+    <!-- month-less closed range -->
+    <li class="artdeco-list__item pvs-list__paged-list-item">
+      <div class="pvs-entity">
+        <div class="display-flex flex-column">
+          <div class="t-bold">
+            <span aria-hidden="true">Data Analyst</span>
+            <span class="visually-hidden">Data Analyst</span>
+          </div>
+          <span class="t-14 t-normal">
+            <span aria-hidden="true">Amazon &middot; Internship</span>
+            <span class="visually-hidden">Amazon &middot; Internship</span>
+          </span>
+          <span class="t-14 t-normal t-black--light">
+            <span aria-hidden="true">2019 - 2021</span>
+            <span class="visually-hidden">2019 - 2021</span>
+          </span>
+        </div>
+      </div>
+    </li>
+
+  </ul>
+</section>

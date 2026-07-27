@@ -1,0 +1,261 @@
+{
+  "profile_url": "https://mindforge-legal.example/",
+  "scan_type": "company_app",
+  "identity": {
+    "name": "MindForge AI",
+    "headline": "Proprietary AI that drafts airtight legal contracts in seconds",
+    "current_company": "MindForge AI",
+    "location": "Remote"
+  },
+  "raw_experience": [],
+  "claims": [
+    {
+      "type": "company_overview",
+      "employer": "MindForge AI",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "MindForge AI is an actively operating, real product with a live public footprint (not vaporware, not dormant).",
+      "tier": "UNVERIFIED",
+      "evidence": [
+        {
+          "source_url": "https://apps.apple.com/at/app/mindforge-ai/id6761082526",
+          "snippet": "Lade \u201eMindForge AI\u201c von Adam Joffe im App Store herunter. Sieh dir Bildschirmfotos, Bewertungen und Rezensionen, Benutzertipps und weitere Apps wie \u201eMindForge\u2026",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://apps.apple.com/us/app/mindforge-ai-mobile/id6755739347",
+          "snippet": "Download MindForge AI Mobile by Abdel-illah Said on the App Store. See screenshots, ratings and reviews, user tips, and more apps like MindForge AI Mobile.",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://apps.apple.com/us/app/mindforge/id1451742158",
+          "snippet": "Download MindForge by MindForge LLC on the App Store. See screenshots, ratings and reviews, user tips, and more apps like MindForge.",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://play.google.com/store/apps/details?id=com.mindforge.mindforge&hl=en_US",
+          "snippet": "MindForge empowers frontline workers with crucial jobsite updates and customized content on their mobile devices. Access day-to-day tactical information for safer and more efficient work. \u2022 Receive Instant Alerts and Announcements: Timely updates via push notifications for quick action, especially in emergencies.",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://fintech.global/2026/01/28/project-mindforge-phase-2-singapores-ai-governance-push/",
+          "snippet": "Napier AI, a provider of next generation AML and financial crime compliance software, recently delved into what firms need to know about Phase 2 of Singapore\u2019s Project MindForge. Project MindForge, launched in <strong>June 2023</strong> as an industry ...",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://apps.apple.com/app/id6761082526",
+          "snippet": "App Store listing for 'MindForge AI' (seller: Adam Joffe, bundle dev.mindforgeapp.brain): 8 total rating(s), average 5.00 stars. Current version 1.0.10, last updated 2026-05-11 (first released 2026-04-04). Apple does not publish a public version-history count, only the current version, so that figure is not available here.",
+          "source_name": "app_store_play_store_reviews",
+          "weight": 0.8,
+          "match_confidence": "high"
+        },
+        {
+          "source_url": "https://itunes.apple.com/us/rss/customerreviews/id=6761082526/sortBy=mostRecent/json",
+          "snippet": "Customer Reviews RSS for 'MindForge AI': 1 review(s) fetched from the feed, 0 within the last 90 days. 5 star, 2026-04-05: Love love love !. No review activity in the last 90 days is itself a real footprint signal: a claimed actively-growing user base with no recent reviews is worth flagging against the claim.",
+          "source_name": "app_store_play_store_reviews",
+          "weight": 0.8,
+          "match_confidence": "high"
+        },
+        {
+          "source_url": "https://news.ycombinator.com/item?id=47154838",
+          "snippet": "Hacker News: 3 stor(y/ies) mention 'MindForge AI' (2 of them tagged Show HN). Top thread(s): 'Show HN: Guard \u2013 An open-core governance layer for AI-generated code' (2 points, 0 comments, 2026-02-25); 'Show HN: MindForger \u2013 Attention, LLM is all your note-taking app needs!' (2 points, 0 comments, 2024-02-19); 'Launch HN: MindFort (YC X25) \u2013 AI agents for continuous pentesting' (60 points, 24 comments, 2025-05-28). HN's commentary skews technical/contrarian; treat this as a real public discussion signal, not a verdict.",
+          "source_name": "hackernews",
+          "weight": 0.64,
+          "match_confidence": "medium"
+        }
+      ],
+      "notes": "The app exists on the App Store, but the footprint is extremely thin (8 ratings total) and does not support the claim of a significant, active user base.",
+      "expected_footprint": ""
+    },
+    {
+      "type": "pricing",
+      "employer": "MindForge AI",
+      "title": "Pro",
+      "start": "",
+      "end": "",
+      "assertion": "MindForge AI is priced at $99/mo for the Pro tier.",
+      "tier": "UNVERIFIED",
+      "evidence": [
+        {
+          "source_url": "https://web3.bitget.com/en/swap/sol/H96vSNGEEXgc2vUkz2rcHxt7FAoFMnRfsiZfHL8epump",
+          "snippet": "FORGE live price today: <strong>$0.0{4}1333USD</strong>. Market cap: $13.32KUSD. 24h trading volume: $--USD. Real-time FORGE to USD updates."
+        },
+        {
+          "source_url": "https://apps.apple.com/us/app/mindforge-ai-mobile/id6755739347",
+          "snippet": "MindForge AI Mobile - Professional AI Creative Suite Transform your workflow with MindForge AI - the ultimate smart assistant combining intelligent chat, voice conversations, AI image generator, creative editor, and document scanner in one powerful productivity tool."
+        },
+        {
+          "source_url": "https://x.com/mindforge__ai",
+          "snippet": "JavaScript is not available \u00b7 We\u2019ve detected that JavaScript is disabled in this browser. Please enable JavaScript or switch to a supported browser to continue using x.com. You can see a list of supported browsers in our Help Center \u00b7 Help Center \u00b7 Terms of Service Privacy Policy Cookie ..."
+        },
+        {
+          "source_url": "https://www.revenuecat.com/blog/growth/ai-feature-cost-subscription-app-margins",
+          "snippet": "I recently spoke with a portfolio ... paying users couldn\u2019t access the core feature. <strong>Complaints rose, reviews worsened, and monetization performance became harder to interpret</strong>....",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.mindstudio.ai/blog/ai-free-sample-phase-pricing-strategy-what-comes-next",
+          "snippet": "Model-level lock-in is the hidden risk in the current adoption wave. <strong>If your internal tools are built directly on a specific API, price increases or capability changes from that provider hit you directly</strong>.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.facebook.com/KREM2/posts/the-fines-come-after-the-company-charged-hidden-fees-and-didnt-honor-offered-dis/10156709619206301/",
+          "snippet": "We cannot provide a description for this page right now",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://work-management.org/automation/ai-agents/mindstudio-review/",
+          "snippet": "The interface can feel cluttered when managing dozens of Zaps, and there\u2019s limited organization beyond folders. Billing and support complaints: <strong>Some users report issues with billing transparency and difficulty cancelling plans</strong>.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://mindforgeai.co.za/",
+          "snippet": "By submitting, you give MindForge AI permission to store and process your personal information so we can provide you with the content you\u2019ve requested."
+        }
+      ],
+      "notes": "No public pricing page or documentation confirms a $99/mo Pro tier; evidence is anecdotal or unrelated.",
+      "expected_footprint": ""
+    },
+    {
+      "type": "funding",
+      "employer": "MindForge AI",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "MindForge AI claims to have raised $1.5 million (source text: \"raised $1.5 million pre-seed\").",
+      "tier": "UNVERIFIED",
+      "evidence": [
+        {
+          "source_url": "https://www.crunchbase.com/organization/mindfort-ai",
+          "snippet": "Mindfort AI is an Autonomous AI Security Agent platform that perform continuous penetration testing of your attack surface at massive scale."
+        },
+        {
+          "source_url": "https://www.designrush.com/agency/business-consulting/trends/ai-startup-funding-stages",
+          "snippet": "<strong>A seed round was a few million dollars to prove a team could build</strong>. A Series A meant you had found product-market fit and were ready to scale it. A Series B meant the growth was repeatable."
+        },
+        {
+          "source_url": "https://www.therobotreport.com/mind-robotics-raises-400m-scale-ai-powered-robots-in-manufacturing/",
+          "snippet": "Mind Robotics obtained <strong>$115 million</strong> in seed financing in late 2025 and a $500 million Series A round in March 2026."
+        },
+        {
+          "source_url": "https://aifundingtracker.com/ai-startup-funding-news-today/",
+          "snippet": "This page tracks venture capital deals across artificial intelligence as they happen, from frontier lab megarounds to early seed bets on the tools and infrastructure being built on top of them. Each deal is laid out clearly with the amount raised, funding stage, lead investors, valuation, and sector, so you can see where AI money is flowing at a glance."
+        }
+      ],
+      "notes": "No record of a $1.5M pre-seed round exists in any credible startup database; the evidence provided is entirely unrelated to this entity.",
+      "expected_footprint": ""
+    },
+    {
+      "type": "user_count",
+      "employer": "MindForge AI",
+      "title": "businesses",
+      "start": "",
+      "end": "",
+      "assertion": "MindForge AI claims 5,000 users (source text: \"trusted by over 5,000 businesses\").",
+      "tier": "UNVERIFIED",
+      "evidence": [
+        {
+          "source_url": "https://apps.apple.com/us/app/mindforge-ai-mobile/id6755739347",
+          "snippet": "<strong>Edit, enhance, and perfect your images effortlessly using smart AI technology</strong>. AI DOCUMENT SCANNER Smart text extraction from photos and documents. Digitize anything, anywhere with intelligent scanner technology.",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://apps.apple.com/app/id6761082526",
+          "snippet": "App Store listing for 'MindForge AI' (seller: Adam Joffe, bundle dev.mindforgeapp.brain): 8 total rating(s), average 5.00 stars. Current version 1.0.10, last updated 2026-05-11 (first released 2026-04-04). Apple does not publish a public version-history count, only the current version, so that figure is not available here.",
+          "source_name": "app_store_play_store_reviews",
+          "weight": 0.8,
+          "match_confidence": "high"
+        },
+        {
+          "source_url": "https://itunes.apple.com/us/rss/customerreviews/id=6761082526/sortBy=mostRecent/json",
+          "snippet": "Customer Reviews RSS for 'MindForge AI': 1 review(s) fetched from the feed, 0 within the last 90 days. 5 star, 2026-04-05: Love love love !. No review activity in the last 90 days is itself a real footprint signal: a claimed actively-growing user base with no recent reviews is worth flagging against the claim.",
+          "source_name": "app_store_play_store_reviews",
+          "weight": 0.8,
+          "match_confidence": "high"
+        }
+      ],
+      "notes": "The claim of 5,000 business users is completely unsupported by the app's minimal public footprint and lack of professional presence.",
+      "expected_footprint": ""
+    },
+    {
+      "type": "proprietary_tech",
+      "employer": "MindForge AI",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "MindForge AI claims: \"MindForge is powered by our proprietary large language model, trained in-house on millions of legal documents, that no other company has.\"",
+      "tier": "UNVERIFIED",
+      "evidence": [],
+      "notes": "No evidence of proprietary model training or technical artifacts exists; the claim is entirely unsubstantiated.",
+      "expected_footprint": ""
+    }
+  ],
+  "larp_score": null,
+  "verdict": "The claims made by MindForge AI are deeply sus. There is a massive disconnect between the grandiose assertions of proprietary AI models and 5,000 business users versus the reality of a ghost-town app with 8 total ratings and no verifiable funding. Either this is a ghost, or the entire footprint has been invented out of thin air; none of it checks out.",
+  "buildability": {
+    "tier": "TRIVIAL",
+    "note": "The app appears to be a generic wrapper for LLM APIs with no evidence of proprietary infrastructure or custom model training."
+  },
+  "founder_larp_score": null,
+  "company_larp_score": null,
+  "metric_breakdown": [
+    {
+      "name": "raise_inflation",
+      "weight": 3,
+      "score_0_10": 5,
+      "active": true,
+      "note": "No record of funding exists; unverifiable."
+    },
+    {
+      "name": "reach_vs_footprint",
+      "weight": 3,
+      "score_0_10": 9,
+      "active": true,
+      "note": "Claim of 5,000 business users is wildly inconsistent with the near-zero public footprint and lack of professional reviews."
+    },
+    {
+      "name": "product_realness",
+      "weight": 3,
+      "score_0_10": 2,
+      "active": true,
+      "note": "The product is live on the App Store, though it appears to be a thin wrapper."
+    },
+    {
+      "name": "headcount_inflation",
+      "weight": 2,
+      "score_0_10": null,
+      "active": false,
+      "note": ""
+    },
+    {
+      "name": "proprietary_ai_gap",
+      "weight": 2,
+      "score_0_10": 10,
+      "active": true,
+      "note": "Loud claim of proprietary models with zero technical artifacts or evidence provided."
+    },
+    {
+      "name": "zombie_liveness",
+      "weight": 2,
+      "score_0_10": 6,
+      "active": true,
+      "note": "App has seen no review activity in over 90 days, suggesting low engagement or dormancy."
+    },
+    {
+      "name": "key_role_coverage",
+      "weight": 2,
+      "score_0_10": 10,
+      "active": true,
+      "note": "No technical co-founder or engineering team identified for a company claiming proprietary AI development."
+    },
+    {
+      "name": "buildability",
+      "weight": 1,
+      "score_0_10": 3,
+      "active": true,
+      "note": "The app appears to be a generic wrapper for LLM APIs with no evidence of proprietary infrastructure or custom model training."
+    }
+  ],
+  "generated_at": "2026-07-19T01:25:02.823340+00:00"
+}

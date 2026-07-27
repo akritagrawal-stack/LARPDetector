@@ -1,0 +1,39 @@
+<!--
+  Two robustness cases that must degrade to partial data instead of raising:
+    1. a title-only entry: only a bold line, no company, no date, no
+       location line at all.
+    2. a malformed entry: a top-level <li> that matches the item selector
+       but has no bold/title content whatsoever (e.g. a stray promoted-post
+       or ad <li> LinkedIn sometimes injects into the same list). This must
+       be skipped silently, and it must not prevent the good entries around
+       it (this one and the title-only one) from parsing.
+  No em dashes in this file (house rule).
+-->
+<section data-section="experience">
+  <ul class="pvs-list">
+
+    <!-- 1. title only, nothing else -->
+    <li class="artdeco-list__item pvs-list__paged-list-item">
+      <div class="pvs-entity">
+        <div class="display-flex flex-column">
+          <div class="t-bold">
+            <span aria-hidden="true">Independent Consultant</span>
+            <span class="visually-hidden">Independent Consultant</span>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <!-- 2. malformed: no bold/title, no aria-hidden content at all -->
+    <li class="artdeco-list__item pvs-list__paged-list-item">
+      <div class="pvs-entity">
+        <div class="display-flex flex-column">
+          <div class="ad-slot">
+            <span>Promoted content, no aria-hidden span here.</span>
+          </div>
+        </div>
+      </div>
+    </li>
+
+  </ul>
+</section>

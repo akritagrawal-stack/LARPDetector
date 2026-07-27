@@ -1,0 +1,231 @@
+{
+  "profile_url": "https://en.wikipedia.org/wiki/Trevor_Milton",
+  "scan_type": "person",
+  "identity": {
+    "name": "Trevor Milton",
+    "headline": "Founder and Executive Chairman at Nikola Corporation",
+    "current_company": "Nikola Corporation",
+    "location": "Salt Lake City, Utah, United States"
+  },
+  "raw_experience": [
+    {
+      "title": "Founder and Executive Chairman",
+      "company": "Nikola Corporation",
+      "start_date": "2014",
+      "end_date": "2020",
+      "location": "Phoenix, Arizona"
+    },
+    {
+      "title": "Stated the Nikola One was a fully functioning semi truck driving under its own power",
+      "company": "Nikola Corporation",
+      "start_date": "",
+      "end_date": "",
+      "location": ""
+    },
+    {
+      "title": "Founder and CEO",
+      "company": "dHybrid Systems",
+      "start_date": "2009",
+      "end_date": "2013",
+      "location": "Utah"
+    }
+  ],
+  "claims": [
+    {
+      "type": "identity",
+      "employer": "",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "A real person named Trevor Milton exists and matches this profile.",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://news.ycombinator.com/item?id=45353715",
+          "snippet": "Hacker News: 2 stor(y/ies) mention 'Nikola Corporation' (0 of them tagged Show HN). Top thread(s): 'HTML5 Supercomputer' (2 points, 2 comments, 2025-09-23); 'New Battery Technology Coming Soon \u2013 A Game Changer' (28 points, 15 comments, 2019-11-19). HN's commentary skews technical/contrarian; treat this as a real public discussion signal, not a verdict.",
+          "source_name": "hackernews",
+          "weight": 0.64,
+          "match_confidence": "medium"
+        },
+        {
+          "source_url": "https://news.ycombinator.com/item?id=45192652",
+          "snippet": "Hacker News comments mentioning 'Nikola Corporation' include wrapper/scam/exaggeration-flavored language: 2025-09-10: 'Asked AI:- Sam Bankman-Fried (FTX): Sentenced to 25 years in prison in 2024 for orchestrating a massive fraud involving the misappropriation of billions in customer funds.- Elizabeth Holmes (Theranos)...'; 2022-12-10: 'IDK, when I see threads like this hit high rankings on HN, I don&#x27;t even have to click through to know that it&#x27;s a rant \u2014 it wouldn&#x27;t make the front page if it was  like &quot;Sweet, thi...'; 2022-10-01: 'Same here. Whenever I hear &quot;Magic Leap&quot;, that&#x27;s instantly what I remember. The fake demo. The light projector that somehow can project &quot;dark&quot;.It&#x27;s also how I view Nikola[...'. HN skews contrarian and unmoderated; a critical comment is a real reputation signal, never proof of fabrication on its own.",
+          "source_name": "hackernews",
+          "weight": 0.64,
+          "match_confidence": "medium"
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Trevor_Milton",
+          "snippet": "On September 20, 2020, <strong>Milton</strong> resigned ... <strong>Nikola</strong> <strong>Corporation</strong>. As part of his exit package, he remained an unpaid consultant to <strong>Nikola</strong> until December 2020 and was restricted from publicly commenting on <strong>Nikola</strong> without prior approval. <strong>Milton</strong> retained 91.6 million shares of <strong>Nikola</strong>, valued at approximately $3.1 billion in late September 2020. In July 2021, a United States federal grand jury returned an indictment against <strong>Trevor</strong> <strong>Milton</strong> that ..."
+        },
+        {
+          "source_url": "https://www.bbc.com/news/business-67752125",
+          "snippet": "Trevor Milton, who led Nikola Corporation, was <strong>convicted of fraud</strong> last year after a jury found he had lied persistently about the company."
+        },
+        {
+          "source_url": "https://www.justice.gov/usao-sdny/pr/trevor-milton-sentenced-four-years-prison-securities-fraud-scheme",
+          "snippet": "From at least in or about November 2019 up through and including at least in or about September 2020, <strong>TREVOR MILTON engaged in a scheme to defraud investors by inducing them to purchase shares of Nikola Corporation</strong>, the electric- and ..."
+        },
+        {
+          "source_url": "https://www.justice.gov/usao-sdny/pr/former-nikola-corporation-ceo-trevor-milton-charged-securities-fraud-scheme",
+          "snippet": "From at least in or about November ... 2020, <strong>TREVOR MILTON engaged in a scheme to defraud investors by inducing them to purchase shares of Nikola Corporation (\u201cNikola\u201d), the electric- and hydrogen-powered vehicle and energy company that MILTON founded</strong>, through false ..."
+        },
+        {
+          "source_url": "https://www.courtlistener.com/docket/73315907/trevor-milton-lund/",
+          "snippet": "CourtListener docket record possibly involving 'Trevor Milton': [docket] Trevor Milton Lund (United States Bankruptcy Court, N.D. California, filed 2026-05-08, docket 26-10336). SAME-NAME MATCHES ARE THE HIGHEST FALSE-POSITIVE RISK OF ANY SOURCE HERE: this is not confirmation the claimed person was actually a party in this case unless corroborated independently (matching entity type, a jurisdiction that fits, or counsel); treat this as a lead to verify, never as a settled adverse finding on its own.",
+          "source_name": "courtlistener",
+          "weight": 0.6,
+          "match_confidence": "low"
+        },
+        {
+          "source_url": "https://www.courtlistener.com/docket/69651079/nikola-corporation-and-lead-class/",
+          "snippet": "CourtListener docket record possibly involving 'Trevor Milton': [docket] Nikola Corporation and Lead Class (United States Bankruptcy Court, D. Delaware, filed 2025-02-19, docket 25-10258). SAME-NAME MATCHES ARE THE HIGHEST FALSE-POSITIVE RISK OF ANY SOURCE HERE: this is not confirmation the claimed person was actually a party in this case unless corroborated independently (matching entity type, a jurisdiction that fits, or counsel); treat this as a lead to verify, never as a settled adverse finding on its own.",
+          "source_name": "courtlistener",
+          "weight": 0.6,
+          "match_confidence": "low"
+        }
+      ],
+      "notes": "Identity is well-documented through federal court records and criminal conviction filings.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "employment",
+      "employer": "Nikola Corporation",
+      "title": "Founder and Executive Chairman",
+      "start": "2014",
+      "end": "2020",
+      "assertion": "Worked as Founder and Executive Chairman at Nikola Corporation (2014 to 2020).",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Trevor_Milton",
+          "snippet": "<strong>Trevor</strong> Robert <strong>Milton</strong> (born April 6, 1982) is an American entrepreneur best known as the <strong>founder</strong> <strong>and</strong> former <strong>executive</strong> <strong>chairman</strong> <strong>and</strong> chief <strong>executive</strong> officer of <strong>Nikola</strong> <strong>Corporation</strong>."
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Nikola_Corporation",
+          "snippet": "In March 2020, <strong>Nikola</strong> <strong>Corporation</strong> announced its plans to merge with VectoIQ Acquisition <strong>Corporation</strong> (ticker VTIQ), a publicly traded special-purpose acquisition company run by former General Motors (GM) vice-<strong>chairman</strong> <strong>and</strong> Stephen Girsky. This resulted in the combined company being listed on the NASDAQ exchange with the NKLA ticker symbol. As part of the merger, <strong>founder</strong> <strong>and</strong> CEO <strong>Trevor</strong> <strong>Milton</strong> had his title changed from CEO to <strong>Executive</strong> ..."
+        },
+        {
+          "source_url": "https://www.bbc.com/news/business-67752125",
+          "snippet": "Trevor Milton, who led Nikola Corporation, was <strong>convicted of fraud last year after a jury found he had lied persistently about the company</strong>.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.cnbc.com/2023/12/18/nikola-founder-trevor-milton-sentencing-fraud-charges.html",
+          "snippet": "&quot;Trevor Milton lied to investors again and again \u2014 on social media, on television, on podcasts, and in print. But today&#x27;s sentence should be a warning to start-up founders and corporate executives everywhere \u2014 &#x27;fake it till you make it&#x27; is not an excuse for fraud, and if you mislead your investors, you will pay a stiff price,&quot; Damian Williams, U.S. attorney for the Southern District of New York, said in a statement. Nikola in 2021 agreed to pay $125 million to settle civil charges brought by the U.S.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.justice.gov/usao-sdny/pr/trevor-milton-sentenced-four-years-prison-securities-fraud-scheme",
+          "snippet": "Former Executive Chairman and CEO of Nikola Corporation Was <strong>Convicted at Trial for Making False and Misleading Statements to Retail Investors to Drive Investor Demand</strong> \u00b7 Damian Williams, the United States Attorney for the Southern District of ..."
+        },
+        {
+          "source_url": "https://www.linkedin.com/pulse/interview-trevor-milton-founder-executive-chairman-nikola-meckmann",
+          "snippet": "Trevor Milton, the Nikola Corporation founder and executive chairman agreed to answer some pressing questions from me and the Tesla Twitter community about the Nikola Badger, the Nikola semi-trucks and their hydrogen production plans. Leading up to our interview, Trevor appeared on various TV shows,"
+        },
+        {
+          "source_url": "https://www.reddit.com/r/RealNikola/comments/1hjubje/whats_the_real_story_behind_trevor_milton_and/",
+          "snippet": "Even if you discount all the lying around Nikola&#x27;s HFC truck prototypes as typical &quot;coming soon!&quot; product hype from a startup, it&#x27;s clear that lyin&#x27; Trevor Milton was never serious about executing on Nikola&#x27;s vision. He never built a single H2 truckstop making its own green H2 because it was an economic non-starter. Instead, he deceived investors with nonsense like the entire Powersports division, the battery breakthrough, and the Badger pickup to prop up the stock price and hide the fact that Nikola wasn&#x27;t doing what it set out to do. It was an ocean of lies.",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "Public record confirms his role as founder and executive chairman of Nikola Corporation.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "employment",
+      "employer": "Nikola Corporation",
+      "title": "Stated the Nikola One was a fully functioning semi truck driving under its own power",
+      "start": "",
+      "end": "",
+      "assertion": "The Nikola One was a fully functioning semi truck driving under its own power.",
+      "tier": "DISPROVEN",
+      "evidence": [
+        {
+          "source_url": "https://www.theverge.com/2023/12/18/24006571/nikola-trevor-milton-sentence-prison-fraud-electric-truck",
+          "snippet": "Federal prosecutor said Milton ... \u201cground up.\u201d <strong>They also accused him of staging a video that purportedly showed its Nikola One semi driving under its own power when it was actually rolling down a hill.</strong>..."
+        },
+        {
+          "source_url": "https://www.bbc.com/news/business-67752125",
+          "snippet": "Trevor Milton, who led Nikola Corporation, was <strong>convicted of fraud last year after a jury found he had lied persistently about the company</strong>.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.cnbc.com/2023/12/18/nikola-founder-trevor-milton-sentencing-fraud-charges.html",
+          "snippet": "&quot;Trevor Milton lied to investors again and again \u2014 on social media, on television, on podcasts, and in print. But today&#x27;s sentence should be a warning to start-up founders and corporate executives everywhere \u2014 &#x27;fake it till you make it&#x27; is not an excuse for fraud, and if you mislead your investors, you will pay a stiff price,&quot; Damian Williams, U.S. attorney for the Southern District of New York, said in a statement. Nikola in 2021 agreed to pay $125 million to settle civil charges brought by the U.S.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.justice.gov/usao-sdny/pr/former-nikola-corporation-ceo-trevor-milton-charged-securities-fraud-scheme",
+          "snippet": "MILTON made false claims regarding ... (a) <strong>false and misleading statements that the company had early success in creating a \u201cfully functioning\u201d semi-truck prototype known as the \u201cNikola One,\u201d when MILTON knew the prototype was inoperable</strong>; (b) false ..."
+        },
+        {
+          "source_url": "https://www.justice.gov/usao-sdny/pr/trevor-milton-sentenced-four-years-prison-securities-fraud-scheme",
+          "snippet": "MILTON made false claims regarding ... (i) <strong>false and misleading statements that the company had early success in creating a \u201cfully functioning\u201d semi-truck prototype known as the \u201cNikola One,\u201d when MILTON knew the prototype was inoperable</strong>; (ii) false ..."
+        },
+        {
+          "source_url": "https://www.teslarati.com/nikola-motor-trevor-milton-timeline/",
+          "snippet": "2014 \u2013 dHybrid acquired by Worthington for $15.9 million. 2016 \u2013 <strong>Nikola announces it will unveil the Nikola One electric semi, claiming that it will be fully functional at the December 1st event</strong>."
+        },
+        {
+          "source_url": "https://www.reddit.com/r/RealNikola/comments/1hjubje/whats_the_real_story_behind_trevor_milton_and/",
+          "snippet": "Even if you discount all the lying around Nikola&#x27;s HFC truck prototypes as typical &quot;coming soon!&quot; product hype from a startup, it&#x27;s clear that lyin&#x27; Trevor Milton was never serious about executing on Nikola&#x27;s vision. He never built a single H2 truckstop making its own green H2 because it was an economic non-starter. Instead, he deceived investors with nonsense like the entire Powersports division, the battery breakthrough, and the Badger pickup to prop up the stock price and hide the fact that Nikola wasn&#x27;t doing what it set out to do. It was an ocean of lies.",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "Federal court findings and his criminal conviction explicitly state he lied about the Nikola One being a fully functioning prototype.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "employment",
+      "employer": "dHybrid Systems",
+      "title": "Founder and CEO",
+      "start": "2009",
+      "end": "2013",
+      "assertion": "Worked as Founder and CEO at dHybrid Systems (2009 to 2013).",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Trevor_Milton",
+          "snippet": "Disputes with investors eventually led to the dissolution of <strong>dHybrid</strong>, after which <strong>Milton</strong> launched <strong>dHybrid</strong> <strong>Systems</strong> in 2012. This company focused on natural gas storage <strong>systems</strong> for heavy-duty trucks and was later acquired by Worthington Industries. In 2015, <strong>Milton</strong> founded <strong>Nikola</strong> Motor Company ..."
+        },
+        {
+          "source_url": "https://www.forbes.com/sites/stevenli1/2020/05/18/nikola-motor-company-trevor-milton-2020/",
+          "snippet": "Nikola CEO and founder Trevor Milton next to three of his company&#x27;s zero-emissions truck models.Tim Pannell (Forbes)"
+        },
+        {
+          "source_url": "https://www.businessinsider.com/trevor-milton-nikola-hindenburg-worthington-dhybrid-upillar-2021-3",
+          "snippet": "Many of dHybrid&#x27;s fuel systems had to be repaired, but two former Worthington employees told Insider that a report, prepared by an engineer Milton had hired, gave the impression nothing was wrong with them. <strong>Milton founded Nikola in 2014.</strong>"
+        },
+        {
+          "source_url": "https://grokipedia.com/page/Trevor_Milton",
+          "snippet": "Trevor Milton <strong>founded Nikola Motor Company in 2014 in Phoenix, Arizona</strong>, following the sale of his previous venture, dHybrid Systems, to Worthington Industries for a $2 million seed investment that supported the new enterprise.[29][30] Initially ..."
+        },
+        {
+          "source_url": "https://www.reddit.com/r/RealNikola/comments/1hjubje/whats_the_real_story_behind_trevor_milton_and/",
+          "snippet": "<strong>His first scam was a home alarm company where he scammed in the ~$100k-$1M range. His next scam was DHybrid where he sold a non-working prototype to the in the ~$10M-$100M range to Worthington Industries</strong>.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://novus2.com/righteouscause/2025/12/08/trevor-milton-from-lds-entrepreneur-to-convicted-fraudster-and-pardoned-mogul/",
+          "snippet": "At sentencing, Milton sobbed and pleaded for leniency, claiming he stepped down from Nikola not because of fraud allegations but to care for his sick wife. \u201cMy intent was not to harm others,\u201d Milton told Judge Ramos. \u201cLet me have probation.\u201d \u00b7 Judge Ramos was unmoved. \u201cAs difficult as it may be for you or your family to hear, I believe the jury got it right,\u201d he stated. U.S. Attorney Damian Williams issued a clear warning: \u201cTrevor Milton lied to investors again and again\u2014on social media, on television, on podcasts, and in print.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.justice.gov/usao-sdny/pr/trevor-milton-sentenced-four-years-prison-securities-fraud-scheme",
+          "snippet": "Damian Williams, the United States Attorney for the Southern District of New York, announced today that TREVOR MILTON was sentenced by U.S. District Judge Edgardo Ramos to four years in prison for engaging in securities and wire fraud in connection with his scheme to defraud and mislead investors about the development of products and technology by the company he founded, Nikola Corporation (\u201cNikola\u201d). MILTON was previously convicted after a one-month trial before Judge Ramos. U.S. Attorney Damian Williams said: \u201cTrevor Milton lied to investors again and again \u2014 on social media, on television, on podcasts, and in print.",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "Multiple sources confirm his founding and leadership of dHybrid Systems prior to its acquisition by Worthington Industries.",
+      "expected_footprint": "high"
+    }
+  ],
+  "larp_score": 85,
+  "verdict": "Trevor Milton is a convicted criminal who built his reputation on a foundation of blatant lies. He claimed the Nikola One was a 'fully functioning' semi-truck, but the court record proves he was a shithead liar who staged a video of the truck rolling down a hill because it was completely inoperable. He is a proven fabricator who misled investors to pump his stock, and his conviction for securities fraud cements his status as a fraudster.",
+  "buildability": null,
+  "founder_larp_score": null,
+  "company_larp_score": null,
+  "metric_breakdown": [],
+  "generated_at": "2026-07-19T01:19:04.043234+00:00"
+}

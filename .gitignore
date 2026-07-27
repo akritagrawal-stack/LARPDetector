@@ -1,0 +1,68 @@
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*cookie*
+*cookies*
+*storage_state*
+*browser-profile*
+*user-data-dir*
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Node and Electron
+node_modules/
+overlay/node_modules/
+overlay/dist/
+.runtime/
+npm-debug.log*
+
+# macOS and editors
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Local scan output and private operator state
+queue/*
+!queue/.gitkeep
+tests/cases/zarik_regression_profile.json
+targets/
+livedebug/
+*_dossier.json
+*_dossier_scored.json
+*_dossier_corrected.json
+*_result.json
+/_*.py
+/_*.json
+/_*.html
+
+# Local research and internal handoff material
+MARKETPLACE_STRATEGY.md
+VPP_*
+docs/HANDOFF.md
+docs/RETRIEVAL_REPAIR_BOARD.md
+docs/plans/
+overlay/CLUELY_MATCH_PLAN.md
+overlay/CLUELY_UI_PLAN.md
+overlay/repro*.cjs
+/overlay/capture.cjs
+/overlay/screenshots/
+/browser-extension-firefox/
+/SERVICE_README.md
+/larp_operator.py
+/operator_monitor.py
+
+# Generated evaluation output
+/evals/

@@ -1,0 +1,2015 @@
+/*
+  LARP Detector overlay: a Cluely-grade shiny-glass chrome. The look is built
+  from three glass modes (macOS vibrancy, Windows 11 acrylic, and a
+  self-contained CSS faux-glass fallback) sharing one layer stack, plus a
+  masked specular rim, an SVG grain, a light sweep, and a small motion
+  vocabulary. Everything the UI paints comes from a token below; no raw rgba
+  lives inside a component rule. Content semantics (live feed, claim tiers,
+  the two LARP meters, the verdict) are unchanged, only the chrome and the
+  motion around them are new.
+*/
+
+/* ---------- Bundled OFL fonts (no CDN, ship inside the app) ---------- */
+
+/* UI sans: Inter (see src/fonts/Inter-OFL.txt). Only the three weights the
+   UI actually uses. font-display: swap keeps the tiny panel from ever
+   blocking first paint on a font. */
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/Inter-400.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/Inter-500.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Inter";
+  src: url("./fonts/Inter-600.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Readout mono: JetBrains Mono (see src/fonts/OFL.txt), reserved for numeric
+   score/evidence readouts, domains, the status ticker, the shortcut chip,
+   and the VERDICT eyebrow. Everything else is Inter. */
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("./fonts/JetBrainsMono-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("./fonts/JetBrainsMono-Medium.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("./fonts/JetBrainsMono-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ---------- Tokens ---------- */
+
+:root {
+  /* Type */
+  --font-ui: "Inter", -apple-system, "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "Cascadia Code", "SF Mono", Consolas, "Courier New", monospace;
+
+  --text-2xs: 10.5px;
+  --text-xs: 12px;
+  --text-sm: 13.5px;
+  --text-md: 15px;
+  --text-lg: 20px;
+
+  /* Color: dark glass, one accent, a semantic trio */
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-dim: rgba(255, 255, 255, 0.60);
+  /* Small labels (meter zone labels, source domains, input placeholder,
+     receipts head) at 9.5-10px over translucent glass: 0.36 fell below WCAG AA
+     against a light desktop showing through. Raised to 0.52 for legibility. */
+  --text-faint: rgba(255, 255, 255, 0.52);
+
+  --accent: #8AA6FF;
+  --accent-dim: rgba(138, 166, 255, 0.30);
+
+  --ok: #34D06B; /* confirmed / low LARP */
+  --warn: #FFAA33; /* unverified / mid */
+  --bad: #FF5C4D; /* disproven / high LARP */
+
+  --hairline: rgba(255, 255, 255, 0.10);
+  --hairline-strong: rgba(255, 255, 255, 0.18);
+
+  /* Interior "glass on glass" surfaces: one shared recipe for every inner box
+     (input, chips, buttons, evidence visuals, meter track) so the inside
+     matches the shell. */
+  --surface-raised: rgba(255, 255, 255, 0.06);
+  --surface-raised-hover: rgba(255, 255, 255, 0.10);
+  --surface-raised-border: rgba(255, 255, 255, 0.10);
+  --surface-inset-light: inset 0 1px 0 rgba(255, 255, 255, 0.09);
+
+  /* The top-left "environment reflection" bleed in the panel's base fill.
+     App.jsx overrides this to a verdict tier color so the whole pane subtly
+     runs hot on a bad verdict. */
+  --accent-bleed: rgba(124, 156, 255, 0.07);
+
+  /* The shell gets a slightly softer macOS corner while inner controls stay
+     compact and near-square. --radius-round is reserved for genuinely circular
+     bits such as status dots, the spinner, and the grip. */
+  --radius-panel: 12px;
+  --radius-control: 4px;
+  --radius-track: 2px;
+  --radius-round: 999px;
+
+  /* Motion */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1); /* settles: meters, height */
+  --ease-out-soft: cubic-bezier(0.22, 1, 0.36, 1); /* entrances, sweep */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1); /* the one overshoot: image pop */
+  --dur-fast: 160ms;
+  --dur-med: 280ms;
+  --dur-slow: 700ms;
+
+  /* Glass shell (per-mode overrides below) */
+  --glass-tint: rgba(16, 17, 22, 0.78);
+  --glass-blur: blur(28px) saturate(180%) brightness(1.06);
+  --panel-margin: 8px;
+  --panel-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.055), /* fine inner rim */
+    inset 1px 1px 0 rgba(255, 255, 255, 0.12), /* lit glass edge */
+    inset -1px -1px 0 rgba(0, 0, 0, 0.24), /* shaded glass edge */
+    inset 0 1px 0 rgba(255, 255, 255, 0.20), /* inner top light */
+    inset 0 -1px 0 rgba(0, 0, 0, 0.34), /* inner bottom seat */
+    0 2px 6px rgba(0, 0, 0, 0.28), /* contact shadow */
+    0 18px 44px rgba(0, 0, 0, 0.42); /* ambient elevation */
+}
+
+/* Per-mode: where a REAL material sits behind the panel (vibrancy, acrylic),
+   the tint is light so the material does the work; in pure CSS mode the tint
+   carries legibility at 0.80 and the layers above sell the glass. Backdrop
+   blur runs ONLY in css/web mode: it cannot see the OS material in the other
+   two, so it would be pure GPU cost for zero pixels changed. The window rect
+   IS the panel in vibrancy/acrylic (margin 0) so the material is not framed
+   by a frosted halo; the outer shadows drop there too since the OS draws a
+   real window shadow. */
+:root[data-glass="vibrancy"] {
+  --glass-tint: rgba(17, 18, 23, 0.28);
+  --glass-blur: none;
+  --panel-margin: 0px;
+  --radius-panel: 12px;
+  --panel-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.075),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.18),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.26),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.34);
+}
+
+:root[data-glass="acrylic"] {
+  --glass-tint: rgba(15, 16, 21, 0.22);
+  --glass-blur: none;
+  --panel-margin: 0px;
+  --radius-panel: 12px;
+  --panel-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.075),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.18),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.26),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.34);
+}
+
+/* Task 2 (the real cause of the "flat" complaint): Windows DWM dims and
+   flattens the acrylic material on any window that is not the foreground
+   window, the same behavior native Fluent apps (Windows Terminal, etc.)
+   show. This overlay is ALMOST ALWAYS the backgrounded window, since the
+   user is normally focused on the page being checked, not the panel, so
+   this is the common state, not an edge case, and gets a real compensating
+   treatment rather than being left to look flat and dead. App.jsx receives
+   the real focus state from main.js over IPC (window-focus-state) and
+   stamps it as [data-focused] on the root element; main.js also makes a
+   best-effort re-apply of the backdrop material on blur/focus, but that is
+   not expected to be a full fix: DWM ties the inactive-window dimming to
+   window activation state at the compositor level, which is outside what a
+   re-applied material call can override. This block is the honest fix: a
+   deeper base tint plus a visibly brighter specular rim and sheen, so the
+   dimmed material still reads as glass with depth and shine, not a flat
+   rectangle, while backgrounded. */
+:root[data-glass="acrylic"][data-focused="false"] {
+  --glass-tint: rgba(15, 16, 21, 0.34);
+}
+
+:root[data-glass="acrylic"][data-focused="false"] .panel::after {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.80) 0%,
+    rgba(255, 255, 255, 0.28) 26%,
+    rgba(255, 255, 255, 0.10) 55%,
+    rgba(255, 255, 255, 0.34) 100%
+  );
+}
+
+:root[data-glass="acrylic"][data-focused="false"] .panel::before {
+  background:
+    radial-gradient(130% 72% at 50% -12%, rgba(255, 255, 255, 0.26), rgba(255, 255, 255, 0.08) 44%, transparent 64%),
+    linear-gradient(118deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.05) 22%, transparent 40%),
+    linear-gradient(100deg, transparent 8%, rgba(255, 255, 255, 0.11) 14%, rgba(255, 255, 255, 0.04) 19%, transparent 24%),
+    radial-gradient(120% 40% at 50% 112%, rgba(255, 255, 255, 0.09), transparent 60%);
+}
+
+:root[data-glass="css"],
+:root[data-glass="web"] {
+  --glass-tint: rgba(16, 17, 22, 0.80);
+  --glass-blur: blur(24px) saturate(170%) brightness(1.06);
+  --panel-margin: 8px;
+  --radius-panel: 12px;
+}
+
+/* Cluely-exact default: a fully transparent window (no OS backdrop, see the
+   'cluely' preset in main.js), so the glass is 100% CSS. The transparent
+   margin gives the soft shadow room to fade out, which is what removes the old
+   "outside square" (there is no OS blur filling the window rectangle anymore,
+   only this rounded panel and its shadow paint). No backdrop-filter: there is
+   nothing behind a transparent window for it to blur on Windows, so the tint
+   alpha carries the glass, exactly as Cluely does. */
+:root[data-glass="cluely"] {
+  --glass-tint: rgba(16, 18, 24, 0.66);
+  --glass-blur: none;
+  --panel-margin: 12px 24px 24px;
+  --radius-panel: 12px;
+  --panel-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.07),
+    inset 1px 1px 0 rgba(255, 255, 255, 0.16),
+    inset -1px -1px 0 rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.26),
+    inset 0 -1px 0 rgba(0, 0, 0, 0.36),
+    0 2px 8px rgba(0, 0, 0, 0.30),
+    0 12px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* Cluely shine pass: with no OS blur behind a fully transparent window, the
+   specular layers are the only thing selling "reflective glass", so the rim
+   runs brighter on the lit top-left edge and the sheen below adds a clear
+   diagonal gloss. Kept directional (one light source, top-left) so it reads
+   as a reflection on glass, not a uniform glow. */
+:root[data-glass="cluely"] .panel::after {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.82) 0%,
+    rgba(255, 255, 255, 0.27) 22%,
+    rgba(255, 255, 255, 0.06) 54%,
+    rgba(255, 255, 255, 0.12) 78%,
+    rgba(255, 255, 255, 0.38) 100%
+  );
+}
+
+:root[data-glass="cluely"] .panel::before {
+  background:
+    radial-gradient(130% 72% at 50% -12%, rgba(255, 255, 255, 0.22), rgba(255, 255, 255, 0.06) 44%, transparent 64%),
+    linear-gradient(118deg, rgba(255, 255, 255, 0.15) 0%, rgba(255, 255, 255, 0.05) 26%, transparent 46%),
+    linear-gradient(100deg, transparent 6%, rgba(255, 255, 255, 0.10) 13%, rgba(255, 255, 255, 0.035) 20%, transparent 27%),
+    radial-gradient(120% 40% at 50% 112%, rgba(255, 255, 255, 0.07), transparent 60%);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-ui);
+  color: var(--text-primary);
+}
+
+#root {
+  background: transparent;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+::selection {
+  background: var(--accent-dim);
+}
+
+/* ---------- Panel shell (the glass) ---------- */
+
+.panel {
+  position: relative;
+  margin: var(--panel-margin);
+  /* Content owns height: the CSS var animates while the OS window follows in
+     one or two instant steps the eye cannot catch (see App.jsx). overflow
+     hidden clips incoming content during the tween and past the max height. */
+  height: var(--panel-h, auto);
+  transition: height var(--dur-med) var(--ease-out-soft);
+  border-radius: var(--radius-panel);
+  border: none;
+  /* Layer 0 tint + Layer 1 frost lift / depth shade / accent bleed. */
+  background:
+    linear-gradient(180deg, rgba(240, 242, 248, 0.09) 0%, rgba(240, 242, 248, 0.035) 38%, rgba(240, 242, 248, 0) 66%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0) 58%, rgba(0, 0, 0, 0.14) 100%),
+    radial-gradient(120% 70% at 18% 0%, var(--accent-bleed), transparent 65%),
+    var(--glass-tint);
+  /* Layer 2: real backdrop blur, css/web only (token is `none` elsewhere). */
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  /* Layer 3 (part): interior micro-bevel + conditional outer shadows. */
+  box-shadow: var(--panel-shadow);
+  overflow: hidden;
+  isolation: isolate;
+  /* The panel itself is NOT a drag region. Making the whole panel draggable
+     defeats interactive controls in Electron: a no-drag button under the
+     panel's own decorative drag surface still gets its hover/click stolen by
+     the OS for window-move (this is why the New scan / clear button could not
+     even be hovered). Drag lives ONLY on the explicit .panel__handle grip. */
+}
+
+/* Layer 3: the specular rim. A directional light ring drawn as a masked
+   gradient border on ::after: bright on the lit top-left edge, nearly
+   vanishing on the sides, a faint catch-light bottom-right. This reads
+   through as real glass rather than an outlined div. */
+.panel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.76) 0%,
+    rgba(255, 255, 255, 0.24) 22%,
+    rgba(255, 255, 255, 0.055) 54%,
+    rgba(255, 255, 255, 0.10) 78%,
+    rgba(255, 255, 255, 0.34) 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  pointer-events: none;
+  z-index: 3;
+}
+
+/* Layer 4a: static sheen. A curved top reflection (light on a convex pane),
+   a soft diagonal sheen, one narrow window-glare streak, and a faint
+   bottom-edge catch light. Together these are what make the pane read shiny
+   even where the OS material (not visible to CSS) is doing the blurring. */
+.panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background:
+    radial-gradient(130% 72% at 50% -12%, rgba(255, 255, 255, 0.17), rgba(255, 255, 255, 0.045) 44%, transparent 64%),
+    linear-gradient(118deg, rgba(255, 255, 255, 0.11) 0%, rgba(255, 255, 255, 0.03) 22%, transparent 40%),
+    linear-gradient(100deg, transparent 8%, rgba(255, 255, 255, 0.065) 14%, rgba(255, 255, 255, 0.02) 19%, transparent 24%),
+    radial-gradient(120% 40% at 50% 112%, rgba(255, 255, 255, 0.05), transparent 60%);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.045),
+    inset 2px 2px 2px -1px rgba(255, 255, 255, 0.11),
+    inset -2px -2px 2px -1px rgba(0, 0, 0, 0.30);
+}
+
+/* Layer 4b: film grain. Kills gradient banding on 8-bit displays and sells
+   "material" over "vector rectangle". Its own element so the strength is a
+   one-line tune. Self-contained SVG feTurbulence data URI, no asset. */
+.panel__grain {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  opacity: 0.035;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 180px 180px;
+}
+
+/* Layer 5: the animated light sweep. One diagonal band crossing the panel on
+   a phase change (idle -> searching, searching -> verdict). Never loops. */
+.panel__sweep {
+  position: absolute;
+  inset: -20%;
+  z-index: 2;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.055) 48%,
+    rgba(255, 255, 255, 0.12) 50%,
+    rgba(255, 255, 255, 0.055) 52%,
+    transparent 58%
+  );
+  transform: translateX(-120%);
+  opacity: 0;
+}
+
+.panel--sweeping .panel__sweep {
+  animation: glass-sweep 950ms var(--ease-out-soft) 1 both;
+}
+
+@keyframes glass-sweep {
+  0% { transform: translateX(-120%); opacity: 0; }
+  12% { opacity: 1; }
+  100% { transform: translateX(120%); opacity: 0; }
+}
+
+/* The measured content node (auto height). App.jsx observes THIS, never the
+   height-animated .panel, so setting --panel-h can never feed back into the
+   measurement. Sits above the sheen/grain, below the sweep/rim. */
+.panel__measure {
+  position: relative;
+  z-index: 1;
+}
+
+/* Once the user manually resizes the window, content stops owning the height
+   (App.jsx flips this class on after the user-resized IPC): the panel snaps
+   to fill whatever size they chose, tracking a live drag 1:1 (no height
+   tween), and the content column scrolls inside the glass instead of
+   dictating its size. */
+.panel--user-sized {
+  transition: none;
+}
+
+.panel--user-sized .panel__measure {
+  height: 100%;
+  overflow-y: auto;
+  /* A scrollable column must not double as a drag handle (grabbing its
+     scrollbar would move the window)... */
+  -webkit-app-region: no-drag;
+}
+
+/* ...but the handle strip inside it stays the explicit move affordance, or
+   the window would become nearly unmovable once user-sized. */
+.panel--user-sized .panel__handle {
+  -webkit-app-region: drag;
+}
+
+.panel--user-sized .panel__measure::-webkit-scrollbar {
+  width: 5px;
+}
+
+.panel--user-sized .panel__measure::-webkit-scrollbar-thumb {
+  background: var(--hairline-strong);
+  border-radius: var(--radius-track);
+}
+
+.panel__interactive {
+  -webkit-app-region: no-drag;
+}
+
+/* Phase crossfade: the outgoing view fades out over 140ms, the incoming view
+   fades and slides up over 240ms, coordinated with the height tween so the
+   glass appears to stretch and refill. */
+.panel__view {
+  animation: view-in var(--dur-med) var(--ease-out-soft) both;
+}
+
+.panel__view--leaving {
+  animation: view-out 140ms ease both;
+}
+
+@keyframes view-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes view-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* The always-present move affordance: a real header bar at the very top of the
+   panel, tall enough to be an obvious, easy grab target in EVERY state. It is
+   the reliable way to relocate the overlay even when the body below is full of
+   no-drag content (scroll regions, buttons, source chips) that would otherwise
+   leave nowhere to grab. `position: sticky` keeps it pinned to the top of the
+   measured column, so once the panel is user-sized and its content scrolls
+   inside the glass, this bar never scrolls away: there is always a drag handle
+   on screen. The whole bar is -webkit-app-region: drag (set in the JSX), and it
+   sits above the body content (z-index) with its own faint glass fill so
+   scrolled rows pass cleanly underneath it rather than showing through. */
+.panel__handle {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  /* The ONLY drag affordance now that .panel is no longer draggable. Always a
+     drag region (not just when user-sized), so the window is always movable via
+     this always-visible sticky grip while every button below stays clickable. */
+  -webkit-app-region: drag;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* The grip is centered; the Auto-resize toggle is absolutely pinned to the
+     right edge (see .panel__autoresize) so it never shifts the grip off-center.
+     This bar is already position:sticky (above), which is a positioned
+     containing block for that absolutely positioned toggle. */
+  cursor: grab;
+  /* A faint self-fill so content scrolling under the sticky bar (user-sized
+     mode) is masked, and the grip stays readable in every phase. */
+  background: linear-gradient(180deg, rgba(240, 242, 248, 0.075), rgba(240, 242, 248, 0));
+  border-radius: var(--radius-panel) var(--radius-panel) 0 0;
+}
+
+.panel__handle:hover {
+  background: linear-gradient(180deg, rgba(240, 242, 248, 0.10), rgba(240, 242, 248, 0));
+}
+
+.panel__handle:active {
+  cursor: grabbing;
+}
+
+/* The visible "grab here" pill, wider and brighter than the old 6px strip so
+   the header reads unmistakably as a drag handle. */
+.panel__grip {
+  width: 38px;
+  height: 4px;
+  border-radius: var(--radius-round);
+  background: var(--hairline-strong);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
+  transition: background var(--dur-fast) ease, width var(--dur-fast) ease;
+}
+
+.panel__handle:hover .panel__grip {
+  width: 46px;
+  background: var(--text-faint);
+}
+
+/* ---------- Auto-resize toggle (top-right of the handle) ---------- */
+
+/* A small pill in the drag handle that shows whether auto sizing is active and,
+   once the user has manually resized, is the click target to re-engage it (see
+   App.jsx reengageAutoResize). It is a no-drag child INSIDE the drag bar (the
+   canonical custom-titlebar carve-out via .panel__interactive), absolutely
+   pinned right so the centered grip never shifts. Off state (user-sized): quiet
+   hairline. On state (content owns height): accent-lit so its status reads at a
+   glance. */
+.panel__autoresize {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 18px;
+  padding: 0 9px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-round);
+  background: rgba(255, 255, 255, 0.03);
+  color: var(--text-faint);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  opacity: 0.72;
+  transition: opacity var(--dur-fast) ease, color var(--dur-fast) ease,
+    background var(--dur-fast) ease, border-color var(--dur-fast) ease;
+}
+
+.panel__autoresize:hover {
+  opacity: 1;
+  border-color: var(--hairline-strong);
+}
+
+.panel__autoresize--on {
+  color: var(--accent);
+  border-color: var(--accent-dim);
+  background: rgba(138, 166, 255, 0.10);
+  opacity: 0.92;
+}
+
+/* The status dot: dim/hollow when off, accent-filled with a soft glow when on. */
+.panel__autoresize-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-round);
+  background: var(--text-faint);
+  transition: background var(--dur-fast) ease, box-shadow var(--dur-fast) ease;
+}
+
+.panel__autoresize--on .panel__autoresize-dot {
+  background: var(--accent);
+  box-shadow: 0 0 6px var(--accent-dim);
+}
+
+.panel__autoresize:focus-visible {
+  outline: 2px solid var(--accent-dim);
+  outline-offset: 2px;
+}
+
+/* ---------- Resize grip (bottom-right corner) ---------- */
+
+/* Transparent, frameless windows on Windows 11 are unreliable to grab at the
+   native edge, so the overlay ships its own explicit drag-to-resize grip in the
+   bottom-right corner. It is a real interactive control (no-drag, so the pointer
+   drives a resize rather than a window move) that streams pointer deltas to
+   main.js, which setBounds() the OS window (see App.onResizeStart /
+   preload.resizeWindowBy / main's 'user-resize-by'). Inert but still visible in
+   a plain browser or the capture harness (no window.overlay), which is fine: it
+   only needs to prove its presence there. */
+.panel__resize {
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 16px;
+  height: 16px;
+  z-index: 6;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: nwse-resize;
+  opacity: 0.55;
+  transition: opacity var(--dur-fast) ease;
+  touch-action: none;
+}
+
+.panel__resize:hover {
+  opacity: 0.95;
+}
+
+/* Two stacked diagonal ticks: the conventional "drag to resize" corner glyph,
+   drawn in the hairline color so it reads on the dark glass without shouting. */
+.panel__resize::before,
+.panel__resize::after {
+  content: "";
+  position: absolute;
+  right: 2px;
+  background: var(--hairline-strong);
+  border-radius: 1px;
+}
+
+.panel__resize::before {
+  bottom: 2px;
+  width: 12px;
+  height: 2px;
+  transform: rotate(-45deg);
+  transform-origin: bottom right;
+}
+
+.panel__resize::after {
+  bottom: 6px;
+  width: 7px;
+  height: 2px;
+  transform: rotate(-45deg);
+  transform-origin: bottom right;
+}
+
+/* ---------- Live glass preset cycler toast ---------- */
+
+/* A small, non-interactive readout of the currently applied glass preset (and
+   its tint alpha when an override is active), shown briefly when the owner
+   cycles presets (Ctrl+Shift+G) or nudges the tint (Ctrl+Shift+Up/Down). Sits
+   ABOVE everything (z 4, over the rim) and is a direct child of .panel, not the
+   measured content node, so it never perturbs the content-owned auto-height.
+   Purely a dial-in aid; it plays no part in the shipped UI. */
+.glass-toast {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  z-index: 4;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 9px;
+  pointer-events: none;
+  border-radius: var(--radius-control);
+  background: rgba(10, 11, 15, 0.72);
+  border: 1px solid var(--hairline-strong);
+  box-shadow: var(--surface-inset-light), 0 4px 12px rgba(0, 0, 0, 0.4);
+  animation: glass-toast-in 200ms var(--ease-out-soft) both;
+}
+
+.glass-toast__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
+}
+
+.glass-toast__alpha {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.04em;
+  color: var(--accent);
+}
+
+@keyframes glass-toast-in {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---------- Transparency prompt banner (Task 1) ---------- */
+
+/* A small, dismissible nudge shown only when main.js has confirmed via the
+   registry that Windows' "Transparency effects" setting is off (acrylic
+   silently falls back to a flat opaque panel in that state). Styled as one
+   more "glass on glass" raised surface, matching every other inner box
+   (input, chips, buttons), so it reads as part of the shell, not a foreign
+   alert banner. */
+.transparency-banner {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 14px 8px;
+  padding: 7px 8px 7px 10px;
+  background: var(--surface-raised);
+  border: 1px solid var(--surface-raised-border);
+  border-radius: var(--radius-control);
+  box-shadow: var(--surface-inset-light);
+  animation: line-in 240ms ease both;
+}
+
+.transparency-banner__text {
+  flex: 1;
+  min-width: 0;
+  font-size: var(--text-xs);
+  line-height: 1.4;
+  color: var(--text-dim);
+}
+
+.transparency-banner__actions {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.transparency-banner__enable {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.04em;
+  color: var(--accent);
+  background: rgba(138, 166, 255, 0.12);
+  border: 1px solid var(--accent-dim);
+  border-radius: var(--radius-control);
+  padding: 4px 9px;
+  line-height: 1;
+  transition: background var(--dur-fast) ease;
+}
+
+.transparency-banner__enable:hover {
+  background: rgba(138, 166, 255, 0.20);
+}
+
+.transparency-banner__dismiss {
+  flex: none;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  line-height: 1;
+  color: var(--text-faint);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-control);
+  transition: color var(--dur-fast) ease, background var(--dur-fast) ease;
+}
+
+.transparency-banner__dismiss:hover {
+  color: var(--text-primary);
+  background: var(--surface-raised-hover);
+}
+
+/* ---------- Idle bar ---------- */
+
+.idle {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 9px 16px 13px;
+  min-height: 44px;
+}
+
+.idle--settings {
+  animation: idle-settings-in var(--dur-fast) var(--ease-out-soft) both;
+}
+
+@keyframes idle-settings-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Primary row: the prominent Go button (the whole "click to scan the page
+   you're on" affordance), no paste required. The secondary row below (the
+   manual URL input) is the smaller, deliberately less prominent fallback. */
+.idle__primary {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.idle__scan-btn {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-family: var(--font-ui);
+  font-weight: 600;
+  font-size: var(--text-sm);
+  color: var(--text-primary);
+  background: rgba(138, 166, 255, 0.16);
+  border: 1px solid var(--accent-dim);
+  border-radius: var(--radius-control);
+  box-shadow: var(--surface-inset-light);
+  padding: 8px 14px;
+  transition: background var(--dur-fast) ease, border-color var(--dur-fast) ease, transform 80ms ease;
+}
+
+.idle__scan-btn:hover:not(:disabled) {
+  background: rgba(138, 166, 255, 0.26);
+  border-color: var(--accent);
+}
+
+.idle__scan-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.idle__scan-btn:disabled {
+  color: var(--text-dim);
+  cursor: default;
+}
+
+.idle__settings-button,
+.idle__settings-close {
+  position: relative;
+  flex: none;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dim);
+  background: var(--surface-raised);
+  border: 1px solid var(--surface-raised-border);
+  border-radius: var(--radius-control);
+  box-shadow: var(--surface-inset-light);
+  transition:
+    color var(--dur-fast) ease,
+    background var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    transform 80ms ease;
+}
+
+.idle__settings-button svg {
+  width: 17px;
+  height: 17px;
+  fill: currentColor;
+}
+
+.idle__settings-button:hover,
+.idle__settings-close:hover {
+  color: var(--text-primary);
+  background: var(--surface-raised-hover);
+  border-color: var(--hairline-strong);
+}
+
+.idle__settings-button:active,
+.idle__settings-close:active {
+  transform: scale(0.96);
+}
+
+.idle__settings-badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-round);
+  background: var(--warn);
+  box-shadow: 0 0 0 2px rgba(18, 19, 24, 0.88);
+}
+
+.idle__scan-btn-spinner {
+  width: 11px;
+  height: 11px;
+  border-radius: var(--radius-round);
+  border: 2px solid var(--accent-dim);
+  border-top-color: var(--accent);
+  animation: idle-scan-spin 750ms linear infinite;
+}
+
+@keyframes idle-scan-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Secondary row: the pre-existing manual URL input, now visually a smaller
+   fallback beneath the primary Go button rather than the main affordance. */
+.idle__secondary {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.idle__status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-round);
+  background: var(--text-faint);
+  flex: none;
+}
+
+.idle__status-dot--starting {
+  background: var(--warn);
+  animation: pulse-opacity 1.2s ease-in-out infinite;
+}
+
+.idle__status-dot--ready {
+  background: var(--ok);
+}
+
+.idle__status-dot--error {
+  background: var(--bad);
+}
+
+@keyframes pulse-opacity {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.idle__notice {
+  padding: 0 16px 12px;
+  font-size: var(--text-xs);
+  line-height: 1.4;
+  color: var(--bad);
+}
+
+.idle__field {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.idle__input {
+  flex: 1;
+  min-width: 0;
+  background: var(--surface-raised);
+  border: 1px solid var(--surface-raised-border);
+  border-radius: var(--radius-control);
+  box-shadow: var(--surface-inset-light);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  padding: 7px 12px;
+  outline: none;
+  transition: border-color var(--dur-fast) ease, background var(--dur-fast) ease;
+}
+
+/* The "paste a URL" affordance the owner literally could not see at 0.52
+   faint: the placeholder is a primary affordance, so it runs near body
+   contrast now. */
+.idle__input::placeholder {
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.idle__input:focus {
+  border-color: var(--accent-dim);
+  background: var(--surface-raised-hover);
+}
+
+.idle__hint {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+/* The visible shortcut hint line (the old one hid inside a faint placeholder
+   the owner could not see): a bright keycap plus a plain-text explanation. */
+.idle__shortcut-hint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--text-xs);
+  color: rgba(255, 255, 255, 0.78);
+}
+
+.idle__kbd {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 500;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.10);
+  border: 1px solid var(--hairline-strong);
+  border-radius: 3px;
+  padding: 2px 6px;
+  line-height: 1.3;
+}
+
+.idle__setup {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0 10px;
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-control);
+}
+
+.idle__settings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.idle__settings-title {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.idle__settings-subtitle,
+.idle__settings-footnote {
+  margin-top: 2px;
+  font-size: var(--text-2xs);
+  line-height: 1.4;
+  color: var(--text-faint);
+  text-wrap: pretty;
+}
+
+.idle__settings-close {
+  width: 32px;
+  height: 32px;
+  font-size: 10px;
+}
+
+.idle__setup-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 35px;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--hairline);
+  font-size: var(--text-xs);
+  color: var(--text-dim);
+}
+
+.idle__setup-row:last-child {
+  border-bottom: none;
+}
+
+.idle__setup-ok {
+  color: var(--ok);
+}
+
+.idle__setup-warn {
+  color: var(--warn);
+}
+
+.idle__setup-action {
+  color: var(--accent);
+  background: rgba(138, 166, 255, 0.10);
+  border: 1px solid var(--accent-dim);
+  border-radius: var(--radius-control);
+  padding: 4px 7px;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  transition: color var(--dur-fast) ease, background var(--dur-fast) ease;
+}
+
+.idle__setup-action:hover:not(:disabled) {
+  color: var(--text-primary);
+  background: rgba(138, 166, 255, 0.18);
+}
+
+.idle__setup-action:disabled {
+  color: var(--text-faint);
+  cursor: default;
+  background: transparent;
+  border-color: var(--hairline);
+}
+
+.idle__go {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--hairline-strong);
+  background: rgba(138, 166, 255, 0.12);
+  box-shadow: var(--surface-inset-light);
+  color: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  line-height: 1;
+  transition: background var(--dur-fast) ease, transform 80ms ease;
+}
+
+.idle__go:hover {
+  background: rgba(138, 166, 255, 0.20);
+}
+
+.idle__go:active {
+  transform: scale(0.94);
+}
+
+.idle__go:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* Small toggles in the idle hint row (DEMO, the screen-recording visibility
+   toggle). De-boxed per the squared-glass pass: quiet flat text toggles, not
+   two more rounded rectangles. State reads through color; hover gets a
+   barely-there square wash so they still feel clickable. */
+.idle__chip {
+  flex: none;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.05em;
+  color: var(--text-faint);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-control);
+  padding: 4px 5px;
+  line-height: 1;
+  transition: color var(--dur-fast) ease, background var(--dur-fast) ease;
+}
+
+.idle__chip:hover {
+  color: var(--text-primary);
+  background: var(--surface-raised);
+}
+
+.idle__chip--on {
+  color: var(--accent);
+}
+
+/* ---------- Searching state ---------- */
+
+.searching {
+  padding: 4px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  container-type: inline-size;
+  container-name: panel-body;
+}
+
+.searching__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.scan-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-round);
+  background: var(--accent);
+  flex: none;
+  animation: pulse-scan 1.4s ease-in-out infinite;
+}
+
+@keyframes pulse-scan {
+  0%, 100% { box-shadow: 0 0 0 0 var(--accent-dim); opacity: 1; }
+  50% { box-shadow: 0 0 0 5px rgba(138, 166, 255, 0); opacity: 0.7; }
+}
+
+.searching__target {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--text-dim);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+  min-width: 0;
+}
+
+/* The cancel affordance: a small squared glass button pinned to the header's
+   right edge. Always visible while a scan runs; clicking it aborts the scan
+   and returns to the idle bar (App.jsx resetToIdle). panel__interactive in
+   the JSX opts it out of the window drag region so the click always lands. */
+.searching__stop {
+  flex: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 8px;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  background: var(--surface-raised);
+  border: 1px solid var(--surface-raised-border);
+  border-radius: var(--radius-control);
+  box-shadow: var(--surface-inset-light);
+  transition: color var(--dur-fast) ease, background var(--dur-fast) ease,
+    border-color var(--dur-fast) ease;
+}
+
+.searching__stop:hover {
+  color: var(--text-primary);
+  background: var(--surface-raised-hover);
+  border-color: var(--hairline-strong);
+}
+
+/* The classic "stop" square glyph, drawn in currentColor so it brightens with
+   the label on hover. */
+.searching__stop-icon {
+  width: 7px;
+  height: 7px;
+  border-radius: 1px;
+  background: currentColor;
+}
+
+/* A continuous "working" cue under the header: a soft accent band that sweeps
+   left to right, so the panel reads as busy even between discrete events. */
+.searching__progress {
+  height: 2px;
+  border-radius: var(--radius-track);
+  background: linear-gradient(90deg, transparent, rgba(138, 166, 255, 0.55), transparent);
+  background-size: 40% 100%;
+  background-repeat: no-repeat;
+  animation: scan-shimmer 1.4s linear infinite;
+}
+
+@keyframes scan-shimmer {
+  0% { background-position: -40% 0; }
+  100% { background-position: 140% 0; }
+}
+
+.searching__ticker {
+  display: flex;
+  gap: 7px;
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-dim);
+}
+
+.log__caret {
+  color: var(--accent);
+  flex: none;
+}
+
+.log__cursor {
+  display: inline-block;
+  width: 5px;
+  height: 11px;
+  margin-left: 2px;
+  background: var(--accent);
+  animation: blink 900ms steps(1) infinite;
+  vertical-align: -1px;
+}
+
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+@keyframes line-in {
+  from { opacity: 0; transform: translateY(3px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Progressive-reveal entrance animations. The hero pops with a restrained
+   spring overshoot (the one punchy beat), thumbnails and source chips pop
+   smaller, captions and secondary lines fade. */
+@keyframes ev-pop-in {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes ev-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ---------- The image-first stage ---------- */
+
+/* The hero: the most recent image event, big, panel-wide, in the squared
+   cluely glass frame (8px radius, hairline border, inner top light). Keyed by
+   the image id in SearchingView so every new hero re-runs the spring pop. */
+.hero {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 180px;
+  border-radius: var(--radius-panel);
+  border: 1px solid var(--surface-raised-border);
+  background:
+    radial-gradient(120% 90% at 20% 0%, rgba(138, 166, 255, 0.10), transparent 60%),
+    var(--surface-raised);
+  box-shadow: var(--surface-inset-light), 0 10px 28px rgba(0, 0, 0, 0.35);
+  overflow: hidden;
+  animation: hero-pop 460ms var(--ease-spring) both;
+}
+
+@keyframes hero-pop {
+  from { opacity: 0; transform: scale(0.94) translateY(10px); }
+  to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.hero__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Graceful degrade: before the first image arrives, or when the current
+   hero's src is missing/403/broken, the stage becomes a soft glass tile with
+   a large monogram. Never an empty box, and the layout never jumps. */
+.hero__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(90% 80% at 50% 30%, rgba(138, 166, 255, 0.14), transparent 70%);
+}
+
+.hero__monogram {
+  font-family: var(--font-mono);
+  font-size: 44px;
+  font-weight: 600;
+  color: var(--text-faint);
+}
+
+/* A slow diagonal light band loops across the hero: the continuous "the scan
+   is looking at this right now" cue, matched to the panel's own sweep. */
+.hero__scan {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 42%,
+    rgba(255, 255, 255, 0.05) 48%,
+    rgba(255, 255, 255, 0.11) 50%,
+    rgba(255, 255, 255, 0.05) 52%,
+    transparent 58%
+  );
+  transform: translateX(-130%);
+  animation: hero-scan 2.8s var(--ease-out-soft) 400ms infinite;
+}
+
+@keyframes hero-scan {
+  0% { transform: translateX(-130%); }
+  60%, 100% { transform: translateX(130%); }
+}
+
+/* The caption sits INSIDE the hero on a bottom scrim, cinematic-still style,
+   so the stage plus caption reads as one framed shot. */
+.hero__caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 26px 12px 9px;
+  font-size: var(--text-xs);
+  line-height: 1.4;
+  color: var(--text-primary);
+  background: linear-gradient(to top, rgba(5, 7, 12, 0.78), rgba(5, 7, 12, 0.35) 55%, transparent);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  animation: ev-fade-in 300ms ease 140ms both;
+}
+
+/* Earlier hero images recede into a small thumbnail strip: the visible trail
+   of photos the scan has already been through. Newest first. */
+.hero-strip {
+  display: flex;
+  gap: 7px;
+}
+
+.hero-strip__thumb {
+  width: 46px;
+  height: 46px;
+  flex: none;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--surface-raised-border);
+  background: var(--surface-raised);
+  box-shadow: var(--surface-inset-light);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: ev-pop-in 340ms var(--ease-spring) both;
+}
+
+.hero-strip__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-strip__mono {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+
+/* Exactly two text lines under the stage: the latest status (mono ticker)
+   and the latest reasoning line (typed, clamped to two visual lines). Older
+   reasoning is replaced, not stacked: no bullet wall by construction. The
+   min-height reserves the zone so the panel doesn't jitter as lines swap. */
+.searching__lines {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-height: 42px;
+}
+
+.searching__thought {
+  font-size: var(--text-sm);
+  line-height: 1.45;
+  color: var(--text-primary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  animation: line-in 240ms ease both;
+}
+
+/* Sources compressed to a row of small squared favicon chips, still real
+   buttons that open the source in the browser. */
+.source-strip {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.source-chip {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--surface-raised-border);
+  background: var(--surface-raised);
+  box-shadow: var(--surface-inset-light);
+  overflow: hidden;
+  animation: ev-pop-in 300ms var(--ease-spring) both;
+  transition: background var(--dur-fast) ease, transform var(--dur-fast) ease,
+    border-color var(--dur-fast) ease;
+}
+
+.source-chip:hover {
+  background: var(--surface-raised-hover);
+  border-color: var(--hairline-strong);
+  transform: translateY(-1px);
+}
+
+.source-chip img {
+  width: 15px;
+  height: 15px;
+  object-fit: contain;
+}
+
+.source-chip__mono {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+
+.source-strip__count {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-faint);
+  margin-left: 2px;
+}
+
+/* Claims: kept, but compact and secondary to the image stage. Pinned to the
+   newest claim by SearchingView via the element's OWN scrollTop (never
+   scrollIntoView, which also scrolls the overflow-hidden panel ancestor and
+   was what pushed the header off the top). */
+.claims {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  /* Raised from 96px so a growing evidence list visibly GROWS the panel (up
+     toward MAX_HEIGHT) instead of plateauing early and hiding new findings in a
+     tiny scroll box: the owner needs to SEE the scan filling the panel. Past
+     this height the box scrolls internally and SearchingView pins it to the
+     newest claim via its own scrollTop (never scrollIntoView, which would drag
+     the sticky header off the top). */
+  max-height: 120px;
+  overflow-y: auto;
+  /* Scroll region, not a drag handle: opt out of the panel drag area. */
+  -webkit-app-region: no-drag;
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0, black 8px, black 100%);
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.35) 0, black 8px, black 100%);
+}
+
+.claims::-webkit-scrollbar {
+  width: 5px;
+}
+
+.claims::-webkit-scrollbar-thumb {
+  background: var(--hairline-strong);
+  border-radius: var(--radius-track);
+}
+
+.claim {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  /* flex: none is load-bearing: without it the scrolling column would
+     COMPRESS rows instead of scrolling once it hits max-height. */
+  flex: none;
+  font-size: var(--text-xs);
+  line-height: 1.35;
+  color: var(--text-primary);
+  animation: line-in 240ms ease both;
+}
+
+.claim__dot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-round);
+  margin-top: 5px;
+}
+
+.claim__dot--disproven { background: var(--bad); }
+.claim__dot--unverified { background: var(--warn); }
+.claim__dot--confirmed { background: var(--ok); }
+
+.claim__text {
+  flex: 1;
+}
+
+/* ---------- Live phase / "still working" status ---------- */
+
+/* A persistent status row pinned at the BOTTOM of the searching view, after
+   the claims list and OUTSIDE the claims scroll region, so it stays visible
+   even when the panel is at MAX_HEIGHT and the claims box is scrolling. It is
+   the explicit "the scan is not frozen" cue: present for the whole searching
+   phase (it unmounts only when the verdict lands and the view flips away), and
+   its label escalates to "Scoring the evidence" once the live feed goes quiet
+   during the long reasoning/scoring wait. The words are the proof in a still
+   screenshot; the spinner carries it in motion. */
+.scan-status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 9px 11px;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--surface-raised-border);
+  background: var(--surface-raised);
+  box-shadow: var(--surface-inset-light);
+  animation: line-in 240ms ease both;
+}
+
+.scan-status__spinner {
+  flex: none;
+  width: 13px;
+  height: 13px;
+  border-radius: var(--radius-round);
+  border: 2px solid var(--hairline-strong);
+  border-top-color: var(--accent);
+  animation: scan-status-spin 720ms linear infinite;
+}
+
+@keyframes scan-status-spin {
+  to { transform: rotate(360deg); }
+}
+
+.scan-status__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.02em;
+  color: var(--text-dim);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* The escalated (scoring) state runs a touch warmer/brighter so the handoff to
+   the reasoning step reads as a deliberate phase change, not a stall. */
+.scan-status--scoring .scan-status__label {
+  color: var(--text-primary);
+}
+
+.scan-status--scoring {
+  border-color: var(--hairline-strong);
+  background:
+    radial-gradient(120% 100% at 0% 50%, rgba(138, 166, 255, 0.10), transparent 70%),
+    var(--surface-raised);
+}
+
+/* An animated ellipsis so even the text visibly "breathes" while waiting. */
+.scan-status__dots {
+  display: inline-block;
+  width: 1.2em;
+  text-align: left;
+}
+
+.scan-status__dots::after {
+  content: "";
+  animation: scan-status-dots 1.4s steps(1, end) infinite;
+}
+
+@keyframes scan-status-dots {
+  0% { content: ""; }
+  25% { content: "."; }
+  50% { content: ".."; }
+  75%, 100% { content: "..."; }
+}
+
+/* ---------- Verdict state ---------- */
+
+.verdict {
+  padding: 4px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.verdict__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.verdict__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.14em;
+  color: var(--text-faint);
+}
+
+.verdict__header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* The overall LARP verdict chip: one word (CLEAR / SUS / LARP) for the max of
+   the two scores, with a soft glow ring in the tier color. The memorable
+   beat: the whole pane's accent bleed also runs to this tier (set in App). */
+.verdict__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: var(--text-2xs);
+  letter-spacing: 0.10em;
+  padding: 4px 9px;
+  border-radius: var(--radius-control);
+  border: 1px solid currentColor;
+  animation: chip-in 420ms var(--ease-out-soft) both;
+}
+
+.verdict__chip--clear { color: var(--ok); box-shadow: 0 0 14px rgba(52, 208, 107, 0.30); }
+.verdict__chip--sus { color: var(--warn); box-shadow: 0 0 14px rgba(255, 170, 51, 0.30); }
+.verdict__chip--larp { color: var(--bad); box-shadow: 0 0 14px rgba(255, 92, 77, 0.30); }
+/* A shallow scan is neutral/muted on purpose: it is explicitly NOT a scored
+   finding, so it must never read with a CLEAR/SUS/LARP color. */
+.verdict__chip--shallow { color: var(--text-dim, rgba(255, 255, 255, 0.6)); box-shadow: none; }
+
+/* Shallow-scan banner: replaces the score dial with an honest "not a full
+   check" explanation so a degraded result can never be screenshotted as a
+   real number. */
+.verdict__shallow {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 8px 0 4px;
+  padding: 10px 12px;
+  border-radius: var(--radius-control);
+  border: 1px dashed rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.04);
+}
+.verdict__shallow-title {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: var(--text-2xs);
+  letter-spacing: 0.08em;
+  color: var(--text-dim, rgba(255, 255, 255, 0.72));
+}
+.verdict__shallow-why {
+  font-size: var(--text-2xs);
+  line-height: 1.4;
+  color: var(--text-dim, rgba(255, 255, 255, 0.55));
+}
+
+/* needs_url notice on the idle paste field: an actionable prompt, not an
+   error. Muted amber to read as "do this next", distinct from a red failure. */
+.idle__notice--needs-url {
+  color: var(--warn, #ffaa33);
+  border-color: rgba(255, 170, 51, 0.35);
+}
+
+@keyframes chip-in {
+  from { opacity: 0; transform: scale(0.82); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* De-boxed: flat text actions (Cluely keeps header actions quiet). A square
+   wash on hover keeps them discoverable without adding two more boxes. */
+.verdict__reset,
+.verdict__copy {
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.03em;
+  color: var(--text-dim);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-control);
+  padding: 4px 7px;
+  transition: color var(--dur-fast) ease, background var(--dur-fast) ease;
+}
+
+.verdict__reset:hover,
+.verdict__copy:hover {
+  color: var(--text-primary);
+  background: var(--surface-raised);
+}
+
+.verdict__copy--done {
+  color: var(--ok);
+}
+
+.meters {
+  display: flex;
+  flex-direction: column;
+  gap: 13px;
+}
+
+.meter {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.meter__top {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.meter__name {
+  font-size: var(--text-xs);
+  color: var(--text-dim);
+}
+
+.meter__value {
+  font-family: var(--font-mono);
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+
+.meter__track {
+  position: relative;
+  height: 6px;
+  border-radius: var(--radius-track);
+  background: var(--surface-raised);
+  box-shadow: var(--surface-inset-light);
+  overflow: visible;
+}
+
+/* A blurred copy of the fill sitting under it: the meter's soft glow. Clipped
+   by the same --val inset so it only glows under the filled portion. */
+.meter__glow {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-track);
+  background: linear-gradient(90deg, var(--ok), var(--warn) 50%, var(--bad));
+  clip-path: inset(0 calc(100% - var(--val, 0%)) 0 0);
+  filter: blur(6px);
+  opacity: 0.35;
+  transition: clip-path 900ms var(--ease-out-expo);
+  transition-delay: var(--meter-delay, 0ms);
+}
+
+/* The gradient spans the FULL track (0 to 100) regardless of the score, so
+   the color at a given position always means the same thing on the scale;
+   clip-path reveals only the filled portion. */
+.meter__fill {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-track);
+  background: linear-gradient(90deg, var(--ok), var(--warn) 50%, var(--bad));
+  clip-path: inset(0 calc(100% - var(--val, 0%)) 0 0);
+  transition: clip-path 900ms var(--ease-out-expo);
+  transition-delay: var(--meter-delay, 0ms);
+}
+
+/* Zone ticks at 33 and 66: the meters are claims themselves, so showing the
+   scale's meaning makes the number defensible. */
+.meter__tick {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--hairline-strong);
+}
+
+.meter__marker {
+  position: absolute;
+  top: -3px;
+  width: 2px;
+  height: 12px;
+  background: #fff;
+  border-radius: var(--radius-track);
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+  transform: translateX(-1px);
+  transition: left 900ms var(--ease-out-expo);
+  transition-delay: var(--meter-delay, 0ms);
+}
+
+/* One-shot sweep along the track when the meter finishes animating. */
+.meter__track--swept::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-track);
+  pointer-events: none;
+  background: linear-gradient(
+    105deg,
+    transparent 40%,
+    rgba(255, 255, 255, 0.35) 50%,
+    transparent 60%
+  );
+  transform: translateX(-120%);
+  animation: row-sweep 500ms var(--ease-out-soft) 1 both;
+}
+
+.meter__zones {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.06em;
+  color: var(--text-faint);
+}
+
+/* Evidence receipts carried into the verdict: the highest-signal claims and a
+   sources-checked count, so a background-check verdict shows its work. */
+.receipts {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--hairline);
+  padding-top: 14px;
+}
+
+.receipts__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  font-family: var(--font-mono);
+  font-size: var(--text-2xs);
+  letter-spacing: 0.10em;
+  color: var(--text-faint);
+}
+
+.receipts__count {
+  color: var(--text-dim);
+}
+
+.receipt {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: var(--text-xs);
+  line-height: 1.4;
+  color: var(--text-dim);
+}
+
+.receipt__dot {
+  flex: none;
+  width: 6px;
+  height: 6px;
+  border-radius: var(--radius-round);
+  margin-top: 4px;
+}
+
+.receipt__dot--disproven { background: var(--bad); }
+.receipt__dot--unverified { background: var(--warn); }
+.receipt__dot--confirmed { background: var(--ok); }
+
+.verdict__text {
+  font-size: var(--text-md);
+  line-height: 1.5;
+  color: var(--text-primary);
+  border-top: 1px solid var(--hairline);
+  padding-top: 14px;
+  max-height: 180px;
+  overflow-y: auto;
+  /* Readable, scrollable, selectable body: opt out of the panel drag area so a
+     mouse-down selects text / drags the scrollbar instead of the window. */
+  -webkit-app-region: no-drag;
+}
+
+.verdict__text::-webkit-scrollbar {
+  width: 5px;
+}
+
+.verdict__text::-webkit-scrollbar-thumb {
+  background: var(--hairline-strong);
+  border-radius: var(--radius-track);
+}
+
+/* The error is a first-class verdict body: it wraps hard (a long unbreakable
+   token like a pasted URL breaks mid-string instead of overflowing the glass),
+   and if it ever runs tall it scrolls INSIDE its own cap, exactly like
+   .verdict__text, so the panel is never forced past MAX_HEIGHT to show it and
+   the message can never render off-screen or clipped. */
+.verdict__error {
+  font-size: var(--text-sm);
+  line-height: 1.5;
+  color: var(--bad);
+  border-top: 1px solid var(--hairline);
+  padding-top: 14px;
+  max-height: 200px;
+  overflow-y: auto;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  /* Same as .verdict__text: a scrollable, selectable body, not a drag handle. */
+  -webkit-app-region: no-drag;
+}
+
+.verdict__error::-webkit-scrollbar {
+  width: 5px;
+}
+
+.verdict__error::-webkit-scrollbar-thumb {
+  background: var(--hairline-strong);
+  border-radius: var(--radius-track);
+}
+
+/* ---------- Reduced motion ---------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .panel,
+  .panel__view,
+  .panel__view--leaving,
+  .panel--sweeping .panel__sweep,
+  .hero,
+  .hero__scan,
+  .hero__caption,
+  .hero-strip__thumb,
+  .source-chip,
+  .searching__thought,
+  .claim,
+  .scan-dot,
+  .searching__progress,
+  .verdict__chip,
+  .meter__track--swept::before,
+  .idle__scan-btn-spinner,
+  .idle__status-dot--starting,
+  .log__cursor,
+  .transparency-banner,
+  .scan-status,
+  .scan-status__spinner,
+  .scan-status__dots::after,
+  .glass-toast {
+    animation: none !important;
+    transition: none !important;
+  }
+  .meter__fill,
+  .meter__glow,
+  .meter__marker {
+    transition: none !important;
+  }
+}
+
+/* ---------- Focus visibility ---------- */
+
+.idle__input:focus-visible,
+.idle__go:focus-visible,
+.idle__scan-btn:focus-visible,
+.idle__chip:focus-visible,
+.verdict__reset:focus-visible,
+.verdict__copy:focus-visible,
+.source-chip:focus-visible,
+.searching__stop:focus-visible,
+.transparency-banner__enable:focus-visible,
+.transparency-banner__dismiss:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}

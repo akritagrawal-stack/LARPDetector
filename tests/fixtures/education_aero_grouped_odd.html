@@ -1,0 +1,38 @@
+<!--
+  Bug 3 fixture: grouped/odd education entries that break the OLD fixed
+  lines[i-2]/lines[i-1] lookback (still present in _parse_education_aero
+  before the fix; the experience parser had already moved to a
+  forward-cursor approach). Simplified <p>-only Aero shape, same tag style
+  as tests/fixtures/experience_aero_grouped_bigtech.html.
+
+  Three entries in order:
+    1. A normal "school, degree, date" entry (Texas A&M) -- sanity check
+       that the fix does not disturb the common case.
+    2. A "Y Combinator" entry with NO degree line at all (just school then
+       date), the "odd program entry" the task calls out. Old code would
+       have grabbed whatever sat two lines back (part of the previous
+       entry) as this entry's "school".
+    3. An entry with an "Activities and societies" line sitting BETWEEN the
+       degree and the date (Rice University), the exact field-shift shape:
+       old code's lines[i-1] would have picked up the activities line as
+       the "degree" and lines[i-2] would have picked up the real degree as
+       the "school".
+  A trailing "Activities and societies" line after the last date (same
+  shape as the live_education_sample_founder.html fixture) confirms that
+  kind of noise never becomes a phantom 4th entry either.
+
+  No em dashes in this file (house rule).
+-->
+<div data-component-type="LazyColumn" data-testid="lazy-column">
+  <p>Education</p>
+  <p>Texas A&amp;M University</p>
+  <p>BS, Computer Science</p>
+  <p>2018 - 2022</p>
+  <p>Y Combinator</p>
+  <p>2021 - 2021</p>
+  <p>Rice University</p>
+  <p>PhD, Physics</p>
+  <p>Activities and societies: Debate Club, Chess Club.</p>
+  <p>2010 - 2016</p>
+  <p>Activities and societies: Alumni association board member, guest lecturer.</p>
+</div>

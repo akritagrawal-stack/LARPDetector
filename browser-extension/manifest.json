@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "LARP Detector Browser Companion",
+  "version": "0.1.0",
+  "description": "Shares only the active LinkedIn profile URL with the local LARP Detector app.",
+  "permissions": ["tabs", "alarms"],
+  "host_permissions": ["http://127.0.0.1:8756/*"],
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "action": {
+    "default_title": "Send this LinkedIn profile to LARP Detector"
+  }
+}

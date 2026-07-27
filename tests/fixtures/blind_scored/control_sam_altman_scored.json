@@ -1,0 +1,293 @@
+{
+  "profile_url": "https://en.wikipedia.org/wiki/Sam_Altman",
+  "scan_type": "person",
+  "identity": {
+    "name": "Sam Altman",
+    "headline": "CEO at OpenAI",
+    "current_company": "OpenAI",
+    "location": "San Francisco, California, United States"
+  },
+  "raw_experience": [
+    {
+      "title": "Chief Executive Officer",
+      "company": "OpenAI",
+      "start_date": "2019",
+      "end_date": "Present",
+      "location": "San Francisco"
+    },
+    {
+      "title": "President",
+      "company": "Y Combinator",
+      "start_date": "2014",
+      "end_date": "2019",
+      "location": "Mountain View, California"
+    },
+    {
+      "title": "Co-founder and CEO",
+      "company": "Loopt",
+      "start_date": "2005",
+      "end_date": "2012",
+      "location": "Palo Alto, California"
+    }
+  ],
+  "claims": [
+    {
+      "type": "identity",
+      "employer": "",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "A real person named Sam Altman exists and matches this profile.",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://news.ycombinator.com/item?id=38309611",
+          "snippet": "Hacker News: 26201 stor(y/ies) mention 'OpenAI' (4434 of them tagged Show HN). Top thread(s): \"OpenAI's board has fired Sam Altman\" (5710 points, 2530 comments, 2023-11-17); 'Google \u201cWe have no moat, and neither does OpenAI\u201d' (2455 points, 1039 comments, 2023-05-04); 'Open models by OpenAI' (2124 points, 876 comments, 2025-08-05). HN's commentary skews technical/contrarian; treat this as a real public discussion signal, not a verdict.",
+          "source_name": "hackernews",
+          "weight": 0.64,
+          "match_confidence": "medium"
+        },
+        {
+          "source_url": "https://news.ycombinator.com/item?id=563810",
+          "snippet": "Hacker News comments mentioning 'OpenAI' include wrapper/scam/exaggeration-flavored language: 2009-04-15: 'As an exercise in research outsourcing, I found a list of 2008 technology acquisitions and paid some random person on Mahalo Answers $30 to research where those companies were when they got bought.  I...'. HN skews contrarian and unmoderated; a critical comment is a real reputation signal, never proof of fabrication on its own.",
+          "source_name": "hackernews",
+          "weight": 0.64,
+          "match_confidence": "medium"
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Sam_Altman",
+          "snippet": "<strong>OpenAI</strong>&#x27;s chairman of the board, Bret Taylor, maintained that <strong>Altman</strong> has been transparent about his investments. In April 2012, <strong>Altman</strong> co-founded Hydrazine Capital with his brother, Jack <strong>Altman</strong>. The initial $21 million fund included a large part of the $5 million he got from selling Loopt, but most came from Peter Thiel, his mentor and main backer in Silicon Valley. <strong>Sam</strong> ..."
+        },
+        {
+          "source_url": "https://www.forbes.com/profile/sam-altman/",
+          "snippet": "Sam Altman is the <strong>CEO of OpenAI</strong> and a prolific venture investor."
+        },
+        {
+          "source_url": "https://www.britannica.com/money/Sam-Altman",
+          "snippet": "Sam Altman is <strong>CEO of OpenAI</strong>, the artificial intelligence company that developed ChatGPT."
+        },
+        {
+          "source_url": "https://x.com/sama",
+          "snippet": "Sam Altman \u00b7 @samaNov 17, 2023 \u00b7 i loved my time at openai. it was transformative for me personally, and hopefully the world a little bit. most of all i loved working with such talented people. will have more to say about what\u2019s next later. \ud83e\udee1 \u00b7 6.1K6.1K \u00b7"
+        },
+        {
+          "source_url": "https://github.com/saltmania",
+          "snippet": "GitHub account 'saltmania' created 2018-05-15T11:56:26Z, 11 public repo(s). No strong disambiguator (claimed company or personal-site hint) matched this account; it may not be the same person.",
+          "source_name": "github",
+          "weight": 1.0,
+          "match_confidence": "low"
+        },
+        {
+          "source_url": "https://github.com/brandontautuan",
+          "snippet": "GitHub account 'brandontautuan' created 2023-02-09T04:06:21Z, 29 public repo(s). No strong disambiguator (claimed company or personal-site hint) matched this account; it may not be the same person.",
+          "source_name": "github",
+          "weight": 1.0,
+          "match_confidence": "low"
+        }
+      ],
+      "notes": "Extensively documented public figure with consistent coverage across major media and institutional sources.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "employment",
+      "employer": "OpenAI",
+      "title": "Chief Executive Officer",
+      "start": "2019",
+      "end": "Present",
+      "assertion": "Worked as Chief Executive Officer at OpenAI (2019 to Present).",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Sam_Altman",
+          "snippet": "Samuel Harris <strong>Altman</strong> (born April 22, 1985) is an American entrepreneur and investor who has been the <strong>chief</strong> <strong>executive</strong> <strong>officer</strong> (CEO) of the artificial intelligence company <strong>OpenAI</strong> since 2019."
+        },
+        {
+          "source_url": "https://www.businessinsider.com/sam-altman",
+          "snippet": "OpenAI CEO Sam Altman helped usher in the AI age. Now, he&#x27;s doing everything he can to keep OpenAI ahead."
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Removal_of_Sam_Altman_from_OpenAI",
+          "snippet": "On November 17, 2023, <strong>OpenAI</strong>&#x27;s board of directors ousted co-founder and chief executive <strong>Sam</strong> <strong>Altman</strong>. In an official post on the company&#x27;s website, it was stated that &quot;the board no longer has confidence in his ability to continue leading <strong>OpenAI</strong>&quot;. The removal was predicated by employee concerns ...",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.britannica.com/money/Sam-Altman",
+          "snippet": "Show More \u00b7 Sam Altman is an American entrepreneur who was president of the start-up accelerator Y Combinator from 2014 to 2019 and <strong>chief executive officer of the artificial intelligence company OpenAI since 2019.</strong>"
+        },
+        {
+          "source_url": "https://www.linkedin.com/in/sam-altman/",
+          "snippet": "We have reached an agreement in principle for Sam Altman to return to OpenAI as CEO with a new initial board of Bret Taylor (Chair), Larry Summers\u2026"
+        },
+        {
+          "source_url": "https://time.com/6986711/openai-sam-altman-accusations-controversies-timeline/",
+          "snippet": "When OpenAI\u2019s board fired Altman last November, they offered a somewhat-cryptic explanation of their decision, saying he was \u201cnot consistently candid in his communications with the board and the broader OpenAI team.\u201d After more than 700 of OpenAI\u2019s roughly 770 person team threatened to follow Altman to Microsoft if Altman was not reinstated, he was brought back as CEO\u2014and two of the board members who called for his dismissal stepped down.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://medium.com/predict/you-have-no-idea-how-screwed-sam-altman-really-is-7a66baaa5a5d",
+          "snippet": "The official wording was: \u201cnot consistently candid.\u201d Translated from corporate-speak into plain English: \u201cHe lied.\u201d \u00b7 <strong>He was fired on a Friday, but over the next 72 hours something happened that turned OpenAI upside down.</strong>",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://gizmodo.com/anonymous-sources-detail-sam-altmans-alleged-untrustworthiness-in-new-report-2000742847",
+          "snippet": "The report says that Altman\u2019s alleged history of lying extends to a time before OpenAI as well. According to the investigation, senior employees at Altman\u2019s previous startup, a now-defunct location-sharing service called Loopt, asked the board to fire him as CEO due to concerns with his lack of transparency.",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "Widely reported tenure as CEO of OpenAI, including the well-documented 2023 board removal and reinstatement.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "employment",
+      "employer": "Y Combinator",
+      "title": "President",
+      "start": "2014",
+      "end": "2019",
+      "assertion": "Worked as President at Y Combinator (2014 to 2019).",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://www.ycombinator.com/companies/y-combinator",
+          "snippet": "Y Combinator directory: 'Y Combinator' is listed, batch Unspecified, status Active. (Make something people want.)",
+          "source_name": "accelerator_badges",
+          "weight": 0.8,
+          "match_confidence": "high"
+        },
+        {
+          "source_url": "https://www.reddit.com/r/OpenAI/comments/1d34d5o/til_sam_altman_was_fired_from_y_combinator_also/",
+          "snippet": "The YC firing is now well-documented and has been confirmed by Paul Graham himself: https://www.washingtonpost.com/technology/2023/11/22/sam-altman-fired-y-combinator-paul-graham/",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://news.ycombinator.com/item?id=38356534",
+          "snippet": "<strong>Altman took a non-profit and vacuumed up a bunch of donor money only to flip Open AI into the hottest TC style startup in the world</strong>. Then put a gas pedal to commercialization. It takes a certain type of politicking and deception to make something like that happen \u00b7 Then in the past week, he&#x27;s ...",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://news.ycombinator.com/item?id=38378216",
+          "snippet": "Seems incredibly respectful and supportive, I&#x27;m not buying that there&#x27;s a lot of bad blood there \u00b7 Maybe that unspecified thing is just corporate knife fighting and this time PG is happy he\u2019s not on the other end of it",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.reddit.com/r/siliconvalley/comments/1tid7y4/we_need_to_talk_about_how_sam_altman_keeps/",
+          "snippet": "Sam Altman got removed from his first startup for lying to the board. Then he got pushed out of Y Combinator over trust issues. Then <strong>his own OpenAI board fired him with a memo that literally said &quot;Lying&quot; at the top.</strong>",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Sam_Altman",
+          "snippet": "Samuel Harris <strong>Altman</strong> (born April ... company <strong>OpenAI</strong> since 2019. <strong>Altman</strong> attended Stanford University for two years before he dropped out and co-founded Loopt, a smartphone geosocial networking application. Loopt was acquired by Green Dot Corporation for $43.4 million in March 2012. In 2011, <strong>Altman</strong> joined <strong>Y</strong> <strong>Combinator</strong>, a technology startup accelerator and venture capital firm, and was the company&#x27;s <strong>president</strong> from 2014 ..."
+        },
+        {
+          "source_url": "https://www.britannica.com/money/Sam-Altman",
+          "snippet": "Show More \u00b7 Sam Altman is an American entrepreneur who was <strong>president of the start-up accelerator Y Combinator from 2014 to 2019</strong> and chief executive officer of the artificial intelligence company OpenAI since 2019."
+        },
+        {
+          "source_url": "https://startupintros.com/people/sam-altman",
+          "snippet": "Sam Altman co-founded Loopt, a ... Wojciech Zaremba, and John Schulman. He was also the president of Y Combinator from <strong>2014 to 2019.</strong>..."
+        }
+      ],
+      "notes": "Confirmed by Y Combinator records and multiple independent biographical sources.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "employment",
+      "employer": "Loopt",
+      "title": "Co-founder and CEO",
+      "start": "2005",
+      "end": "2012",
+      "assertion": "Worked as Co-founder and CEO at Loopt (2005 to 2012).",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Removal_of_Sam_Altman_from_OpenAI",
+          "snippet": "On November 17, 2023, OpenAI&#x27;s board of directors ousted co-founder and chief executive <strong>Sam</strong> <strong>Altman</strong>. In an official post on the company&#x27;s website, it was stated that &quot;the board no longer has confidence in his ability to continue leading OpenAI&quot;. The removal was predicated by employee concerns ...",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://gizmodo.com/anonymous-sources-detail-sam-altmans-alleged-untrustworthiness-in-new-report-2000742847",
+          "snippet": "According to the investigation, senior employees at Altman\u2019s previous startup, a now-defunct location-sharing service called Loopt, asked the board to fire him as CEO <strong>due to concerns with his lack of transparency</strong>.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.ynetnews.com/tech-and-digital/article/s1f297i3bx",
+          "snippet": "Dario Amodei, now CEO of rival Anthropic, said Altman inserted undisclosed clauses into the deal that contradicted OpenAI\u2019s original commitments. When confronted, Altman denied their existence until shown the text. Amodei and colleagues later left, saying \u201cthe problem with OpenAI is Sam himself.\u201d",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.livemint.com/technology/tech-news/why-was-sam-altman-fired-by-openai-in-2023-new-report-points-to-sociopathic-pattern-of-deception-11775564192075.html",
+          "snippet": "<strong>Altman was attending a Formula 1 race in Las Vegas when he was asked by Sutskever to join a video call with the board, where he was told he was no longer an employee of OpenAI.</strong>",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Sam_Altman",
+          "snippet": "She said that many employees feared retaliation if they didn&#x27;t support <strong>Altman</strong>, <strong>and</strong> that when <strong>Altman</strong> <strong>was</strong> <strong>Loopt</strong>&#x27;<strong>s</strong> <strong>CEO</strong>, the management team asked twice to fire him for what they called &quot;deceptive and chaotic behavior&quot;. On April 27, 2026, jury selection began in <strong>OpenAI</strong> <strong>co</strong>-<strong>founder</strong> Elon Musk&#x27;s lawsuit ..."
+        },
+        {
+          "source_url": "https://www.businessinsider.com/sam-altman",
+          "snippet": "OpenAI CEO Sam Altman helped usher in the AI age. Now, he&#x27;s doing everything he can to keep OpenAI ahead."
+        },
+        {
+          "source_url": "https://www.britannica.com/money/Sam-Altman",
+          "snippet": "Sam Altman is an American entrepreneur who was president of the start-up accelerator Y Combinator from 2014 to 2019 and <strong>chief executive officer of the artificial intelligence company OpenAI since 2019.</strong>"
+        },
+        {
+          "source_url": "https://www.biography.com/business-leaders/a65810455/sam-altman",
+          "snippet": "We may earn commission from links on this page, but we only recommend products we back. ... Sam Altman, the CEO of OpenAI, is <strong>one of the leading proponents of artificial intelligence in the world</strong>. Raised in St."
+        }
+      ],
+      "notes": "Well-established history as co-founder and CEO of Loopt, corroborated by multiple historical business records.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "education",
+      "employer": "Stanford University",
+      "title": "Computer Science (dropped out)",
+      "start": "2003",
+      "end": "2005",
+      "assertion": "Studied Computer Science (dropped out) at Stanford University.",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Sam_Altman",
+          "snippet": "Samuel Harris <strong>Altman</strong> (born April 22, 1985) is an American entrepreneur and investor who has been the chief executive officer (CEO) of the artificial intelligence company <strong>OpenAI</strong> since 2019. <strong>Altman</strong> attended <strong>Stanford</strong> <strong>University</strong> for two years before he <strong>dropped</strong> <strong>out</strong> and co-founded Loopt, a smartphone ..."
+        },
+        {
+          "source_url": "https://www.businessinsider.com/sam-altman-openai-envies-college-dropouts-stanford-devday-2025-10",
+          "snippet": "The OpenAI CEO, who <strong>dropped out of Stanford in 2005</strong>, said he envies young college dropouts because of the opportunities they have today."
+        },
+        {
+          "source_url": "https://www.britannica.com/money/Sam-Altman",
+          "snippet": "Altman attended Stanford University, where he studied computer science. <strong>He dropped out after two years</strong>, saying later that he had learned more playing poker with classmates than he had attending lectures by professors."
+        },
+        {
+          "source_url": "https://fortune.com/article/openai-ceo-sam-altman-envious-gen-z-college-dropouts-startups-success/",
+          "snippet": "\u201cBecause the amount of stuff ... be a lot of cool stuff to build,\u201d he said. <strong>Altman dropped out of Stanford University in 2005 after two years of studying computer science</strong>...."
+        },
+        {
+          "source_url": "https://www.ynetnews.com/tech-and-digital/article/s1f297i3bx",
+          "snippet": "Ilya Sutskever and CEO Sam Altman at Tel Aviv University in 2024 ... Criticism of Altman\u2019s credibility, the report says, predates OpenAI. During his early startup Loopt, founded after he dropped out of Stanford University, employees complained about his tendency to exaggerate and blur the line between \u201cI think I can maybe accomplish this thing\u201d and \u201cI have already accomplished this thing.\u201d A group of senior staff twice appealed to the board to remove him as CEO, citing leadership issues.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://medium.com/predict/you-have-no-idea-how-screwed-sam-altman-really-is-7a66baaa5a5d",
+          "snippet": "The official wording was: \u201cnot consistently candid.\u201d Translated from corporate-speak into plain English: \u201cHe lied.\u201d \u00b7 He was fired on a Friday, but over the next 72 hours something happened that turned OpenAI upside down. The company\u2019s employees revolted and demanded that the board bring their boss back. Two extraordinarily influential figures in Silicon Valley immediately sided with Altman: Reid Hoffman and Brian Chesky.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.livemint.com/technology/tech-news/why-was-sam-altman-fired-by-openai-in-2023-new-report-points-to-sociopathic-pattern-of-deception-11775564192075.html",
+          "snippet": "<strong>Sam Altman was fired by OpenAI in 2023 over internal allegations of deception but was rehired within five days due to employee pressure</strong>. A new report has given the real reason for the firing of the OpenAI co-founder by his own board.",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "Widely cited biographical fact confirmed by multiple reputable sources.",
+      "expected_footprint": "high"
+    }
+  ],
+  "larp_score": 0,
+  "verdict": "The subject's professional history is extensively documented across numerous independent, high-authority sources. All claims are confirmed.",
+  "buildability": null,
+  "founder_larp_score": null,
+  "company_larp_score": null,
+  "metric_breakdown": [],
+  "generated_at": "2026-07-19T01:18:40.812728+00:00"
+}

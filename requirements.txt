@@ -1,0 +1,29 @@
+# LARP detector runtime dependencies.
+# No em dashes anywhere (house rule).
+
+# HTML parsing for the LinkedIn experience/education parser (offline-testable).
+beautifulsoup4>=4.12
+
+# Live LinkedIn fetch through the in-repo dedicated-profile session.
+playwright>=1.40
+
+# Web/news evidence search (SearXNG + Brave + optional no-key DDGS).
+requests>=2.31
+ddgs>=9.0
+
+# Optional .env loading for the CLI.
+python-dotenv>=1.0
+
+# Test runner.
+pytest>=7.4
+
+# Local overlay service: FastAPI + websockets on http://127.0.0.1:8756.
+# See detective/service.py and SERVICE_README.md.
+fastapi>=0.110
+uvicorn>=0.29
+websockets>=12.0
+
+# Gemini reasoning brain (ApiProvider only; ManualProvider needs none). Only
+# imported inside detective/llm.py's _gemini_generate; falls back to the bare
+# REST endpoint via requests (already listed above) if this is not installed.
+google-genai>=1.0

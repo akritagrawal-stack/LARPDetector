@@ -1,0 +1,56 @@
+<!--
+  Synthetic LinkedIn "recent-activity/all/" posts block. Mirrors the shape the
+  activity page renders: each post is an outermost feed-shared-update-v2
+  container, the author's own commentary sits in an update-components-text /
+  feed-shared-update-v2__description element, and a bare RESHARE nests the
+  original post (with its own text) inside, with no commentary of the author's
+  own. No em dashes anywhere (house rule).
+-->
+<html>
+<body>
+<div class="scaffold-finite-scroll__content">
+
+  <!-- Post 1: the author's OWN post carrying a traction boast. -->
+  <div class="feed-shared-update-v2" data-urn="urn:li:activity:1111111111">
+    <div class="update-components-actor">
+      <span class="update-components-actor__name">
+        <span aria-hidden="true">Jane Founder</span>
+      </span>
+    </div>
+    <div class="feed-shared-update-v2__description update-components-text">
+      <span dir="ltr">Update: Organize Campus just crossed 50,000 users! Grateful to the whole team for shipping so hard this year.</span>
+    </div>
+    <a class="feed-shared-control-menu__trigger" href="/feed/update/urn:li:activity:1111111111/">permalink</a>
+  </div>
+
+  <!-- Post 2: the author's OWN post, only INCIDENTAL numbers (no traction unit). -->
+  <div class="feed-shared-update-v2" data-urn="urn:li:activity:2222222222">
+    <div class="update-components-actor">
+      <span class="update-components-actor__name">
+        <span aria-hidden="true">Jane Founder</span>
+      </span>
+    </div>
+    <div class="feed-shared-update-v2__description update-components-text">
+      <span dir="ltr">5 lessons from 3 years of building in public.</span>
+    </div>
+  </div>
+
+  <!-- Post 3: a BARE RESHARE. The author added NO commentary of their own; the
+       only text belongs to the NESTED original post (someone else's words). This
+       must NOT be captured as the author's post. -->
+  <div class="feed-shared-update-v2" data-urn="urn:li:activity:3333333333">
+    <div class="update-components-header">
+      <span aria-hidden="true">Jane Founder reposted this</span>
+    </div>
+    <div class="feed-shared-update-v2__update-content">
+      <div class="feed-shared-update-v2" data-urn="urn:li:activity:4444444444">
+        <div class="feed-shared-update-v2__description update-components-text">
+          <span dir="ltr">Some other founder announcing they raised a $10M Series A round.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

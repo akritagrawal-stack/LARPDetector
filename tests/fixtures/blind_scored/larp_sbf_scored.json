@@ -1,0 +1,270 @@
+{
+  "profile_url": "https://en.wikipedia.org/wiki/Sam_Bankman-Fried",
+  "scan_type": "person",
+  "identity": {
+    "name": "Sam Bankman-Fried",
+    "headline": "Founder and CEO at FTX",
+    "current_company": "FTX",
+    "location": "Nassau, Bahamas"
+  },
+  "raw_experience": [
+    {
+      "title": "Founder and CEO",
+      "company": "FTX",
+      "start_date": "2019",
+      "end_date": "2022",
+      "location": "Bahamas"
+    },
+    {
+      "title": "Founder",
+      "company": "Alameda Research",
+      "start_date": "2017",
+      "end_date": "2022",
+      "location": ""
+    },
+    {
+      "title": "Stated that FTX did not invest customer funds and had enough assets to cover all client holdings",
+      "company": "FTX",
+      "start_date": "",
+      "end_date": "",
+      "location": ""
+    }
+  ],
+  "claims": [
+    {
+      "type": "identity",
+      "employer": "",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "A real person named Sam Bankman-Fried exists and matches this profile.",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://news.ycombinator.com/item?id=33807257",
+          "snippet": "Hacker News: 28932 stor(y/ies) mention 'FTX' (3493 of them tagged Show HN). Top thread(s): 'FTX\u2019s collapse was a crime, not an accident' (1082 points, 569 comments, 2022-11-30); 'Binance to acquire FTX' (740 points, 737 comments, 2022-11-08); 'FTX to file for U.S. bankruptcy, CEO resigns' (625 points, 1169 comments, 2022-11-11). HN's commentary skews technical/contrarian; treat this as a real public discussion signal, not a verdict.",
+          "source_name": "hackernews",
+          "weight": 0.64,
+          "match_confidence": "medium"
+        },
+        {
+          "source_url": "https://news.ycombinator.com/item?id=48875675",
+          "snippet": "Hacker News comments mentioning 'FTX' include wrapper/scam/exaggeration-flavored language: 2026-07-11: '&gt; what crypto will leave behind is bad Austrian economics and worse monkey JPEGsits what the crypto industry will leave behind, and you could say the main bubble already burst when ftx went bankrup...'; 2026-06-27: 'VC companies do not dig into the numbers as you suggest. FTX was able to get away with their fraud for a long time for that very reason. VC companies don\u2019t care if some of their investments are fraudu...'; 2026-06-23: 'Having worked in crypto analytics briefly, normal people have no clue how much fraud and scams are happening in crypto at the exchange level.FTX collapsed and was caught but more conservative crypto e...'. HN skews contrarian and unmoderated; a critical comment is a real reputation signal, never proof of fabrication on its own.",
+          "source_name": "hackernews",
+          "weight": 0.64,
+          "match_confidence": "medium"
+        },
+        {
+          "source_url": "https://www.forbes.com/sites/conormurray/2026/06/12/disgraced-ftx-founder-sam-bankman-fried-loses-appeal-of-25-year-sentence/",
+          "snippet": "Sam Bankman-Fried, the <strong>founder of failed cryptocurrency exchange FTX and a former billionaire</strong>, lost his appeal to overturn his conviction for fraud and 25-year sentence on Friday, as an appeals court rejected his claim the trial was unfair."
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Sam_Bankman-Fried",
+          "snippet": "Samuel Benjamin <strong>Bankman</strong>-<strong>Fried</strong> (born March 5, 1992), commonly known as SBF, is an American former entrepreneur convicted of fraud. <strong>Bankman</strong>-<strong>Fried</strong> founded the <strong>FTX</strong> cryptocurrency exchange and was celebrated as a &quot;poster boy&quot; for crypto, with <strong>FTX</strong> having a global reach with more than 130 international ..."
+        },
+        {
+          "source_url": "https://www.britannica.com/money/Sam-Bankman-Fried",
+          "snippet": "Sam Bankman-Fried (born March 6, 1992, Stanford, California, U.S.) was the <strong>founder and former chief executive officer (2019\u201322)</strong> of FTX Trading Ltd., a cryptocurrency exchange."
+        },
+        {
+          "source_url": "https://www.motherjones.com/politics/2025/10/ftx-sam-bankman-fried-crypto-bankruptcy-sullivan-cromwell-fraud/",
+          "snippet": "Kavuri put it bluntly in his 2024 letter to the judge in Sam\u2019s criminal case: \u201cThe FTX bankruptcy estate is proposing to scam FTX customers again.\u201d \u00b7 A courtroom sketch of Sam Bankman-Fried during his sentencing."
+        },
+        {
+          "source_url": "https://www.courtlistener.com/docket/65757245/garrison-v-bankman-fried/",
+          "snippet": "CourtListener docket record possibly involving 'Sam Bankman-Fried': [docket] Garrison v. Bankman-Fried (District Court, S.D. Florida, filed 2022-11-15, docket 1:22-cv-23753). SAME-NAME MATCHES ARE THE HIGHEST FALSE-POSITIVE RISK OF ANY SOURCE HERE: this is not confirmation the claimed person was actually a party in this case unless corroborated independently (matching entity type, a jurisdiction that fits, or counsel); treat this as a lead to verify, never as a settled adverse finding on its own.",
+          "source_name": "courtlistener",
+          "weight": 0.6,
+          "match_confidence": "low"
+        },
+        {
+          "source_url": "https://www.courtlistener.com/docket/67478547/in-re-ftx-cryptocurrency-exchange-collapse-litigation/",
+          "snippet": "CourtListener docket record possibly involving 'Sam Bankman-Fried': [docket] In Re: FTX Cryptocurrency Exchange Collapse Litigation (District Court, S.D. Florida, filed 2023-06-05, docket 1:23-md-03076). SAME-NAME MATCHES ARE THE HIGHEST FALSE-POSITIVE RISK OF ANY SOURCE HERE: this is not confirmation the claimed person was actually a party in this case unless corroborated independently (matching entity type, a jurisdiction that fits, or counsel); treat this as a lead to verify, never as a settled adverse finding on its own.",
+          "source_name": "courtlistener",
+          "weight": 0.6,
+          "match_confidence": "low"
+        }
+      ],
+      "notes": "Extensively documented in legal proceedings, media, and biographical records.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "employment",
+      "employer": "FTX",
+      "title": "Founder and CEO",
+      "start": "2019",
+      "end": "2022",
+      "assertion": "Worked as Founder and CEO at FTX (2019 to 2022).",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Sam_Bankman-Fried",
+          "snippet": "<strong>Bankman</strong>-<strong>Fried</strong> resigned as <strong>CEO</strong> <strong>of</strong> <strong>FTX</strong> on November 11, 2022, and was immediately replaced by John J. Ray III, who from 2004 to 2009 had chaired the effort to recover Enron assets for creditors through litigation against numerous banks in the Enron Bankruptcy case. <strong>FTX</strong> <strong>and</strong> related entities filed for bankruptcy in Delaware on the same ..."
+        },
+        {
+          "source_url": "https://www.britannica.com/money/Sam-Bankman-Fried",
+          "snippet": "Sam Bankman-Fried was the <strong>founder and former chief executive officer (2019\u201322) of FTX Trading Ltd.</strong>, a..."
+        },
+        {
+          "source_url": "https://www.investopedia.com/who-is-sam-bankman-fried-6830274",
+          "snippet": "Sam Bankman-Fried was <strong>co-founder and ex-CEO of bankrupt cryptocurrency exchange FTX before its sudden collapse in November 2022</strong>. He was convicted of wire fraud and conspiracy in 2023."
+        },
+        {
+          "source_url": "https://www.foxbusiness.com/category/sam-bankman-fried",
+          "snippet": "FTX founder and ex-CEO Sam Bankman-Fried is <strong>seeking to overturn his conviction and 25-year sentence for defrauding customers and investors in his cryptocurrency exchange</strong>."
+        },
+        {
+          "source_url": "https://abcnews.com/US/sam-bankman-fried-loses-appeal-fraud-conviction-ftx/story?id=133817346",
+          "snippet": "The appeals court ruling comes after a federal judge in April denied Bankman-Fried a new trial, rejecting his claim that there are newly discovered witnesses who would give exculpatory testimony. FTX founder Sam Bankman-Fried leaves Manhattan federal court in New York, Feb.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.biography.com/crime/a68080292/sam-bankman-fried",
+          "snippet": "But in November 2022, after being unable to meet customer demand for withdrawals, FTX filed for bankruptcy, and Bankman-Fried resigned as its CEO. An investigation revealed the company had taken more than $8 billion from customers for uses that included illegal campaign donations, personal loans to executives, and buying luxury real estate. U.S. authorities charged Bankman-Fried with this theft as well as with defrauding lenders and investors. In November 2023, he was convicted on seven counts that included fraud, conspiracy, and money laundering.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://revealnews.org/podcast/sam-bankman-fried-ftx-collapse-part-1-update-2026/",
+          "snippet": "\u201cAll that we were told was there\u2019s been a run on the bank and, somehow, money is missing and we don\u2019t know who to trust,\u201d remembers Caroline Papadopoulos, part of FTX\u2019s accounting leadership at the time. This week on Reveal, through prison interviews with Bankman-Fried, his parents, FTX insiders, and customers, we take you through the frantic week of FTX\u2019s collapse and the controversial and less well-known bankruptcy that followed.",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "Widely reported and confirmed by bankruptcy filings and criminal conviction records.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "employment",
+      "employer": "Alameda Research",
+      "title": "Founder",
+      "start": "2017",
+      "end": "2022",
+      "assertion": "Worked as Founder at Alameda Research (2017 to 2022).",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Sam_Bankman-Fried",
+          "snippet": "At least $10 million of the $17.5 ... fund, <strong>Alameda</strong> <strong>Research</strong>, according to estimates from federal prosecutors and bankruptcy filings. ... Goldstein, Matthew (March 24, 2023). &quot;The Younger Brother Caught in the Middle of the <strong>FTX</strong> Investigation&quot;. The New York Times. Archived from the original on September 19, 2023. Retrieved November 6, 2023. ... Hart, Jordan (November 27, 2022). &quot;Inside the $3 million DC townhouse where <strong>FTX</strong> <strong>founder</strong> <strong>Sam</strong> <strong>Bankman</strong>-<strong>Fried</strong>&#x27;s brother ..."
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Alameda_Research",
+          "snippet": "<strong>Alameda</strong> <strong>Research</strong> was a cryptocurrency trading firm co-founded in September 2017 by <strong>Sam</strong> <strong>Bankman</strong>-<strong>Fried</strong> and Tara MacAulay. In November 2022, <strong>FTX</strong>, <strong>Alameda</strong>&#x27;s sister cryptocurrency exchange, experienced a solvency crisis, and both <strong>FTX</strong> <strong>and</strong> <strong>Alameda</strong> filed for Chapter 11 bankruptcy."
+        },
+        {
+          "source_url": "https://www.theverge.com/2023/10/11/23913665/ftx-sam-bankman-fried-fraud-trial-caroline-ellison-testimony-alameda-balance-sheets",
+          "snippet": "During opening statements, the defense suggested that the failures at Alameda were Ellison\u2019s fault \u2014 and that Bankman-Fried acted appropriately given what he knew at the time. In order to prove fraud occurred, the prosecution must show that Bankman-Fried knowingly lied.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.theverge.com/2022/12/13/23507361/sam-bankman-fried-ftx-alameda-cftc-complaint-lies",
+          "snippet": "FTX was a fraud \u201cfrom the start,\u201d the Securities and Exchange Commission alleged \u2014 with a \u201cmulti-billion-dollar deficiency caused by his own misappropriation of customer funds.\u201d \u00b7 Bankman-Fried said that he \u201cdidn\u2019t know exactly what was going on\u201d at Alameda Research and that he \u201cwasn\u2019t running Alameda.\u201d According to the CFTC complaint, that\u2019s not even a little true.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://news.gsu.edu/2023/10/20/bankman-fried/",
+          "snippet": "At 30, Sam Bankman-Fried, <strong>founder of the quantitative trading firm Alameda Research and the cryptocurrency exchange FTX Trading Ltd.</strong>, was seen as one of the most successful people in the cryptocurrency market."
+        },
+        {
+          "source_url": "https://www.investopedia.com/who-is-sam-bankman-fried-6830274",
+          "snippet": "Sam Bankman-Fried, also known as \u201cSBF,\u201d <strong>founded the FTX cryptocurrency exchange</strong> and, after its collapse, was found guilty of fraud and other crimes on Nov. 3, 2023. Being a finance and cryptocurrency entrepreneur, he founded both FTX and ..."
+        },
+        {
+          "source_url": "https://www.biography.com/crime/a68080292/sam-bankman-fried",
+          "snippet": "But it turned out Alameda had borrowed billions of FTX customer funds with FTT tokens as collateral, and the declining value of that token meant Alameda couldn\u2019t repay FTX. The lack of funds made FTX soon stop all withdrawals. Elizabeth Holmes Said Theranos Would Transform Healthcare. She Lied. Bankman-Fried next sought outside help.",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "Confirmed by multiple sources including legal filings and testimony.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "employment",
+      "employer": "FTX",
+      "title": "Stated that FTX did not invest customer funds and had enough assets to cover all client holdings",
+      "start": "",
+      "end": "",
+      "assertion": "FTX did not invest customer funds and had enough assets to cover all client holdings.",
+      "tier": "DISPROVEN",
+      "evidence": [
+        {
+          "source_url": "https://reuters.com/article/usa-bankmanfried-tweets/factbox-ftx-is-fine-tweets-sam-bankman-fried-may-regret-on-the-stand-idUSL1N3BM23E",
+          "snippet": "<strong>The crypto mogul also wrote that &quot;FTX has enough to cover all client holdings.&quot;</strong> Gary Wang, FTX&#x27;s former chief technology officer, testified that FTX did not actually have the assets to cover withdrawals."
+        },
+        {
+          "source_url": "https://www.cnbc.com/2022/11/13/sam-bankman-frieds-alameda-quietly-used-ftx-customer-funds-without-raising-alarm-bells-say-sources.html",
+          "snippet": "<strong>In the week leading up to the bankruptcy filing, FTX did not have enough assets to match customer withdrawals</strong>, the source said. Outside auditors likely missed this discrepancy because customer assets are an off balance sheet item, and therefore, ..."
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Sam_Bankman-Fried",
+          "snippet": "Samuel Benjamin <strong>Bankman</strong>-<strong>Fried</strong> (born March 5, 1992), commonly known as SBF, is an American former entrepreneur convicted of <strong>fraud</strong>. <strong>Bankman</strong>-<strong>Fried</strong> founded the <strong>FTX</strong> cryptocurrency exchange and was celebrated as a &quot;poster boy&quot; for crypto, with <strong>FTX</strong> having a global reach with more than 130 international ...",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://fortune.com/2022/11/09/ftx-binance-sam-bankman-fried-customer-funds-deposits-safe/",
+          "snippet": "\u201c<strong>FTX has enough to cover all client holdings.</strong> We don\u2019t invest client assets (even in Treasuries),\u201d he wrote on Monday, adding his company was redeeming money credited to people\u2019s trading accounts for anyone who wished to pull out."
+        },
+        {
+          "source_url": "https://www.goodmorningamerica.com/amp/news/story/ftxs-sam-bankman-fried-denies-improper-customer-funds-94233125",
+          "snippet": "7, days before FTX filed for Chapter ... Assets are fine&quot; and &quot;FTX has enough to cover all client holdings. <strong>We don&#x27;t invest client assets, even in treasuries.&quot;</strong>..."
+        },
+        {
+          "source_url": "https://abcnews.com/US/sam-bankman-fried-loses-appeal-fraud-conviction-ftx/story?id=133817346",
+          "snippet": "The appeals court ruling comes after a federal judge in April denied Bankman-Fried a new trial, rejecting his claim that there are newly discovered witnesses who would give exculpatory testimony. FTX founder Sam Bankman-Fried leaves Manhattan federal court in New York, Feb.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.biography.com/crime/a68080292/sam-bankman-fried",
+          "snippet": "But in November 2022, after being unable to meet customer demand for withdrawals, FTX filed for bankruptcy, and Bankman-Fried resigned as its CEO. An investigation revealed the company had taken more than $8 billion from customers for uses that included illegal campaign donations, personal loans to executives, and buying luxury real estate. U.S. authorities charged Bankman-Fried with this theft as well as with defrauding lenders and investors. In November 2023, he was convicted on seven counts that included fraud, conspiracy, and money laundering.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://revealnews.org/podcast/sam-bankman-fried-ftx-collapse-part-1-update-2026/",
+          "snippet": "\u201cAll that we were told was there\u2019s been a run on the bank and, somehow, money is missing and we don\u2019t know who to trust,\u201d remembers Caroline Papadopoulos, part of FTX\u2019s accounting leadership at the time. This week on Reveal, through prison interviews with Bankman-Fried, his parents, FTX insiders, and customers, we take you through the frantic week of FTX\u2019s collapse and the controversial and less well-known bankruptcy that followed.",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "The claim that FTX had assets to cover holdings was explicitly contradicted by testimony and the subsequent criminal conviction for fraud.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "education",
+      "employer": "Massachusetts Institute of Technology",
+      "title": "Physics",
+      "start": "2010",
+      "end": "2014",
+      "assertion": "Studied Physics at Massachusetts Institute of Technology.",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Sam_Bankman-Fried",
+          "snippet": "<strong>Bankman</strong>-<strong>Fried</strong> attended Canada/USA Mathcamp, a summer program for mathematically talented high-school students. He attended high school at the elite private Crystal Springs Uplands School in Hillsborough, California. He graduated from the <strong>Massachusetts</strong> <strong>Institute</strong> <strong>of</strong> <strong>Technology</strong> in 2014 with a bachelor&#x27;s degree in <strong>physics</strong> ..."
+        },
+        {
+          "source_url": "https://www.reuters.com/technology/sam-bankman-fried-be-sentenced-multi-billion-dollar-ftx-fraud-2024-03-28/",
+          "snippet": "Kaplan said Bankman-Fried lied when testified that he did not know Alameda Research had spent customer deposits taken from FTX. Mukasey sought to distance Bankman-Fried from notorious fraudsters like Bernie Madoff, saying he was &quot;not a ruthless financial serial killer&quot; but rather an &quot;awkward math nerd&quot; who tried to get customers their money back after FTX&#x27;s collapse. &quot;Sam Bankman-Fried doesn&#x27;t make decisions with malice in his heart,&quot; Mukasey added.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.britannica.com/money/Sam-Bankman-Fried",
+          "snippet": "The following year Bankman-Fried was <strong>convicted of wire fraud, conspiracy, and money laundering, and he was later sentenced to 25 years in prison</strong>. Bankman-Fried was born in 1992 to Joseph Bankman and Barbara Fried, scholars of tax law."
+        },
+        {
+          "source_url": "https://www.investopedia.com/who-is-sam-bankman-fried-6830274",
+          "snippet": "Bankman-Fried <strong>graduated from the Massachusetts Institute of Technology (MIT) in 2014 with a degree in physics and a minor in mathematics</strong>."
+        },
+        {
+          "source_url": "https://www.biography.com/crime/a68080292/sam-bankman-fried",
+          "snippet": "Sam next attended the Massachusetts Institute of Technology, where he <strong>majored in physics</strong>."
+        }
+      ],
+      "notes": "Verified by multiple biographical and academic records.",
+      "expected_footprint": "high"
+    }
+  ],
+  "larp_score": 85,
+  "verdict": "Sam Bankman-Fried is a convicted fraudster who claimed his exchange was solvent and that he did not touch customer funds, but the court record proves he was full of shit, as he was convicted of misappropriating billions of dollars in customer deposits. He is a proven liar.",
+  "buildability": null,
+  "founder_larp_score": null,
+  "company_larp_score": null,
+  "metric_breakdown": [],
+  "generated_at": "2026-07-19T01:19:54.970420+00:00"
+}

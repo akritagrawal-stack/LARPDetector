@@ -1,0 +1,59 @@
+{
+  "profile_url": "https://en.wikipedia.org/wiki/George_Santos",
+  "identity": {
+    "name": "George Santos",
+    "headline": "Former U.S. Representative, New York's 3rd congressional district",
+    "current_company": "",
+    "location": "New York, United States"
+  },
+  "experience": [
+    {
+      "title": "Analyst",
+      "company": "Goldman Sachs",
+      "start_date": "",
+      "end_date": "",
+      "location": ""
+    },
+    {
+      "title": "Analyst",
+      "company": "Citigroup",
+      "start_date": "",
+      "end_date": "",
+      "location": ""
+    }
+  ],
+  "education": [
+    {
+      "school": "Baruch College",
+      "degree": "",
+      "start_date": "",
+      "end_date": ""
+    }
+  ],
+  "_expected": {
+    "note": "Human grading block only. Not read by the pipeline (extra top-level keys are ignored by pipeline.run).",
+    "ground_truth_note": "George Santos was convicted of federal fraud in 2024 and was expelled from Congress in Dec 2023. His resume fabrications, including claimed employment at Goldman Sachs and Citigroup and a Baruch College degree, are widely reported: https://en.wikipedia.org/wiki/George_Santos",
+    "claims": [
+      {
+        "matches": "A real person named George Santos exists",
+        "expected_tier": "CONFIRMED",
+        "note": "George Santos is a real, well documented former member of Congress; only his career claims are fabricated, not his existence."
+      },
+      {
+        "matches": "Worked as Analyst at Goldman Sachs",
+        "expected_tier": "DISPROVEN",
+        "note": "Fabricated. Santos never worked at Goldman Sachs."
+      },
+      {
+        "matches": "Worked as Analyst at Citigroup",
+        "expected_tier": "DISPROVEN",
+        "note": "Fabricated. Santos never worked at Citigroup."
+      },
+      {
+        "matches": "Studied at Baruch College",
+        "expected_tier": "DISPROVEN",
+        "note": "Fabricated. Santos did not graduate from Baruch College."
+      }
+    ]
+  }
+}

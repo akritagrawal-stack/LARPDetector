@@ -1,0 +1,31 @@
+{
+  "profile_url": "https://resumegenie.example/",
+  "scan_type": "company_app",
+  "identity": {
+    "name": "ResumeGenie AI",
+    "headline": "The world's most advanced AI resume optimizer",
+    "current_company": "ResumeGenie AI",
+    "location": ""
+  },
+  "pricing": {
+    "tiers": [
+      {"name": "Pro Plan", "price": "$49", "period": "mo"}
+    ]
+  },
+  "metrics": [
+    {"type": "user_count", "text": "Trusted by over 100,000 users worldwide", "value": "100,000"},
+    {"type": "funding", "text": "raised $2 million in a pre-seed round", "value": "$2million pre-seed"}
+  ],
+  "tech_claims": [
+    {"type": "proprietary_tech", "text": "ResumeGenie is powered by advanced proprietary AI that rewrites your resume line by line."}
+  ],
+  "integrations": ["LinkedIn", "Google Docs", "Notion"],
+  "_expected": {
+    "note": "Human grading block only. Not read by the pipeline (extra top-level keys are ignored by pipeline.run).",
+    "ground_truth_note": "Invented fake product for the vibecode teardown demo: a $49/mo resume rewriter is, on its face, a thin wrapper around an LLM API call plus formatting, not a moat.",
+    "teardown_hint": {
+      "expected_buildability_tier": "TRIVIAL",
+      "why": "Core value prop is an LLM prompt (rewrite resume text against a job description) plus a Stripe paywall and a landing page. No proprietary model, no hard infra, no unique distribution evidenced by the claims."
+    }
+  }
+}

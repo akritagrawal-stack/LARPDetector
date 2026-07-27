@@ -1,0 +1,77 @@
+<!--
+  SYNTHETIC FIXTURE, not a live LinkedIn capture and not built from any real
+  person's profile. It reproduces, from engineering notes about a live
+  stress-test failure, the exact tag/attribute shape LinkedIn's Aero
+  frontend renders for a grouped/promoted-role company block (one employer,
+  several sub-roles): the Aero parser was found to let the group's
+  total-duration line, and even a full role description paragraph, land in
+  the "title" field, and to drop the real employer entirely from every
+  sub-role after the first. Simplified class/attribute soup, same tag shape
+  (a "lazy-column" wrapper of <p> lines in reading order) as the genuine
+  live capture at tests/fixtures/live_experience_sample_founder.html.
+
+  Covers, end to end, in profile order:
+    1. flat entry (Anchor Point Robotics, current role)
+    2. GROUPED: Meridian Retail, 3 internal Sr. PM roles, no company line
+       repeated
+    3. flat entry (Fernbridge) sitting between the two groups, exercising
+       the location-bleed fix (the Highfield Strategy Group header below
+       must not bleed into this entry's location)
+    4. GROUPED: Highfield Strategy Group, 4 promoted roles, including a long
+       company boilerplate paragraph as trailing content of one sub-role
+    5. flat entry (Solace Systems) after the group closes
+
+  No em dashes in this file (house rule).
+-->
+<div class="_9bf21961 ffc4722d _21283922" data-component-type="LazyColumn" data-testid="lazy-column">
+  <p>Experience</p>
+
+  <div componentkey="entity-collection-item--1">
+    <p>Co-founder, COO</p>
+    <p>Anchor Point Robotics &middot; Full-time</p>
+    <p>Jul 2018 - Present &middot; 1 yr</p>
+  </div>
+
+  <div componentkey="entity-collection-item--2">
+    <p>Meridian Retail</p>
+    <p>Full-time &middot; 3 yrs 7 mos</p>
+    <div class="positions-list">
+      <p>Sr. Product Manager, Search Customer Experience</p>
+      <p>Jan 2017 - Mar 2018 &middot; 1 yr 3 mos</p>
+      <p>Sr. Product Manager, Meridian Glow</p>
+      <p>Apr 2016 - Dec 2016 &middot; 9 mos</p>
+      <p>Sr. Product Manager, Inventory and Supply Chain Excellence Team</p>
+      <p>Sep 2014 - Mar 2016 &middot; 1 yr 7 mos</p>
+      <p>Austin, Texas, United States</p>
+    </div>
+  </div>
+
+  <div componentkey="entity-collection-item--3">
+    <p>PM Intern</p>
+    <p>Fernbridge</p>
+    <p>Jun 2013 - Aug 2013 &middot; 3 mos</p>
+  </div>
+
+  <div componentkey="entity-collection-item--4">
+    <p>Highfield Strategy Group</p>
+    <p>4 yrs 1 mo</p>
+    <div class="positions-list">
+      <p>Associate (Senior Engagement Manager)</p>
+      <p>Nov 2011 - Apr 2012 &middot; 6 mos</p>
+      <p>Highfield Strategy Group (www.highfieldstrategy.example) is the leading strategy and management consulting firm serving clients operating in government-driven markets. Working with corporate leaders and financial investors, Highfield Strategy Group delivers sophisticated, fact-based solutions in the areas of strategic growth, value capture, and mergers and acquisition support. With deep sector expertise, analytically rigorous consulting methodologies, and a uniquely flexible service model, Highfield Strategy Group provides clients with the insights and advice they need to succeed in highly demanding customer environments. Personal project expertise includes M&amp;A advisory, new market entry, competitive assessment, product development, and space/SATCOM.</p>
+      <p>Consultant (Engagement Manager)</p>
+      <p>May 2010 - Oct 2011 &middot; 1 yr 6 mos</p>
+      <p>Senior Analyst</p>
+      <p>Apr 2009 - Apr 2010 &middot; 1 yr 1 mo</p>
+      <p>Analyst</p>
+      <p>Apr 2008 - Mar 2009 &middot; 1 yr</p>
+    </div>
+  </div>
+
+  <div componentkey="entity-collection-item--5">
+    <p>R&amp;D Engineering Lead</p>
+    <p>Solace Systems, Inc.</p>
+    <p>Jul 2006 - Mar 2008 &middot; 1 yr 9 mos</p>
+    <p>Redwood City, CA</p>
+  </div>
+</div>

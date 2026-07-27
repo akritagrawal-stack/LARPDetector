@@ -1,0 +1,234 @@
+{
+  "profile_url": "https://www.cognition.ai/",
+  "scan_type": "company_app",
+  "identity": {
+    "name": "Devin by Cognition",
+    "headline": "The first AI software engineer",
+    "current_company": "Cognition AI",
+    "location": "San Francisco, California, United States"
+  },
+  "raw_experience": [],
+  "claims": [
+    {
+      "type": "company_overview",
+      "employer": "Devin by Cognition",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "Devin by Cognition is an actively operating, real product with a live public footprint (not vaporware, not dormant).",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://rdap.org/domain/cognition.ai",
+          "snippet": "Domain 'cognition.ai' registered/created 2017-12-16T02:22:31Z (via RDAP). Registrant identity is usually privacy-masked, so this speaks only to the registration TIMELINE, not who owns it: a fresh registration is the stronger LARP signal, an aged domain can still have been bought.",
+          "source_name": "domain_rdap_whois",
+          "weight": 0.64,
+          "match_confidence": "high"
+        },
+        {
+          "source_url": "https://news.ycombinator.com/item?id=43829065",
+          "snippet": "Hacker News: 5 stor(y/ies) mention 'Devin by Cognition' (2 of them tagged Show HN). Top thread(s): 'What are the key bottlenecks for AI Agent development in the next 1\u20132 years?' (8 points, 2 comments, 2025-04-29); 'Ask HN: How is Cognition able to raise at $10B?' (4 points, 10 comments, 2025-08-15); 'Ask HN: How do we handle a new other startup with the same name as ours (Devin)?' (4 points, 2 comments, 2024-03-21). HN's commentary skews technical/contrarian; treat this as a real public discussion signal, not a verdict.",
+          "source_name": "hackernews",
+          "weight": 0.64,
+          "match_confidence": "medium"
+        },
+        {
+          "source_url": "https://news.ycombinator.com/item?id=42404760",
+          "snippet": "Hacker News comments mentioning 'Devin by Cognition' include wrapper/scam/exaggeration-flavored language: 2024-12-13: 'Here\u2019s their response: https:&#x2F;&#x2F;xcancel.com&#x2F;cognition_labs&#x2F;status&#x2F;186735152103553069...This situation is both embarrassing and difficult to excuse given the severity. It\u2019s espe...'. HN skews contrarian and unmoderated; a critical comment is a real reputation signal, never proof of fabrication on its own.",
+          "source_name": "hackernews",
+          "weight": 0.64,
+          "match_confidence": "medium"
+        },
+        {
+          "source_url": "https://fritz.ai/cognition-ai-review/",
+          "snippet": "Cognition AI is still in closed beta, so I\u2019m reviewing it based on official demos, verified technical breakdowns, and early-access user feedback \u2014 with side-by-side comparisons to mainstream tools. Best for autonomous end-to-end coding tasks 4.4 out of 5 ... \u2714\ufe0f Devin can complete real-world tasks like building full-stack apps, debugging code, and submitting pull requests \u2714\ufe0f The agent autonomously searches for documentation, navigates file systems, and makes decisions \u2714\ufe0f It integrates with shells, browsers, and version control tools \u2014 unlike other AI tools that stop at code generation \u2714\ufe0f It\u2019s more than a chatbot \u2014 it acts like a full junior software engineer",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://cognition.com/blog/devin-review",
+          "snippet": "Devin Review is currently free, while in early release, and works on any public or private GitHub PR.",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://www.eesel.ai/blog/cognition-ai-alternatives",
+          "snippet": "Cognition AI\u2019s Devin certainly made an entrance, showing up with the title of &quot;first AI software engineer.&quot; The demos are wild, showing an AI that can supposedly tackle an entire development project from a single prompt. The hype is definitely there, but so is the waitlist.",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://www.marlonmisra.com/p/early-impressions-of-cognitions-devin",
+          "snippet": "Devin&#x27;s AI software developer is remarkable",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://www.producthunt.com/products/devin-by-cognition",
+          "snippet": "Devin is <strong>the new state-of-the-art on the SWE-Bench coding benchmark</strong>, has successfully passed practical engineering interviews from leading AI companies, and has even completed real jobs on Upwork."
+        }
+      ],
+      "notes": "Evidence confirms Devin is a widely recognized, functional AI agent product with significant public discussion and third-party reviews.",
+      "expected_footprint": ""
+    },
+    {
+      "type": "pricing",
+      "employer": "Devin by Cognition",
+      "title": "Team",
+      "start": "",
+      "end": "",
+      "assertion": "Devin by Cognition is priced at $500/mo for the Team tier.",
+      "tier": "UNVERIFIED",
+      "evidence": [
+        {
+          "source_url": "https://pensero.ai/blog/devin-pricing",
+          "snippet": "The Team plan is <strong>$500 per month</strong> and includes 250 ACUs at $2.00 per ACU, a slight discount from the Core rate. Concurrent sessions are unlimited on this plan, removing the 10-session cap of Core."
+        },
+        {
+          "source_url": "https://theaiagentindex.com/agents/devin",
+          "snippet": "Devin by Cognition: autonomous AI software engineer. Free; Pro $20/mo; Max $200/mo; Teams <strong>$80/mo + $40/seat</strong>. SOC 2, ISO 27001. Not affiliated."
+        },
+        {
+          "source_url": "https://www.eesel.ai/blog/cognition-ai",
+          "snippet": "In contrast, solutions like eesel AI have transparent, public pricing plans with no hidden fees for each resolution. This makes it easy to get started, budget for costs, and prove the tool\u2019s value without ever having to hop on a sales call. ... Cognition AI is a genuinely revolutionary tool for software engineering.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.darrow.ai/resources/deceptive-pricing",
+          "snippet": "Hidden fees, or junk fees, at checkout happen when retailers lure customers with low advertised prices but tack on unexpected charges during the final steps of the purchase process.",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "Pricing is inconsistent across sources ($500/mo vs $80/mo + seats), suggesting either tiered plans or outdated information.",
+      "expected_footprint": ""
+    },
+    {
+      "type": "funding",
+      "employer": "Devin by Cognition",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "Devin by Cognition claims to have raised $21 million (source text: \"raised a $21 million Series A led by Founders Fund\").",
+      "tier": "UNVERIFIED",
+      "evidence": [
+        {
+          "source_url": "https://techcrunch.com/2026/05/27/ai-coding-startup-cognition-raises-1b-at-25b-pre-money-valuation/",
+          "snippet": "Cognition, the makers of the autonomous AI software engineer named Devin, has raised <strong>more than $1 billion</strong> at a $25 billion pre-money valuation ($26 billion post money), the company announced on Wednesday."
+        },
+        {
+          "source_url": "https://letsdatascience.com/news/cognition-secures-billion-dollar-valuation-with-devin-e5f9593e",
+          "snippet": "Palo Alto\u2013based startup Cognition, founded in 2022 by Roshun Patel, Ndeye Thiam and Sachin Sudarsanam, raised a <strong>$200 million</strong> Series A led by Lightspeed in September 2023, valuing the company above $2 billion after earlier seed and Kickstarter ..."
+        },
+        {
+          "source_url": "https://www.clay.com/dossier/cognition-funding",
+          "snippet": "Motivation Behind the Round: <strong>To expand the engineering team and enhance product capabilities following rapid traction with Devin</strong>."
+        },
+        {
+          "source_url": "https://www.maginative.com/article/cognition-ai-raises-175m-at-2b-valuation-one-month-after-series-a/",
+          "snippet": "Just a month after announcing a $21 million Series A round, Cognition AI, a startup developing an AI-powered coding assistant called Devin, has raised another <strong>$175 million</strong> led by Founders Fund."
+        }
+      ],
+      "notes": "Funding reports are wildly contradictory, ranging from $21M to $1B+; the lack of a single consistent figure makes the specific claim unverifiable.",
+      "expected_footprint": ""
+    },
+    {
+      "type": "proprietary_tech",
+      "employer": "Devin by Cognition",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "Devin by Cognition claims: \"Devin is a fully autonomous AI software engineer that can plan and execute complex engineering tasks end to end.\"",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://theaiagentindex.com/agents/devin",
+          "snippet": "Model architectureCognition SWE 1.7 proprietary model, with access to OpenAI, Anthropic Claude, and Google Gemini frontier models on Pro and above \u00b7 Avg setup timeUnder 5 minutes (sign up via web app or download Devin Desktop, connect GitHub, assign first task via Slack or web interface)",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "The claim describes the product's core functionality, which is corroborated by multiple technical reviews and benchmarks.",
+      "expected_footprint": ""
+    },
+    {
+      "type": "proprietary_tech",
+      "employer": "Devin by Cognition",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "Devin by Cognition claims: \"Devin correctly resolves 13.86% of real-world GitHub issues on the SWE-bench benchmark, state of the art among AI systems.\"",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://theaiagentindex.com/agents/devin",
+          "snippet": "Model architectureCognition SWE 1.7 proprietary model, with access to OpenAI, Anthropic Claude, and Google Gemini frontier models on Pro and above \u00b7 Avg setup timeUnder 5 minutes (sign up via web app or download Devin Desktop, connect GitHub, assign first task via Slack or web interface)",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "SWE-bench performance is a documented industry metric, and Devin's status on this benchmark is widely cited in technical literature.",
+      "expected_footprint": ""
+    }
+  ],
+  "larp_score": null,
+  "verdict": "The company's claims regarding its product and technical capabilities are well-corroborated by the industry. However, the financial reporting surrounding the company is chaotic and contradictory, with massive discrepancies in funding figures that remain impossible to reconcile. The product itself is clearly real, but the financial narrative is deeply sus.",
+  "buildability": {
+    "tier": "MODERATE",
+    "note": "Evidence indicates a complex agentic architecture integrating multiple LLMs and external tools, exceeding the scope of a simple wrapper."
+  },
+  "founder_larp_score": null,
+  "company_larp_score": null,
+  "metric_breakdown": [
+    {
+      "name": "raise_inflation",
+      "weight": 3,
+      "score_0_10": 8,
+      "active": true,
+      "note": "Extreme variance in reported funding ($21M vs $1B+) makes the claimed amount highly suspect and inconsistent."
+    },
+    {
+      "name": "reach_vs_footprint",
+      "weight": 3,
+      "score_0_10": null,
+      "active": false,
+      "note": ""
+    },
+    {
+      "name": "product_realness",
+      "weight": 3,
+      "score_0_10": 1,
+      "active": true,
+      "note": "Product is widely reviewed and used by the engineering community; not vaporware."
+    },
+    {
+      "name": "headcount_inflation",
+      "weight": 2,
+      "score_0_10": null,
+      "active": false,
+      "note": ""
+    },
+    {
+      "name": "proprietary_ai_gap",
+      "weight": 2,
+      "score_0_10": 2,
+      "active": true,
+      "note": "Evidence points to a proprietary model architecture (Cognition SWE 1.7) alongside API integrations."
+    },
+    {
+      "name": "zombie_liveness",
+      "weight": 2,
+      "score_0_10": 1,
+      "active": true,
+      "note": "High level of recent activity, news coverage, and community discussion."
+    },
+    {
+      "name": "key_role_coverage",
+      "weight": 2,
+      "score_0_10": 1,
+      "active": true,
+      "note": "Founders and technical leadership are well-documented and public."
+    },
+    {
+      "name": "buildability",
+      "weight": 1,
+      "score_0_10": 1,
+      "active": true,
+      "note": "Evidence indicates a complex agentic architecture integrating multiple LLMs and external tools, exceeding the scope of a simple wrapper."
+    }
+  ],
+  "generated_at": "2026-07-19T01:25:44.564755+00:00"
+}

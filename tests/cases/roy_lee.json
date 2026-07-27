@@ -1,0 +1,66 @@
+{
+  "profile_url": "https://www.linkedin.com/in/roy-lee-cluely/",
+  "identity": {
+    "name": "Roy Lee",
+    "headline": "Founder and CEO at Cluely",
+    "current_company": "Cluely",
+    "location": "New York, New York, United States"
+  },
+  "experience": [
+    {
+      "title": "Founder and CEO",
+      "company": "Cluely",
+      "start_date": "Dec 2024",
+      "end_date": "Present",
+      "location": ""
+    },
+    {
+      "title": "Raised 5.3 million dollar seed round for Cluely",
+      "company": "Cluely",
+      "start_date": "Apr 2025",
+      "end_date": "",
+      "location": ""
+    },
+    {
+      "title": "Publicly stated 7 million dollar ARR for Cluely",
+      "company": "Cluely",
+      "start_date": "2025",
+      "end_date": "",
+      "location": ""
+    }
+  ],
+  "education": [
+    {
+      "school": "Columbia University",
+      "degree": "Computer Science (suspended 2025)",
+      "start_date": "",
+      "end_date": ""
+    }
+  ],
+  "_expected": {
+    "note": "Human grading block only. Not read by the pipeline (extra top-level keys are ignored by pipeline.run).",
+    "ground_truth_note": "Roy Lee is founder/CEO of Cluely (formerly Interview Coder). Seed raise reported by TechCrunch, Apr 21 2025: https://techcrunch.com/2025/04/21/columbia-student-suspended-over-interview-cheating-tool-raises-5-3m-to-cheat-on-everything/ . ARR admission reported by TechCrunch, Mar 5 2026: https://techcrunch.com/2026/03/05/cluely-ceo-roy-lee-admits-to-publicly-lying-about-revenue-numbers-last-year/",
+    "claims": [
+      {
+        "matches": "Founder and CEO at Cluely",
+        "expected_tier": "CONFIRMED",
+        "note": "Publicly documented founder/CEO role at Cluely."
+      },
+      {
+        "matches": "5.3 million dollar seed round",
+        "expected_tier": "CONFIRMED",
+        "note": "TechCrunch, Apr 2025, reported the 5.3 million dollar seed raise."
+      },
+      {
+        "matches": "7 million dollar ARR",
+        "expected_tier": "DISPROVEN",
+        "note": "Roy Lee later admitted this ARR figure was a public lie (TechCrunch, Mar 2026)."
+      },
+      {
+        "matches": "Studied Computer Science (suspended 2025) at Columbia University",
+        "expected_tier": "CONFIRMED",
+        "note": "Confirmed Columbia University attendance, though he was suspended in 2025 over the Interview Coder tool."
+      }
+    ]
+  }
+}

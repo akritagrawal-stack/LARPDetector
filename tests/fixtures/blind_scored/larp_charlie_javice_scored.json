@@ -1,0 +1,213 @@
+{
+  "profile_url": "https://en.wikipedia.org/wiki/Charlie_Javice",
+  "scan_type": "person",
+  "identity": {
+    "name": "Charlie Javice",
+    "headline": "Founder & CEO at Frank | Forbes 30 Under 30",
+    "current_company": "Frank",
+    "location": "New York, New York, United States"
+  },
+  "raw_experience": [
+    {
+      "title": "Founder and CEO",
+      "company": "Frank",
+      "start_date": "2016",
+      "end_date": "2021",
+      "location": "New York"
+    },
+    {
+      "title": "Claimed that Frank had more than 4 million customers and users",
+      "company": "Frank",
+      "start_date": "",
+      "end_date": "",
+      "location": ""
+    }
+  ],
+  "claims": [
+    {
+      "type": "identity",
+      "employer": "",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "A real person named Charlie Javice exists and matches this profile.",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://news.ycombinator.com/item?id=14673777",
+          "snippet": "Hacker News: 26037 stor(y/ies) mention 'Frank' (912 of them tagged Show HN). Top thread(s): 'Silicon Valley Women, in Cultural Shift, Frankly Describe Sexual Harassment' (1188 points, 730 comments, 2017-06-30); 'The Benjamin Franklin method for learning more from programming books' (574 points, 99 comments, 2018-02-16); 'Wikimedia removes the Diary of Anne Frank due to copyright law' (451 points, 192 comments, 2016-02-13). HN's commentary skews technical/contrarian; treat this as a real public discussion signal, not a verdict.",
+          "source_name": "hackernews",
+          "weight": 0.64,
+          "match_confidence": "medium"
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Charlie_Javice",
+          "snippet": "Sisak, Michael; Neumeister, Larry (March 28, 2025). &quot;<strong>Charlie</strong> <strong>Javice</strong> convicted of defrauding JPMorgan during $175 million sale of financial aid startup&quot;. AP News. <strong>Javice</strong> and Amar, <strong>Frank</strong>&#x27;s chief growth and acquisition officer and effectively its No."
+        },
+        {
+          "source_url": "https://www.bbc.com/news/articles/c4gwj15djdxo",
+          "snippet": "Ms Javice was <strong>convicted for using falsified user-base data to make the customer list for her student financial aid company</strong>, called Frank, appear far larger than it actually was."
+        },
+        {
+          "source_url": "https://www.justice.gov/usao-sdny/pr/startup-ceo-charlie-javice-sentenced-85-months-prison-175-million-fraud",
+          "snippet": "Attorney for the United States, ... for <strong>falsely and dramatically inflating the number of customers of her company, Frank, to fraudulently induce J.P. Morgan Chase (\u201cJPMC\u201d) to acquire Frank for $175 million</strong>..."
+        },
+        {
+          "source_url": "https://www.sec.gov/newsroom/press-releases/2023-74",
+          "snippet": "The Securities and Exchange Commission today charged Charlie Javice, the <strong>founder of the now shuttered student loan assistance company previously known as Frank</strong>, with fraud in connection with the $175 million sale of the company to JPMorgan Chase Bank, N.A., (JPMC) in 2021."
+        },
+        {
+          "source_url": "https://www.courtlistener.com/docket/67131128/securities-and-exchange-commission-v-javice/",
+          "snippet": "CourtListener docket record possibly involving 'Charlie Javice': [docket] Securities and Exchange Commission v. Javice (District Court, S.D. New York, filed 2023-04-04, docket 1:23-cv-02795). SAME-NAME MATCHES ARE THE HIGHEST FALSE-POSITIVE RISK OF ANY SOURCE HERE: this is not confirmation the claimed person was actually a party in this case unless corroborated independently (matching entity type, a jurisdiction that fits, or counsel); treat this as a lead to verify, never as a settled adverse finding on its own.",
+          "source_name": "courtlistener",
+          "weight": 0.6,
+          "match_confidence": "low"
+        },
+        {
+          "source_url": "https://www.courtlistener.com/docket/66694587/plaintiffs-v-defendants/",
+          "snippet": "CourtListener docket record possibly involving 'Charlie Javice': [docket] Plaintiff(s) v. Defendant(s) (District Court, D. Delaware, filed 2022-01-01, docket 1:99-mc-02022). SAME-NAME MATCHES ARE THE HIGHEST FALSE-POSITIVE RISK OF ANY SOURCE HERE: this is not confirmation the claimed person was actually a party in this case unless corroborated independently (matching entity type, a jurisdiction that fits, or counsel); treat this as a lead to verify, never as a settled adverse finding on its own.",
+          "source_name": "courtlistener",
+          "weight": 0.6,
+          "match_confidence": "low"
+        },
+        {
+          "source_url": "https://www.courtlistener.com/docket/66678711/jpmorgan-chase-bank-na-v-javice/",
+          "snippet": "CourtListener docket record possibly involving 'Charlie Javice': [docket] JPMorgan Chase Bank, N.A. v. Javice (District Court, D. Delaware, filed 2022-12-22, docket 1:22-cv-01621). SAME-NAME MATCHES ARE THE HIGHEST FALSE-POSITIVE RISK OF ANY SOURCE HERE: this is not confirmation the claimed person was actually a party in this case unless corroborated independently (matching entity type, a jurisdiction that fits, or counsel); treat this as a lead to verify, never as a settled adverse finding on its own.",
+          "source_name": "courtlistener",
+          "weight": 0.6,
+          "match_confidence": "low"
+        }
+      ],
+      "notes": "Multiple federal and regulatory sources confirm the identity and conviction of Charlie Javice.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "employment",
+      "employer": "Frank",
+      "title": "Founder and CEO",
+      "start": "2016",
+      "end": "2021",
+      "assertion": "Worked as Founder and CEO at Frank (2016 to 2021).",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Charlie_Javice",
+          "snippet": "Long, Katherine; Newsham, Jack (April 4, 2023). &quot;<strong>Frank</strong> <strong>founder</strong> <strong>Charlie</strong> <strong>Javice</strong>, who allegedly defrauded JPMorgan out of $175 million, hit with federal charges&quot;. Business Insider. Archived from the original on April 4, 2023."
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Frank_(company)",
+          "snippet": "<strong>Frank</strong> was founded in 2016 by <strong>Charlie</strong> <strong>Javice</strong>, a graduate from the Wharton School at the University of Pennsylvania. <strong>Javice</strong>, who was 24 years old at the time, said her goal was to reduce student debt. In 2017, co-<strong>founder</strong> <strong>and</strong> chief technology officer Adi Omesy sued <strong>Javice</strong> <strong>and</strong> the company for wage ..."
+        },
+        {
+          "source_url": "https://www.forbes.com/sites/alexandralevine/2023/01/19/charlie-javice-jp-morgan-frank-lawsuit/",
+          "snippet": "In 2021, Charlie Javice, the <strong>young founder and former CEO of Frank</strong>, pulled off a master stroke: Selling her fintech startup to JP Morgan Chase for $175 million."
+        },
+        {
+          "source_url": "https://www.forbes.com/sites/brianbushard/2023/05/22/frank-founder-charlie-javice-pleads-not-guilty-to-fraud-over-jpmorgan-sale/",
+          "snippet": "<strong>Javice was later fired from the company, and JPMorgan filed a lawsuit late last year alleging Javice paid for a professor to create fake information on students</strong>. Javice, in return, sued the financial giant, claiming it \u201cmanufactured a for-cause ...",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.crunchbase.com/person/charlie-javice",
+          "snippet": "Charlie Javice is the <strong>Founder and CEO of Frank and JPMorgan Chase &amp; Co</strong>. as a Managing Director - Head of Student Solutions. He attended the ..."
+        },
+        {
+          "source_url": "https://www.justice.gov/usao-sdny/pr/startup-ceo-charlie-javice-sentenced-85-months-prison-175-million-fraud",
+          "snippet": "Attorney for the United States, ... JAVICE was <strong>sentenced today to 85 months in prison for falsely and dramatically inflating the number of customers of her company, Frank, to fraudulently induce J.P. Morgan</strong> ......",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.sec.gov/newsroom/press-releases/2023-74",
+          "snippet": "Javice engaged in an old school fraud: she lied about Frank\u2019s success in helping millions of students navigate the college financial aid process by making up data to support her claims, and then used that fake information to induce JPMC to enter into a <strong>$175 million</strong> transaction,&quot; said Gurbir S.",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "Multiple sources confirm her role as founder and CEO of Frank.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "employment",
+      "employer": "Frank",
+      "title": "Claimed that Frank had more than 4 million customers and users",
+      "start": "",
+      "end": "",
+      "assertion": "Frank had more than 4 million customers and users.",
+      "tier": "DISPROVEN",
+      "evidence": [
+        {
+          "source_url": "https://www.forbes.com/sites/alexandralevine/2023/01/11/jp-morgan-fake-customers-frank-charlie-javice/",
+          "snippet": "Using data from some individuals who\u2019d already started using Frank, <strong>he created 4.265 million fake customer accounts</strong>\u2014for which Javice paid him $18,000\u2014and had it validated by a third-party vendor at her direction, JP Morgan alleges."
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Charlie_Javice",
+          "snippet": "Elizabeth Holmes \u2013 American businesswoman convicted of <strong>fraud</strong> (born 1984) Theranos \u2013 Defunct American health technology company \u00b7 \u2191 &quot;Find an inmate (search by name, <strong>Charlie</strong> <strong>Javice</strong>)&quot;. Federal Bureau of Prisons. Retrieved April 1, 2026. ... Levine, Alexandra S.; Martin, Iain (February 27, 2023). &quot;JP Morgan Is Still Cleaning Up Its &#x27;Disastrous&#x27; $175M <strong>Frank</strong> Acquisition&quot;. Forbes. Archived from the original on February 28, 2023. Retrieved February 28, 2023. ... Lieber...",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.forbes.com/sites/brianbushard/2023/05/22/frank-founder-charlie-javice-pleads-not-guilty-to-fraud-over-jpmorgan-sale/",
+          "snippet": "<strong>Javice was later fired from the company, and JPMorgan filed a lawsuit late last year alleging Javice paid for a professor to create fake information on students</strong>. Javice, in return, sued the financial giant, claiming it \u201cmanufactured a for-cause ...",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.justice.gov/usao-sdny/pr/startup-ceo-charlie-javice-sentenced-85-months-prison-175-million-fraud",
+          "snippet": "After the data set was created, JAVICE provided that synthetic data set to an agreed-upon third-party vendor in an effort to confirm to JPMC that the data set had over 4.25 million rows. JAVICE then caused the third-party vendor to convey to JPMC that the data set had over 4.25 million rows, consistent with JAVICE\u2019s misrepresentations that Frank had 4.25 million users."
+        },
+        {
+          "source_url": "https://fortune.com/2025/03/27/frank-founder-charlie-javice-fake-accounts-lied-jpmorgan-175-million-deal/",
+          "snippet": "<strong>At the time, Javice was claiming Frank had over 4.25 million clients</strong>. In reality, it had around 400,000, Assistant U.S."
+        },
+        {
+          "source_url": "https://www.theguardian.com/business/2025/mar/28/charlie-javice-guilty-defraud-jpmorgan-chase",
+          "snippet": "Charlie Javice, who appeared in the Forbes 30 Under 30 list for starting Frank, <strong>faked a list of 4 million customers</strong>"
+        },
+        {
+          "source_url": "https://www.sec.gov/newsroom/press-releases/2023-74",
+          "snippet": "Javice engaged in an old school fraud: she lied about Frank\u2019s success in helping millions of students navigate the college financial aid process by making up data to support her claims, and then used that fake information to induce JPMC to enter into a <strong>$175 million</strong> transaction,&quot; said Gurbir S.",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "Multiple federal and regulatory findings confirm she fabricated the 4 million customer figure to induce the acquisition.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "education",
+      "employer": "Wharton School, University of Pennsylvania",
+      "title": "Bachelor of Science",
+      "start": "2011",
+      "end": "2013",
+      "assertion": "Studied Bachelor of Science at Wharton School, University of Pennsylvania.",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Charlie_Javice",
+          "snippet": "<strong>Javice</strong> <strong>attended</strong> the French-American <strong>School</strong> <strong>of</strong> New York (Lyc\u00e9e franco-am\u00e9ricain de New York), a private <strong>school</strong> that provides education from age 3 to the 12th grade. In 2013, <strong>Javice</strong> graduated from the <strong>Wharton</strong> <strong>School</strong> <strong>of</strong> <strong>the</strong> <strong>University</strong> <strong>of</strong> <strong>Pennsylvania</strong> after three years with a bachelor&#x27;s degree ...",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.businessinsider.com/charlie-javice-frank-fintech-startup-jp-morgan-fraud-2023-1",
+          "snippet": "She&#x27;d been featured on Forbes&#x27;s 30 Under 30 list and hailed by Wharton Business School as &quot;the voice of a microfinance generation.&quot; In the past week, all that came crashing down. Barely a year after selling Frank to JPMorgan Chase &amp; Co. for $175 million, the bank accused the 30-year-old of fabricating almost four million client names and emails \u2014 the overwhelming majority of her company&#x27;s users. Javice&#x27;s lawyer called her a &quot;whistleblower&quot; and said JPMorgan&#x27;s decision to fire and sue her was a pretext to avoid paying her.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.thedp.com/article/2025/04/penn-alum-charlie-javice-convicted-fraud",
+          "snippet": "<strong>JPMorgan filed a lawsuit against Javice in December 2022</strong> \u2014 a month after firing her. The bank alleged that Javice lied about the number of customers her startup had, claiming she created over 4 million fake user accounts.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.thedp.com/article/2026/06/penn-charlie-javice-pardon-trump-lawsuit-jp-morgan",
+          "snippet": "Charlie Javice, who graduated from the Wharton School in 2013, is <strong>reportedly seeking a pardon from the White House after being convicted of defrauding JPMorgan Chase &amp; Co.</strong>",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "Multiple independent sources confirm her graduation from the Wharton School.",
+      "expected_footprint": "high"
+    }
+  ],
+  "larp_score": 85,
+  "verdict": "Charlie Javice is a proven fraudster who orchestrated a massive deception to swindle JPMorgan Chase. She claimed Frank had over 4 million customers, but as the federal conviction and SEC findings demonstrate, she was full of shit and fabricated the entire user base to inflate the company's value for a $175 million payday. She is a shameless liar who got exactly what she deserved.",
+  "buildability": null,
+  "founder_larp_score": null,
+  "company_larp_score": null,
+  "metric_breakdown": [],
+  "generated_at": "2026-07-19T01:19:26.029453+00:00"
+}

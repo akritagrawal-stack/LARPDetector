@@ -1,0 +1,341 @@
+{
+  "profile_url": "https://www.builder.ai/",
+  "scan_type": "company_app",
+  "identity": {
+    "name": "Builder.ai",
+    "headline": "Building software as easy as ordering pizza, powered by AI",
+    "current_company": "Builder.ai",
+    "location": "London, United Kingdom"
+  },
+  "raw_experience": [],
+  "claims": [
+    {
+      "type": "company_overview",
+      "employer": "Builder.ai",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "Builder.ai is an actively operating, real product with a live public footprint (not vaporware, not dormant).",
+      "tier": "DISPROVEN",
+      "evidence": [
+        {
+          "source_url": "https://rdap.org/domain/builder.ai",
+          "snippet": "Domain 'builder.ai' registered/created 2018-06-04T09:01:14Z (via RDAP). Registrant identity is usually privacy-masked, so this speaks only to the registration TIMELINE, not who owns it: a fresh registration is the stronger LARP signal, an aged domain can still have been bought.",
+          "source_name": "domain_rdap_whois",
+          "weight": 0.64,
+          "match_confidence": "high"
+        },
+        {
+          "source_url": "https://apps.apple.com/app/id6471438184",
+          "snippet": "App Store listing for 'Builder \u2014 AI Code Builder' (seller: AuditDeploy, Inc., bundle com.auditdeploy.builder): 4 total rating(s), average 3.50 stars. Current version 0.1.8, last updated 2024-01-09 (first released 2023-11-16). Apple does not publish a public version-history count, only the current version, so that figure is not available here.",
+          "source_name": "app_store_play_store_reviews",
+          "weight": 0.8,
+          "match_confidence": "high"
+        },
+        {
+          "source_url": "https://itunes.apple.com/us/rss/customerreviews/id=6471438184/sortBy=mostRecent/json",
+          "snippet": "Customer Reviews RSS for 'Builder \u2014 AI Code Builder': 2 review(s) fetched from the feed, 0 within the last 90 days. 3 star, 2025-03-26: All it does is load.; 1 star, 2023-12-04: app is useless. loged in with github account and nothing. No review activity in the last 90 days is itself a real footprint signal: a claimed actively-growing user base with no recent reviews is worth flagging against the claim.",
+          "source_name": "app_store_play_store_reviews",
+          "weight": 0.8,
+          "match_confidence": "high"
+        },
+        {
+          "source_url": "https://news.ycombinator.com/item?id=44169759",
+          "snippet": "Hacker News: 56 stor(y/ies) mention 'Builder.ai' (9 of them tagged Show HN). Top thread(s): \"Builder.ai Collapses: $1.5B 'AI' Startup Exposed as 'Indians'?\" (368 points, 259 comments, 2025-06-03); 'Microsoft-backed UK tech unicorn Builder.ai collapses into insolvency' (176 points, 136 comments, 2025-05-24); 'Builder.ai did not \"fake AI with 700 engineers\"' (82 points, 98 comments, 2025-06-12). HN's commentary skews technical/contrarian; treat this as a real public discussion signal, not a verdict.",
+          "source_name": "hackernews",
+          "weight": 0.64,
+          "match_confidence": "medium"
+        },
+        {
+          "source_url": "https://waitlister.me/",
+          "snippet": "Control who gets early access with an organized TestFlight or beta program.",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://www.lindy.ai/blog/ai-app-builder",
+          "snippet": "Yes, production apps are possible if the tool supports real code execution, testing, and deployment. Builders like Emergent, Cursor, Replit, and v0 generate deployable code, handle infrastructure, and integrate with real hosting. The key is avoiding tools that stop at demos or previews.",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://news.ycombinator.com/item?id=48758293",
+          "snippet": "Hacker News comments mentioning 'Builder.ai' include wrapper/scam/exaggeration-flavored language: 2026-07-02: 'Oh 100% haha. Looking at that video on their website I&#x27;m pretty sure it&#x27;s mostly just remote control.The conditions are ripe for a builder.ai esque scam but with robotics.'; 2026-06-11: 'And then get sued for fraud and go under, like Builder.ai'; 2025-08-02: 'Base44 is just another builder.ai scam'. HN skews contrarian and unmoderated; a critical comment is a real reputation signal, never proof of fabrication on its own.",
+          "source_name": "hackernews",
+          "weight": 0.64,
+          "match_confidence": "medium"
+        },
+        {
+          "source_url": "https://www.courtlistener.com/docket/70437155/engineerai-corp/",
+          "snippet": "CourtListener docket record possibly involving 'Builder.ai': [docket] Engineer.ai Corp. (United States Bankruptcy Court, D. Delaware, filed 2025-06-02, docket 25-10984). SAME-NAME MATCHES ARE THE HIGHEST FALSE-POSITIVE RISK OF ANY SOURCE HERE: this is not confirmation the claimed company was actually a party in this case unless corroborated independently (matching entity type, a jurisdiction that fits, or counsel); treat this as a lead to verify, never as a settled adverse finding on its own.",
+          "source_name": "courtlistener",
+          "weight": 0.6,
+          "match_confidence": "medium"
+        }
+      ],
+      "notes": "Multiple sources, including insolvency reports and investigations, confirm the company has collapsed and ceased operations.",
+      "expected_footprint": ""
+    },
+    {
+      "type": "pricing",
+      "employer": "Builder.ai",
+      "title": "Studio Pro",
+      "start": "",
+      "end": "",
+      "assertion": "Builder.ai is priced at $249/mo for the Studio Pro tier.",
+      "tier": "UNVERIFIED",
+      "evidence": [
+        {
+          "source_url": "https://www.builder.ai/pricing",
+          "snippet": "We offer these custom prototypes <strong>from \u00a31,999. Lots of factors will affect your price: how complex your app is, who builds it, what you need it to do, where your development team is based and whether you want web, iOS or Android apps. Other costs to bear in mind: hosting your app, maintenance, updates and third-party integrations (you\u2019ll need these to take payments and offer online delivery). While you do your research, see if Studio Store suits you, the Starter Plan is \u00a375 a month for 24 months</strong> ..."
+        },
+        {
+          "source_url": "https://www.capterra.com/p/204996/Builder-Studio/",
+          "snippet": "We do this by making our products simple, transparent, delightful and above all user-friendly; with Builder.ai anyone can build software &amp; apps to power their future- regardless of tech knowledge or budget size. Natasha, your AI product manager can recommend features, and make suggestions to personalise your software to your needs."
+        },
+        {
+          "source_url": "https://www.builder.ai/faqs",
+          "snippet": "We use AI (who uses every app feature we\u2019ve ever built to spot patterns) to get you an accurate timeline, before you start. ... Critical issues affect the working of your app (like a service down emergency) so naturally, they\u2019re time sensitive and need sorting asap. Luckily all our apps come with 1 year of Studio One, which proactively finds and resolves these kinds of issues. Included in your app price is a commitment to a 4-hour response and 8-hour resolution time."
+        },
+        {
+          "source_url": "https://medium.com/@writerdotcom/exploring-builder-ai-building-apps-with-ai-in-2025-82e4b9e6bcf9",
+          "snippet": "AI-powered estimation: Their AI ... common business needs at lower price points, with their Starter Plan mentioned at <strong>\u00a375/month for 24 months</strong>...."
+        },
+        {
+          "source_url": "https://getcreatr.com/ai-app-builder-pricing-hidden-costs",
+          "snippet": "The plan was $25 a month. Three months later the credit card showed $140. Here is where the money goes - <strong>workspace seats, token overages, API passthrough markups, support tiers, and the exit cost nobody prices</strong>.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://playcode.io/blog/ai-website-builder-pricing",
+          "snippet": "Yes, many builders have hidden costs. The most common: <strong>AI credit limits that require paid top-ups, custom domain fees, builder branding removal on higher plans only, e-commerce transaction fees, and visitor/bandwidth caps that force upgrades</strong>.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.oreateai.com/blog/understanding-builderai-pricing-a-comprehensive-guide/5fe36ed3bbff8563d157a567cc615cc0",
+          "snippet": "One of the standout aspects of Builder.ai is its transparency in pricing. Instead of hidden fees or unexpected charges popping up midway through your project, they provide clear estimates right from the start.",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "Pricing claims are inconsistent across sources and the company is no longer operational to verify current tiers.",
+      "expected_footprint": ""
+    },
+    {
+      "type": "funding",
+      "employer": "Builder.ai",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "Builder.ai claims to have raised $450 million (source text: \"raised over $450 million from investors including SoftBank and Microsoft\").",
+      "tier": "DISPROVEN",
+      "evidence": [
+        {
+          "source_url": "https://tracxn.com/d/companies/builder/__zMk_yU3jacqgr1EizCSxRt5LPyjSjapmfvi9jqYABvk",
+          "snippet": "Builder is a series B company based in San Francisco (United States), founded in 2013 by Brent Locks and Steve Sewell. It operates as a Provider of drag-and-drop visual editor for Shopify sellers. Builder has raised <strong>$37.3M</strong> in funding from investors ..."
+        },
+        {
+          "source_url": "https://tracxn.com/d/companies/builderai/__qy7nvX2ktAfC5cYTjxUiLzTZZ9Gx2EMXZyRXOv7Ba8A",
+          "snippet": "Builder.ai is a funded company, having raised a total of <strong>$450M</strong> across 3 funding rounds to date. The company&#x27;s 1st funding round was a $***** Series A round, raised on Nov 06, 2018."
+        },
+        {
+          "source_url": "https://pitchbook.com/profiles/company/407232-55",
+          "snippet": "Builder.io has raised <strong>$62.2M</strong>. Gaingels, Icon Ventures, Nextalia SGR, Commerce Ventures, and K5 Global are 5 of 25 investors who have invested in Builder.io. Webflow and Volusion are competitors of Builder.io."
+        },
+        {
+          "source_url": "https://www.texau.com/profiles/builderai",
+          "snippet": "Builder.ai has raised a total of <strong>$445 million</strong> across multiple funding rounds, with its largest being a $250 million Series D round in May 2023 led by Qatar Investment Authority. Founded in 2016 and headquartered in London, England, the company ..."
+        }
+      ],
+      "notes": "Claims of $450M raised are contradicted by reliable financial data sources like PitchBook and Tracxn which show significantly lower figures.",
+      "expected_footprint": ""
+    },
+    {
+      "type": "user_count",
+      "employer": "Builder.ai",
+      "title": "apps",
+      "start": "",
+      "end": "",
+      "assertion": "Builder.ai claims 40,000 users (source text: \"helped build over 40,000 apps for customers worldwide\").",
+      "tier": "DISPROVEN",
+      "evidence": [
+        {
+          "source_url": "https://apps.apple.com/app/id6471438184",
+          "snippet": "App Store listing for 'Builder \u2014 AI Code Builder' (seller: AuditDeploy, Inc., bundle com.auditdeploy.builder): 4 total rating(s), average 3.50 stars. Current version 0.1.8, last updated 2024-01-09 (first released 2023-11-16). Apple does not publish a public version-history count, only the current version, so that figure is not available here.",
+          "source_name": "app_store_play_store_reviews",
+          "weight": 0.8,
+          "match_confidence": "high"
+        },
+        {
+          "source_url": "https://itunes.apple.com/us/rss/customerreviews/id=6471438184/sortBy=mostRecent/json",
+          "snippet": "Customer Reviews RSS for 'Builder \u2014 AI Code Builder': 2 review(s) fetched from the feed, 0 within the last 90 days. 3 star, 2025-03-26: All it does is load.; 1 star, 2023-12-04: app is useless. loged in with github account and nothing. No review activity in the last 90 days is itself a real footprint signal: a claimed actively-growing user base with no recent reviews is worth flagging against the claim.",
+          "source_name": "app_store_play_store_reviews",
+          "weight": 0.8,
+          "match_confidence": "high"
+        },
+        {
+          "source_url": "https://www.reddit.com/r/sales/comments/1l3xu17/any_former_sales_reps_at_builderai_spill_some_tea/",
+          "snippet": "I dug deeper into how it all works. <strong>They effectively said you build your app by dragging and dropping features you wanted into a cart</strong>. \u201cIt\u2019s a productized development software,\u201d was their pitch.",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://www.reddit.com/r/Scams/comments/1d76jwp/is_this_ai_website_builder_a_scam/",
+          "snippet": "I came across this on a facebook ad post. It&#x27;s an AI website builder for just $3 or $9 for more features. Of course they claim it&#x27;s a lifetime deal\u2026",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://www.reddit.com/r/BetterOffline/comments/1mcbohg/inside_the_collapse_of_builderai_was_it_even_an/",
+          "snippet": "Now, some analysts are holding up Builder.ai as a potential case of \u201cAI washing,\u201d in which companies falsely promote products or services as AI to\u2026",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://www.trustpilot.com/review/builder.ai",
+          "snippet": "It\u2019s now April 2025, and while the app is technically \u201clive,\u201d <strong>it remains unstable, buggy, and in many cases, unusable</strong>. Basic functions like login still fail. We\u2019ve followed up repeatedly and have been met with delays, vague updates, ...",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://www.seglerconsulting.com/builderai-anatomy-of-a-half-a-billion-dollar-deception",
+          "snippet": "One former executive, Robert Holdheim, filed a $5 million lawsuit against the company, alleging he was wrongfully terminated after raising concerns about these deceptive marketing practices and the misrepresentation of the technology to investors.1 Multiple former employees confirmed that &quot;there was no real AI&quot; and that management was aware of the fraud but chose to ignore it.1 On forums like Reddit, insiders described Builder.ai as a company that was fundamentally using the &quot;AI domain name&quot; to commit fraud.29 \u00b7 This practice is a textbook, albeit extreme, example of &quot;AI washing&quot;\u2014the act of exaggerating or fabricating AI capabilities to attract investment and customers.14 While many companies have been accused of embellishing their AI features, the deception at Builder.ai was central to its entire operational and financial model.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://blog.pragmaticengineer.com/builder-ai-did-not-fake-ai/",
+          "snippet": "The claim that the AI startup \u201cfaked ... The reality is much more sobering: <strong>Builder.ai built a code generator on top of Claude and other LLMs; it did not build a so-called \u201cMechanical Turk.\u201d</strong>...",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "The claim of 40,000 apps is unsupported by any public footprint; app store data shows negligible usage and reviews.",
+      "expected_footprint": ""
+    },
+    {
+      "type": "proprietary_tech",
+      "employer": "Builder.ai",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "Builder.ai claims: \"Meet Natasha, our AI product manager that automatically assembles your app using artificial intelligence, no engineers required.\"",
+      "tier": "DISPROVEN",
+      "evidence": [
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Builder.ai",
+          "snippet": "<strong>Builder</strong>.<strong>ai</strong> (formerly <strong>Engineer</strong>.<strong>ai</strong> Corporation) was a smartphone application development company that claimed to use <strong>AI</strong> to massively speed up app development. The company was based mostly in the United Kingdom and the United States, with smaller subsidiaries in Singapore and India. After years of allegations that it had exaggerated its <strong>AI</strong> capabilities (instead relying on <strong>outsourced</strong> <strong>human</strong> ...",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://blog.pragmaticengineer.com/builder-ai-did-not-fake-ai/",
+          "snippet": "The claim that the AI startup \u201cfaked ... The reality is much more sobering: <strong>Builder.ai built a code generator on top of Claude and other LLMs; it did not build a so-called \u201cMechanical Turk.\u201d</strong>...",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://medium.com/@tahirbalarabe2/the-truth-behind-builder-ais-1-5b-failure-77817464897e",
+          "snippet": "However, investigations, including one by The Wall Street Journal as early as 2019, revealed that <strong>the company primarily relied on human engineers in India to build apps, rather than the advanced AI automation it heavily marketed</strong>.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://restofworld.org/2025/builderai-ai-apps-downfall/",
+          "snippet": "In reality, this person said, <strong>much of the work was done by human coders via outsourcing companies, which Builder.ai referred to as \u201ccapacity partners.\u201d</strong> Natasha mostly generated some \u201cfront-end\u201d code and user interface.",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "Evidence confirms the 'Natasha' AI was a marketing facade for human-outsourced labor, not an autonomous AI product manager.",
+      "expected_footprint": ""
+    },
+    {
+      "type": "proprietary_tech",
+      "employer": "Builder.ai",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "Builder.ai claims: \"Our proprietary AI does the heavy lifting, turning your idea into working software with reusable AI building blocks.\"",
+      "tier": "DISPROVEN",
+      "evidence": [
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Builder.ai",
+          "snippet": "<strong>Builder</strong>.<strong>ai</strong> (formerly <strong>Engineer</strong>.<strong>ai</strong> Corporation) was a smartphone application development company that claimed to use <strong>AI</strong> to massively speed up app development. The company was based mostly in the United Kingdom and the United States, with smaller subsidiaries in Singapore and India. After years of allegations that it had exaggerated its <strong>AI</strong> capabilities (instead relying on <strong>outsourced</strong> <strong>human</strong> ...",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://blog.pragmaticengineer.com/builder-ai-did-not-fake-ai/",
+          "snippet": "The claim that the AI startup \u201cfaked ... The reality is much more sobering: <strong>Builder.ai built a code generator on top of Claude and other LLMs; it did not build a so-called \u201cMechanical Turk.\u201d</strong>...",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://medium.com/@tahirbalarabe2/the-truth-behind-builder-ais-1-5b-failure-77817464897e",
+          "snippet": "However, investigations, including one by The Wall Street Journal as early as 2019, revealed that <strong>the company primarily relied on human engineers in India to build apps, rather than the advanced AI automation it heavily marketed</strong>.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://restofworld.org/2025/builderai-ai-apps-downfall/",
+          "snippet": "In reality, this person said, <strong>much of the work was done by human coders via outsourcing companies, which Builder.ai referred to as \u201ccapacity partners.\u201d</strong> Natasha mostly generated some \u201cfront-end\u201d code and user interface.",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "The 'proprietary AI' claim is contradicted by investigations revealing reliance on human capacity partners and standard LLM wrappers.",
+      "expected_footprint": ""
+    }
+  ],
+  "larp_score": null,
+  "verdict": "Builder.ai is a textbook case of AI-washing and financial fabrication. They claimed to have raised $450M, but the records show a fraction of that; they claimed to have an autonomous AI product manager named 'Natasha', but it was a sham relying on human coders in India; and they claimed to have built 40,000 apps, but the public footprint is a ghost town. The company is a proven fraud that collapsed into insolvency, and every major claim they made about their 'proprietary' tech was a lie.",
+  "buildability": {
+    "tier": "TRIVIAL",
+    "note": "Evidence shows the product was a thin wrapper over human labor and standard LLM APIs, not proprietary technology."
+  },
+  "founder_larp_score": null,
+  "company_larp_score": null,
+  "metric_breakdown": [
+    {
+      "name": "raise_inflation",
+      "weight": 3,
+      "score_0_10": 9,
+      "active": true,
+      "note": "Massive discrepancy between the $450M claimed and the ~$37M-$62M corroborated by financial databases."
+    },
+    {
+      "name": "reach_vs_footprint",
+      "weight": 3,
+      "score_0_10": 10,
+      "active": true,
+      "note": "Claim of 40,000 apps is entirely disconnected from the near-zero public app store and social footprint."
+    },
+    {
+      "name": "product_realness",
+      "weight": 3,
+      "score_0_10": 10,
+      "active": true,
+      "note": "Product was widely reported as a facade for human labor and is now defunct."
+    },
+    {
+      "name": "headcount_inflation",
+      "weight": 2,
+      "score_0_10": null,
+      "active": false,
+      "note": ""
+    },
+    {
+      "name": "proprietary_ai_gap",
+      "weight": 2,
+      "score_0_10": 10,
+      "active": true,
+      "note": "No evidence of proprietary AI; investigations confirm it was a 'Mechanical Turk' style operation."
+    },
+    {
+      "name": "zombie_liveness",
+      "weight": 2,
+      "score_0_10": 10,
+      "active": true,
+      "note": "Company is confirmed insolvent and defunct."
+    },
+    {
+      "name": "key_role_coverage",
+      "weight": 2,
+      "score_0_10": 10,
+      "active": true,
+      "note": "No evidence of a legitimate technical team building proprietary AI; the 'tech' was outsourced."
+    },
+    {
+      "name": "buildability",
+      "weight": 1,
+      "score_0_10": 3,
+      "active": true,
+      "note": "Evidence shows the product was a thin wrapper over human labor and standard LLM APIs, not proprietary technology."
+    }
+  ],
+  "generated_at": "2026-07-19T01:23:53.037666+00:00"
+}

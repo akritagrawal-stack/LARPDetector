@@ -1,0 +1,47 @@
+<!--
+  SYNTHETIC FIXTURE, not a live LinkedIn capture and not built from any real
+  person's profile. It reproduces, from engineering notes about a live
+  stress-test failure, the same grouped-role Aero parser bug covered by
+  experience_aero_grouped_retail_consulting.html: company header, then a
+  bare total-duration line with no employment-type prefix ("3 yrs 6 mos"),
+  then each sub-role's title directly against its own date line, with the
+  company never repeated. Simplified class/attribute soup, same tag shape as
+  tests/fixtures/live_experience_sample_founder.html.
+
+  Also covers the location-bleed fix in context: the flat "Vertex Cycles"
+  entry immediately before this group must NOT pick up "Halcyon Systems" as
+  its own location (the bug this fixture guards against), and the flat
+  "Bellweather Institute of Technology" entry immediately after the group
+  must correctly close it out and get its own company, not "Halcyon
+  Systems" inherited.
+
+  No em dashes in this file (house rule).
+-->
+<div class="_9bf21961 ffc4722d _21283922" data-component-type="LazyColumn" data-testid="lazy-column">
+  <p>Experience</p>
+
+  <div componentkey="entity-collection-item--1">
+    <p>Director of Firmware and Algorithms</p>
+    <p>Vertex Cycles</p>
+    <p>Oct 2008 - Aug 2009 &middot; 11 mos</p>
+  </div>
+
+  <div componentkey="entity-collection-item--2">
+    <p>Halcyon Systems</p>
+    <p>3 yrs 6 mos</p>
+    <div class="positions-list">
+      <p>Software and Algorithms Engineer</p>
+      <p>Feb 2006 - Oct 2008 &middot; 2 yrs 9 mos</p>
+      <p>Ashgrove</p>
+      <p>Design, develop, and augment new algorithms for use in upcoming Halcyon Systems products. Working closely with Halcyon Research to bring cutting-edge research into a product's scope. Responsibilities included: Proof-of-concept research, simulations, experiment design, data management, application software, embedded system firmware.</p>
+      <p>Incubation Engineer</p>
+      <p>May 2005 - Feb 2006 &middot; 10 mos</p>
+    </div>
+  </div>
+
+  <div componentkey="entity-collection-item--3">
+    <p>Research Assistant</p>
+    <p>Bellweather Institute of Technology</p>
+    <p>Aug 2001 - May 2005 &middot; 3 yrs 10 mos</p>
+  </div>
+</div>

@@ -1,0 +1,54 @@
+{
+  "profile_url": "https://en.wikipedia.org/wiki/Elizabeth_Holmes",
+  "identity": {
+    "name": "Elizabeth Holmes",
+    "headline": "Founder and CEO at Theranos",
+    "current_company": "Theranos",
+    "location": "Palo Alto, California, United States"
+  },
+  "experience": [
+    {
+      "title": "Founder and CEO",
+      "company": "Theranos",
+      "start_date": "2003",
+      "end_date": "2018",
+      "location": ""
+    },
+    {
+      "title": "Claimed Theranos technology could run 200 or more blood tests from a single finger prick blood drop",
+      "company": "Theranos",
+      "start_date": "",
+      "end_date": "",
+      "location": ""
+    }
+  ],
+  "education": [
+    {
+      "school": "Stanford University",
+      "degree": "Chemical Engineering (dropped out)",
+      "start_date": "2002",
+      "end_date": "2004"
+    }
+  ],
+  "_expected": {
+    "note": "Human grading block only. Not read by the pipeline (extra top-level keys are ignored by pipeline.run).",
+    "ground_truth_note": "Elizabeth Holmes was convicted of fraud in 2022. Her claim that Theranos technology could run 200 or more blood tests from a single finger-prick drop was central to the fraud case: https://en.wikipedia.org/wiki/Elizabeth_Holmes",
+    "claims": [
+      {
+        "matches": "Founder and CEO at Theranos",
+        "expected_tier": "CONFIRMED",
+        "note": "Confirmed public founder/CEO role at Theranos."
+      },
+      {
+        "matches": "200 or more blood tests from a single finger prick blood drop",
+        "expected_tier": "DISPROVEN",
+        "note": "Central fabrication in the Theranos fraud conviction; the technology could not do this."
+      },
+      {
+        "matches": "Studied Chemical Engineering (dropped out) at Stanford University",
+        "expected_tier": "CONFIRMED",
+        "note": "Confirmed she attended Stanford (2002-2004) then dropped out."
+      }
+    ]
+  }
+}

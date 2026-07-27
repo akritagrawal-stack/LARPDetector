@@ -1,0 +1,121 @@
+<!--
+  Realistic (trimmed) LinkedIn /details/experience/ markup used as the offline
+  parser spec. Covers the cases that break naive parsers:
+    1. single-role entry with a "Present" end date + location
+    2. single-role entry with a closed past date range + location
+    3. single-role entry with NO dates
+    4. grouped multi-role entry (one company, two promoted positions)
+  Each visible line is in <span aria-hidden="true"> with a visually-hidden
+  duplicate, mirroring real LinkedIn. No em dashes in this file.
+-->
+<section data-section="experience">
+  <ul class="pvs-list">
+
+    <!-- 1. single role, Present -->
+    <li class="artdeco-list__item pvs-list__paged-list-item">
+      <div class="pvs-entity">
+        <div class="display-flex flex-column">
+          <div class="t-bold">
+            <span aria-hidden="true">Senior Software Engineer</span>
+            <span class="visually-hidden">Senior Software Engineer</span>
+          </div>
+          <span class="t-14 t-normal">
+            <span aria-hidden="true">Google &middot; Full-time</span>
+            <span class="visually-hidden">Google &middot; Full-time</span>
+          </span>
+          <span class="t-14 t-normal t-black--light">
+            <span aria-hidden="true">Jan 2020 - Present &middot; 4 yrs 6 mos</span>
+            <span class="visually-hidden">Jan 2020 - Present &middot; 4 yrs 6 mos</span>
+          </span>
+          <span class="t-14 t-normal t-black--light">
+            <span aria-hidden="true">Mountain View, California, United States</span>
+            <span class="visually-hidden">Mountain View, California, United States</span>
+          </span>
+        </div>
+      </div>
+    </li>
+
+    <!-- 2. single role, closed range -->
+    <li class="artdeco-list__item pvs-list__paged-list-item">
+      <div class="pvs-entity">
+        <div class="display-flex flex-column">
+          <div class="t-bold">
+            <span aria-hidden="true">Software Engineer</span>
+            <span class="visually-hidden">Software Engineer</span>
+          </div>
+          <span class="t-14 t-normal">
+            <span aria-hidden="true">Stripe &middot; Full-time</span>
+            <span class="visually-hidden">Stripe &middot; Full-time</span>
+          </span>
+          <span class="t-14 t-normal t-black--light">
+            <span aria-hidden="true">Jun 2017 - Dec 2019 &middot; 2 yrs 7 mos</span>
+            <span class="visually-hidden">Jun 2017 - Dec 2019 &middot; 2 yrs 7 mos</span>
+          </span>
+          <span class="t-14 t-normal t-black--light">
+            <span aria-hidden="true">San Francisco Bay Area</span>
+            <span class="visually-hidden">San Francisco Bay Area</span>
+          </span>
+        </div>
+      </div>
+    </li>
+
+    <!-- 3. single role, NO dates -->
+    <li class="artdeco-list__item pvs-list__paged-list-item">
+      <div class="pvs-entity">
+        <div class="display-flex flex-column">
+          <div class="t-bold">
+            <span aria-hidden="true">Founder</span>
+            <span class="visually-hidden">Founder</span>
+          </div>
+          <span class="t-14 t-normal">
+            <span aria-hidden="true">Stealth Startup</span>
+            <span class="visually-hidden">Stealth Startup</span>
+          </span>
+        </div>
+      </div>
+    </li>
+
+    <!-- 4. grouped multi-role: one company, two positions -->
+    <li class="artdeco-list__item pvs-list__paged-list-item">
+      <div class="pvs-entity">
+        <div class="display-flex flex-column">
+          <div class="t-bold">
+            <span aria-hidden="true">Acme Corporation</span>
+            <span class="visually-hidden">Acme Corporation</span>
+          </div>
+          <span class="t-14 t-normal">
+            <span aria-hidden="true">Full-time &middot; 3 yrs 1 mo</span>
+            <span class="visually-hidden">Full-time &middot; 3 yrs 1 mo</span>
+          </span>
+          <span class="t-14 t-normal t-black--light">
+            <span aria-hidden="true">New York, New York, United States</span>
+            <span class="visually-hidden">New York, New York, United States</span>
+          </span>
+        </div>
+        <ul class="pvs-list">
+          <li class="pvsentity__sub-role">
+            <div class="t-bold">
+              <span aria-hidden="true">Engineering Manager</span>
+              <span class="visually-hidden">Engineering Manager</span>
+            </div>
+            <span class="t-14 t-normal t-black--light">
+              <span aria-hidden="true">Jan 2023 - Present &middot; 1 yr 6 mos</span>
+              <span class="visually-hidden">Jan 2023 - Present &middot; 1 yr 6 mos</span>
+            </span>
+          </li>
+          <li class="pvsentity__sub-role">
+            <div class="t-bold">
+              <span aria-hidden="true">Staff Engineer</span>
+              <span class="visually-hidden">Staff Engineer</span>
+            </div>
+            <span class="t-14 t-normal t-black--light">
+              <span aria-hidden="true">Jun 2021 - Jan 2023 &middot; 1 yr 7 mos</span>
+              <span class="visually-hidden">Jun 2021 - Jan 2023 &middot; 1 yr 7 mos</span>
+            </span>
+          </li>
+        </ul>
+      </div>
+    </li>
+
+  </ul>
+</section>

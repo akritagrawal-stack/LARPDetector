@@ -1,0 +1,165 @@
+{
+  "profile_url": "https://www.aboutamazon.com/what-we-do/just-walk-out",
+  "scan_type": "company_app",
+  "identity": {
+    "name": "Just Walk Out by Amazon",
+    "headline": "Cashierless checkout powered by computer vision and deep learning",
+    "current_company": "Amazon",
+    "location": "Seattle, Washington, United States"
+  },
+  "raw_experience": [],
+  "claims": [
+    {
+      "type": "company_overview",
+      "employer": "Just Walk Out by Amazon",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "Just Walk Out by Amazon is an actively operating, real product with a live public footprint (not vaporware, not dormant).",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://rdap.org/domain/aboutamazon.com",
+          "snippet": "Domain 'aboutamazon.com' registered/created 2005-02-19T19:32:32Z (via RDAP). Registrant identity is usually privacy-masked, so this speaks only to the registration TIMELINE, not who owns it: a fresh registration is the stronger LARP signal, an aged domain can still have been bought.",
+          "source_name": "domain_rdap_whois",
+          "weight": 0.64,
+          "match_confidence": "high"
+        },
+        {
+          "source_url": "https://news.ycombinator.com/item?id=22526589",
+          "snippet": "Hacker News: 9 stor(y/ies) mention 'Just Walk Out by Amazon' (1 of them tagged Show HN). Top thread(s): '\u201cJust walk out\u201d technology by Amazon' (825 points, 742 comments, 2020-03-09); \"Amazon's 'Just Walk Out' tech was powered by low-paid Indian workers: report\" (25 points, 16 comments, 2024-04-03); \"Amazon's 'just walk out' checkout tech was powered by 1k Indian workers\" (18 points, 6 comments, 2025-08-02). HN's commentary skews technical/contrarian; treat this as a real public discussion signal, not a verdict.",
+          "source_name": "hackernews",
+          "weight": 0.64,
+          "match_confidence": "medium"
+        },
+        {
+          "source_url": "https://news.ycombinator.com/item?id=43649188",
+          "snippet": "Hacker News comments mentioning 'Just Walk Out by Amazon' include wrapper/scam/exaggeration-flavored language: 2025-04-11: 'I&#x27;m curious when it crossed the line into &quot;fraud&quot; here. Since almost every &quot;AI&quot; application has tons of human fallback. Waymo has human drivers that can teleoperate the vehicl...'; 2026-03-12: '\u201cActually Indians\u201d is a meme for a reasonhttps:&#x2F;&#x2F;ia.acs.org.au&#x2F;article&#x2F;2025&#x2F;the-company-whose--ai--wa... The company whose \u2018AI\u2019 was actually 700 humans in Indiahttps:&#x2F;&#x...'; 2025-06-03: 'Another AI scam. Wasn\u2019t there a similar case with the Amazon stores? Just walk out I think. Could be understood as sound advice if someone pitches you something groundbreaking done by AI.'. HN skews contrarian and unmoderated; a critical comment is a real reputation signal, never proof of fabrication on its own.",
+          "source_name": "hackernews",
+          "weight": 0.64,
+          "match_confidence": "medium"
+        },
+        {
+          "source_url": "https://www.aboutamazon.com/news/retail/amazon-just-walk-out-dash-cart-grocery-shopping-checkout-stores",
+          "snippet": "<strong>Amazon will launch more third-party Just Walk Out stores in 2024 than any year prior</strong>, more than doubling the number of third-party stores with the technology.",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://developer.amazon.com/docs/physicalstores/welcome.html",
+          "snippet": "Collapse All | Expand All \u00b7 <strong>Amazon</strong> provides customers with a secure, trusted, and convenient way to integrate their retail systems with the <strong>Amazon</strong> retail services. Retailers will have the choice to select the capabilities that complement their current investments in the following areas:",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://retailtechinnovationhub.com/home/2026/5/3/milestone-for-amazon-just-walk-out-following-decision-to-strip-technology-from-grocery-stores",
+          "snippet": "More than 36.7 million items were sold in Amazon Just Walk Out technology enabled stores over the span of a year (June 2024 to May 2025). This combines AI, computer vision, sensor fusion, and RFID to deliver a friction free shopping experience, with the aim of saving time for customers and streamlining operations for retailers.",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://stadiumtechreport.com/feature/inside-look-we-visit-amazons-labs-for-an-up-close-look-at-just-walk-out-store-technology/",
+          "snippet": "Alongside Amazon, which has 74 Just Walk Out stadium stores and five RFID merchandise stores, the top players include Zippin, a San Francisco-area startup with 85 stadium stores open, and AiFi, also a Bay area startup currently with 26 operating stadium stores that will be joined by 40 or more stores when its stadium-wide deployment at the Intuit Dome in Los Angeles opens later this summer. According to the two Amazon engineers who showed us technology demonstrations, some of the parts of the Just Walk Out technology mix are actually well understood and not extremely difficult to deploy.",
+          "query_role": "footprint"
+        },
+        {
+          "source_url": "https://apps.apple.com/app/id1520224940",
+          "snippet": "App Store listing for 'Earn Rewards: Fancy Giveaways' (seller: DEFINE SOLUTIONS, TOV, bundle com.definesolutions.fancygiveaways): 12221 total rating(s), average 4.64 stars. Current version 2.2.0, last updated 2026-05-15 (first released 2020-09-11). Apple does not publish a public version-history count, only the current version, so that figure is not available here.",
+          "source_name": "app_store_play_store_reviews",
+          "weight": 0.8,
+          "match_confidence": "low"
+        }
+      ],
+      "notes": "Product is widely documented in retail and stadium deployments; while there is public debate regarding the extent of human-in-the-loop assistance, the product itself is clearly not vaporware.",
+      "expected_footprint": ""
+    },
+    {
+      "type": "proprietary_tech",
+      "employer": "Just Walk Out by Amazon",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "Just Walk Out by Amazon claims: \"Just Walk Out technology uses computer vision, sensor fusion, and deep learning to automatically detect what shoppers take, so there are no cashiers and no checkout lines.\"",
+      "tier": "CONFIRMED",
+      "evidence": [],
+      "notes": "The technology is a well-documented integration of computer vision and sensor fusion, confirmed by industry reporting and technical analysis.",
+      "expected_footprint": ""
+    },
+    {
+      "type": "proprietary_tech",
+      "employer": "Just Walk Out by Amazon",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "Just Walk Out by Amazon claims: \"Shoppers just grab what they want and go; our AI handles the rest fully automatically.\"",
+      "tier": "UNVERIFIED",
+      "evidence": [],
+      "notes": "The claim that it is 'fully automatic' is contested by reports of human-in-the-loop verification, making the 'fully' aspect of the claim unverified.",
+      "expected_footprint": ""
+    }
+  ],
+  "larp_score": null,
+  "verdict": "The product is a legitimate, large-scale technical deployment. While there is valid public discourse regarding the degree of human intervention versus pure automation, the system is clearly a real, functioning infrastructure product rather than a fabricated or trivial project.",
+  "buildability": {
+    "tier": "HARD",
+    "note": "Requires complex physical infrastructure, sensor fusion, and large-scale computer vision deployment, far exceeding a simple software wrapper."
+  },
+  "founder_larp_score": null,
+  "company_larp_score": null,
+  "metric_breakdown": [
+    {
+      "name": "raise_inflation",
+      "weight": 3,
+      "score_0_10": null,
+      "active": false,
+      "note": ""
+    },
+    {
+      "name": "reach_vs_footprint",
+      "weight": 3,
+      "score_0_10": null,
+      "active": false,
+      "note": ""
+    },
+    {
+      "name": "product_realness",
+      "weight": 3,
+      "score_0_10": 0,
+      "active": true,
+      "note": "Shipping product with extensive real-world deployments in stadiums and retail stores."
+    },
+    {
+      "name": "headcount_inflation",
+      "weight": 2,
+      "score_0_10": null,
+      "active": false,
+      "note": ""
+    },
+    {
+      "name": "proprietary_ai_gap",
+      "weight": 2,
+      "score_0_10": 2,
+      "active": true,
+      "note": "Evidence confirms the use of proprietary computer vision and sensor fusion systems, not a thin wrapper."
+    },
+    {
+      "name": "zombie_liveness",
+      "weight": 2,
+      "score_0_10": 0,
+      "active": true,
+      "note": "Active, ongoing deployments and recent industry news coverage confirm the product is live and maintained."
+    },
+    {
+      "name": "key_role_coverage",
+      "weight": 2,
+      "score_0_10": 0,
+      "active": true,
+      "note": "Backed by Amazon's extensive engineering organization and documented technical staff."
+    },
+    {
+      "name": "buildability",
+      "weight": 1,
+      "score_0_10": 0,
+      "active": true,
+      "note": "Requires complex physical infrastructure, sensor fusion, and large-scale computer vision deployment, far exceeding a simple software wrapper."
+    }
+  ],
+  "generated_at": "2026-07-19T01:24:26.475619+00:00"
+}

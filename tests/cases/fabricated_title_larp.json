@@ -1,0 +1,49 @@
+{
+  "profile_url": "https://example.com/in/jordan-vale-larp",
+  "identity": {
+    "name": "Jordan Vale",
+    "headline": "Founder and CEO at NimbusHealth",
+    "current_company": "NimbusHealth",
+    "location": "San Francisco, California, United States"
+  },
+  "experience": [
+    {
+      "title": "Founder and CEO",
+      "company": "NimbusHealth",
+      "start_date": "2019",
+      "end_date": "Present",
+      "location": ""
+    },
+    {
+      "title": "Claimed NimbusHealth's app could diagnose 50 diseases from a single selfie with 99 percent accuracy",
+      "company": "NimbusHealth",
+      "start_date": "",
+      "end_date": "",
+      "location": ""
+    }
+  ],
+  "education": [
+    {
+      "school": "Stanford University",
+      "degree": "Bachelor of Science, Computer Science",
+      "start_date": "2015",
+      "end_date": "2019"
+    }
+  ],
+  "_expected": {
+    "note": "Synthetic OFFLINE regression fixture (not a real person). Mirrors the Elizabeth Holmes false-negative shape: the core fabrication is encoded as a LinkedIn experience-entry TITLE that is really a restated CLAIM, not a role. Guards against silently reverting the fix in detective/llm.mechanical_decompose (_reframe_utterance_title): the utterance-framed title must decompose so the EMBEDDED capability is what gets verified, never the trivially-true meta-claim 'Worked as Claimed ... at NimbusHealth' (which a reasoning brain confirms because the person DID say it). Graded offline in tests/test_decompose_utterance.py; no LLM or network.",
+    "ground_truth_note": "Invented person and product. A single-selfie 50-disease 99 percent-accuracy diagnostic is not a real capability; the point is that the assertion decomposed from this title must assert that capability directly so it can be judged, not the act of claiming it.",
+    "claims": [
+      {
+        "matches": "Founder and CEO at NimbusHealth",
+        "expected_tier": ["CONFIRMED", "UNVERIFIED"],
+        "note": "A plain role claim (not utterance-framed): left as a normal employment assertion."
+      },
+      {
+        "matches": "diagnose 50 diseases from a single selfie with 99 percent accuracy",
+        "expected_tier": "DISPROVEN",
+        "note": "The fabrication. Must decompose to an assertion of the CAPABILITY itself, not the act of claiming it."
+      }
+    ]
+  }
+}

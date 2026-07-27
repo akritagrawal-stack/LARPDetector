@@ -1,0 +1,441 @@
+{
+  "profile_url": "https://en.wikipedia.org/wiki/Elon_Musk",
+  "scan_type": "person",
+  "identity": {
+    "name": "Elon Musk",
+    "headline": "CEO at Tesla and SpaceX",
+    "current_company": "Tesla, SpaceX",
+    "location": "Austin, Texas, United States"
+  },
+  "raw_experience": [
+    {
+      "title": "Chief Executive Officer and Product Architect",
+      "company": "Tesla",
+      "start_date": "2008",
+      "end_date": "Present",
+      "location": "Austin, Texas"
+    },
+    {
+      "title": "Founder, CEO and Chief Engineer",
+      "company": "SpaceX",
+      "start_date": "2002",
+      "end_date": "Present",
+      "location": "Hawthorne, California"
+    },
+    {
+      "title": "Co-founder",
+      "company": "PayPal",
+      "start_date": "1999",
+      "end_date": "2002",
+      "location": "Palo Alto, California"
+    },
+    {
+      "title": "Founder",
+      "company": "The Boring Company",
+      "start_date": "2016",
+      "end_date": "Present",
+      "location": ""
+    },
+    {
+      "title": "Co-founder",
+      "company": "Neuralink",
+      "start_date": "2016",
+      "end_date": "Present",
+      "location": ""
+    },
+    {
+      "title": "Claimed to be one of the top 20 Diablo IV players in the world and among the best Path of Exile 2 players",
+      "company": "",
+      "start_date": "",
+      "end_date": "",
+      "location": ""
+    }
+  ],
+  "claims": [
+    {
+      "type": "identity",
+      "employer": "",
+      "title": "",
+      "start": "",
+      "end": "",
+      "assertion": "A real person named Elon Musk exists and matches this profile.",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://news.ycombinator.com/item?id=7498564",
+          "snippet": "Hacker News: 360 stor(y/ies) mention 'Tesla, SpaceX' (8 of them tagged Show HN). Top thread(s): \"Tesla and SpaceX: Elon Musk's industrial empire [video]\" (363 points, 141 comments, 2014-03-30); 'xAI dev leaks API key for private SpaceX, Tesla LLMs' (244 points, 71 comments, 2025-05-02); 'Tesla and SpaceX Share More Than Musk' (185 points, 109 comments, 2017-09-07). HN's commentary skews technical/contrarian; treat this as a real public discussion signal, not a verdict.",
+          "source_name": "hackernews",
+          "weight": 0.64,
+          "match_confidence": "medium"
+        },
+        {
+          "source_url": "https://www.nytimes.com/2026/06/17/business/spacex-tesla-merger-elon-musk.html",
+          "snippet": "<strong>Many of his fans and investors expect him to merge SpaceX with Tesla</strong>, the maker of electric cars, where he is also chief executive, joining most of his businesses into a roughly $4 trillion tech conglomerate, a sort of Elon Inc."
+        },
+        {
+          "source_url": "https://www.amazon.com/Elon-Musk-SpaceX-Fantastic-Future/dp/006230125X",
+          "snippet": "<strong>Elon</strong> <strong>Musk</strong>: <strong>Tesla</strong>, <strong>SpaceX</strong>, and the Quest for a Fantastic Future \u2013 A Bestselling Biography of a Technology Entrepreneur [Vance, Ashlee] on Amazon.com. *FREE* shipping on qualifying offers. <strong>Elon</strong> <strong>Musk</strong>: <strong>Tesla</strong>, <strong>SpaceX</strong>, and the Quest for a Fantastic Future \u2013 A Bestselling Biography of a Technology ..."
+        },
+        {
+          "source_url": "https://www.tesla.com/elon-musk",
+          "snippet": "Powered and protected by \u00b7 Privacy"
+        },
+        {
+          "source_url": "https://www.britannica.com/money/Elon-Musk",
+          "snippet": "Elon Musk is a South African\u2013born ... who <strong>cofounded the electronic payment firm PayPal and formed SpaceX, maker of launch vehicles and spacecraft. He was also one of the first significant investors in, as well as chief executive officer of, the electric car manufacturer Tesla</strong>..."
+        },
+        {
+          "source_url": "https://github.com/elonmuskceo",
+          "snippet": "GitHub account 'elonmuskceo' created 2019-02-04T22:50:08Z, 7 public repo(s). No strong disambiguator (claimed company or personal-site hint) matched this account; it may not be the same person.",
+          "source_name": "github",
+          "weight": 1.0,
+          "match_confidence": "low"
+        },
+        {
+          "source_url": "https://github.com/Oliverjones25",
+          "snippet": "GitHub account 'Oliverjones25' created 2024-10-05T15:50:17Z, 2 public repo(s). No strong disambiguator (claimed company or personal-site hint) matched this account; it may not be the same person.",
+          "source_name": "github",
+          "weight": 1.0,
+          "match_confidence": "low"
+        },
+        {
+          "source_url": "https://github.com/space-tesla",
+          "snippet": "GitHub account 'space-tesla' created 2024-10-21T08:16:54Z, 237 public repo(s). No strong disambiguator (claimed company or personal-site hint) matched this account; it may not be the same person.",
+          "source_name": "github",
+          "weight": 1.0,
+          "match_confidence": "low"
+        }
+      ],
+      "notes": "Widely documented public figure with extensive independent verification.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "employment",
+      "employer": "Tesla",
+      "title": "Chief Executive Officer and Product Architect",
+      "start": "2008",
+      "end": "Present",
+      "assertion": "Worked as Chief Executive Officer and Product Architect at Tesla (2008 to Present).",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://github.com/Oliverjones25",
+          "snippet": "GitHub account 'Oliverjones25' created 2024-10-05T15:50:17Z, 2 public repo(s).",
+          "source_name": "github",
+          "weight": 1.0,
+          "match_confidence": "high"
+        },
+        {
+          "source_url": "https://www.bbc.com/news/world-us-canada-64520157",
+          "snippet": "<strong>The Tesla boss is cleared of fraud charges over a tweet about taking the carmaker back into private ownership</strong>.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.rollingstone.com/culture/culture-lists/elon-musk-twitter-zuckerberg-lies-1234808808/",
+          "snippet": "Weeks later, Musk would walk back that announcement, citing shareholder pressure, and Tesla\u2019s stock slumped by almost 40 percent in the following year. In the immediate aftermath, Musk had to settle a fraud charge from the Securities and Exchange Commission over his \u201cFunding secured\u201d assertion, which the agency said \u201clacked an adequate basis in fact.\u201d He and Tesla each paid a $20 million fine, and Musk stepped down as chairman of the company.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.reddit.com/r/StockMarket/comments/1sfiqc1/elon_musk_is_the_biggest_scam_artist_in_history/",
+          "snippet": "But have you ever drive Tesla with FSD? It\u2019s really impressive. ... The financial industry needs a &#x27;brand&#x27; to hype so everyone makes money off speculation that overinflates its value. It&#x27;s how the market is partly run, without it would be lean and mean and much smaller. They did the same with Facebook, Bitcoin, crypto and NFTs and now AI. A decade+ prior it was still the big pharma, cel phone makers and remnants of big oil era. The overt fraud Musk pulled off was exceptional and dangerous.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.pbs.org/newshour/nation/in-tesla-tweet-trial-elon-musk-depicted-as-liar-and-visionary",
+          "snippet": "&quot;Why are we here?&quot; Porritt asked. &quot;We are here because Elon Musk, chairman and chief executive of Tesla, lied.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Elon_Musk",
+          "snippet": "In 2002, <strong>Musk</strong> founded and became CEO <strong>and</strong> <strong>chief</strong> engineer of <strong>SpaceX</strong>, a space technology company; the company has since led innovations in reusable rockets and commercial spaceflight. <strong>Musk</strong> joined <strong>Tesla</strong> as an early investor in 2004 and became its CEO <strong>and</strong> <strong>product</strong> <strong>architect</strong> in 2008; it has since ..."
+        },
+        {
+          "source_url": "https://www.dogoodla.org/elon-musk",
+          "snippet": "<strong>Elon Musk is the Chief Executive Officer and Chief Designer of Space Exploration Technologies (SpaceX) and the Chief Executive Officer and Product Architect of Tesla Motors</strong>."
+        },
+        {
+          "source_url": "https://www.britannica.com/money/Elon-Musk",
+          "snippet": "Elon Musk is a South African\u2013born ... and spacecraft. He was also <strong>one of the first significant investors in, as well as chief executive officer of, the electric car manufacturer Tesla</strong>...."
+        }
+      ],
+      "notes": "Publicly verified role as CEO of Tesla.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "employment",
+      "employer": "SpaceX",
+      "title": "Founder, CEO and Chief Engineer",
+      "start": "2002",
+      "end": "Present",
+      "assertion": "Worked as Founder, CEO and Chief Engineer at SpaceX (2002 to Present).",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://www.nytimes.com/2022/11/17/business/spacex-workers-elon-musk.html",
+          "snippet": "<strong>Paige Holland-Thielen</strong>, left, and Tom Moline said SpaceX had fired them after they helped organize a letter calling on the company to condemn Mr. Musk\u2019s behavior.Credit...Jenna Schoenefeld for The New York Times",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://democrats.org/news/fact-check-elon-musk-wasnt-fighting-fraud-he-screwed-over-the-american-people-and-skyrocketed-his-net-worth/",
+          "snippet": "Donald Trump\u2019s shadow president <strong>Elon Musk is finally leaving Washington after promising (and failing) to fight fraud</strong>. Musk\u2019s only public record of so-called \u201csavings\u201d is riddled with inaccurate information, mistakes, and inflated numbers. While gutting access to working families\u2019 ...",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.quora.com/Is-Elon-Musk-of-Tesla-and-SpaceX-a-fraud",
+          "snippet": "Answer (1 of 9): He runs two multi-billion dollar companies and three other multi-million dollar companies employing tens of thousands of people across the world. He and his employees are required to work with dozens of governments across a wide spectrum of political ideology to ensure regulator...",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.reddit.com/r/investingforbeginners/comments/1u67qet/why_is_spacex_a_fraud/",
+          "snippet": "Starlink doesn&#x27;t really exist and make money, that&#x27;s just the media spreading lies. ... explain why boeing isnt worth trillions? They basically enable global trade and human international travel. ... Elon Musk has spouted his fair share of bullshit\u2014but his latest claims about the SpaceX IPO are on a whole new level.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Elon_Musk",
+          "snippet": "In 2002, <strong>Musk</strong> founded and became <strong>CEO</strong> <strong>and</strong> <strong>chief</strong> <strong>engineer</strong> <strong>of</strong> <strong>SpaceX</strong>, a space technology company; the company has since led innovations in reusable rockets and commercial spaceflight. <strong>Musk</strong> joined <strong>Tesla</strong> as an early investor in 2004 and became its <strong>CEO</strong> <strong>and</strong> product architect in 2008; it has since ..."
+        },
+        {
+          "source_url": "https://www.britannica.com/money/Elon-Musk",
+          "snippet": "Elon Musk is a South African\u2013born ... and spacecraft. He was also <strong>one of the first significant investors in, as well as chief executive officer of, the electric car manufacturer Tesla</strong>...."
+        },
+        {
+          "source_url": "https://businessabc.net/wiki/elon-musk",
+          "snippet": "<strong>Musk is the founder, CEO, and chief engineer of SpaceX, an aerospace manufacturer and space transportation company</strong>. He is also an angel investor, CEO, and product architect of Tesla, Inc., an electric vehicle and clean energy company."
+        },
+        {
+          "source_url": "https://computerhistory.org/profile/elon-musk/",
+          "snippet": "Elon Musk is the <strong>CEO and Product Architect of Tesla Motors and the CEO/CTO of Space Exploration Technologies (SpaceX).</strong> At SpaceX, Elon is the chief designer, overseeing development of rockets and spacecraft for missions to Earth orbit and ultimately to other planets."
+        }
+      ],
+      "notes": "Publicly verified role as CEO and founder of SpaceX.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "employment",
+      "employer": "PayPal",
+      "title": "Co-founder",
+      "start": "1999",
+      "end": "2002",
+      "assertion": "Worked as Co-founder at PayPal (1999 to 2002).",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://www.snopes.com/fact-check/was-elon-musk-fired-from-paypal/",
+          "snippet": "The ouster has been widely documented and Musk himself has talked about it, except the company he was ousted from was technically not known as PayPal, but X.com. PayPal was a service offered by the company while Musk was in charge. We thus rate this claim as &quot;Mostly True.&quot; Chafkin, Max. &quot;Entrepreneur of the Year, 2007: Elon Musk.&quot; Inc.Com, 1 Dec.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.foxbusiness.com/markets/elon-musk-dethroned-peter-thiel-coup-led-paypal-mafia",
+          "snippet": "MUSK SAYS AI INDUSTRY NEEDS A \u2018REFEREE,\u2019 BUT CONGRESS IS \u2018NOT YET\u2019 READY TO CHAMPION ROLE \u00b7 <strong>Elon Musk, left, was ousted by the so-called &quot;PayPal Mafia&quot; as the company&#x27;s CEO and was replaced by Peter Thiel</strong>.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.quora.com/When-Elon-Musk-was-totally-fired-from-PayPal-he-was-fired-in-March-of-2001-so-how-was-he-involved-in-the-sale-of-PayPal-to-eBay-in-Oct-of-2002-and-how-can-Elon-Musk-be-able-to-misrepresent-himself-in-his-Tesla-bios",
+          "snippet": "Answer (1 of 3): Well, since they were clearly misrepresentations, that\u2019s why <strong>Musk</strong> was arrested. And it\u2019s why he\u2019s spending time in federal prison, instead of roaming around free. Or\u2026 Your side of the story in your question is wrong, and <strong>Musk</strong> isn\u2019t in prison.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.youtube.com/shorts/GIU1nl1TFO0",
+          "snippet": "<strong>In September 2000, PayPal&#x27;s board staged a coup against Elon Musk while he was on his honeymoon</strong>. They replaced him with Peter Thiel. But Musk kept his shares...",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Elon_Musk",
+          "snippet": "Following its sale in 1999, he ... to form <strong>PayPal</strong>, which was acquired by eBay in 2002. <strong>Musk</strong> also became an American citizen in 2002. In 2002, <strong>Musk</strong> founded and became CEO and chief engineer of <strong>SpaceX</strong>, a space technology company; the company has since led innovations in reusable rockets and commercial spaceflight. <strong>Musk</strong> joined <strong>Tesla</strong> as an early ..."
+        },
+        {
+          "source_url": "https://www.britannica.com/money/Elon-Musk",
+          "snippet": "Elon Musk is a South African\u2013born American entrepreneur who <strong>cofounded the electronic payment firm PayPal and formed SpaceX</strong>, maker of launch vehicles and spacecraft. He was also one of the first significant investors in, as well as chief executive ..."
+        },
+        {
+          "source_url": "https://www.reddit.com/r/SuccessionTV/comments/105jxh6/was_anyone_going_to_tell_me_elon_was_never_a/",
+          "snippet": "Key Takeaways. Tesla Motors was founded as an electric carmaker by engineers Martin Eberhard and Marc Tarpenning in 2003. <strong>Elon Musk, co-founder of Paypal, was an early investor in Tesla and board member, before taking over as CEO</strong>."
+        },
+        {
+          "source_url": "https://ir.tesla.com/corporate/elon-musk",
+          "snippet": "Prior to SpaceX, <strong>Elon co-founded PayPal</strong>, an electronic payment system, which was acquired by eBay in October 2002, and Zip2 Corporation, a provider of Internet enterprise software and services, which was acquired by Compaq in March 1999."
+        }
+      ],
+      "notes": "Verified co-founder status of PayPal (originally X.com).",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "employment",
+      "employer": "The Boring Company",
+      "title": "Founder",
+      "start": "2016",
+      "end": "Present",
+      "assertion": "Worked as Founder at The Boring Company (2016 to Present).",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://www.rollingstone.com/culture/culture-lists/elon-musk-twitter-zuckerberg-lies-1234808808/",
+          "snippet": "In the immediate aftermath, Musk ... basis in fact.\u201d He and Tesla each paid a $20 million fine, and <strong>Musk stepped down as chairman of the company.</strong>...",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.reddit.com/r/BoringCompany/comments/1osool3/elon_musks_boring_company_fined_nearly_500k_after/",
+          "snippet": "... Elon Musk\u2019s Boring Company <strong>fined nearly $500K after it dumped tunnel drilling fluids into Las Vegas manholes</strong>\u2014and then \u2018feigned compliance\u2019 and was caught doing it again",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.newsweek.com/elon-musk-slammed-posing-fake-fired-employees-workers-lose-jobs-1760097",
+          "snippet": "Normally this would be a PR disaster for Elon, but everyone&#x27;s just making jokes instead,&quot; @zee_web3 tweeted. Some seemed to not understand the joke and praised Musk for righting a wrong. &quot;Only a wise man with courage admits when wrong. Thank you for being you. We love you,&quot; @EvasTeslaSPlaid tweeted with a heart emoji. &quot;Wait a minute, wasn&#x27;t that a staged stunt? I thought there weren&#x27;t any records of those two working there?&quot;",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://medium.com/@celestineriza/elon-musk-just-proved-most-corporate-jobs-are-fake-and-nobody-at-the-top-wants-to-admit-it-59a59a8a01b2",
+          "snippet": "Elon Musk Just Proved Most Corporate Jobs Are Fake And Nobody at the Top Wants to Admit It What looked like chaos turned out to be something else entirely, a brutal real world experiment in what \u2026",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/The_Boring_Company",
+          "snippet": "Strange, Adario (July 19, 2017). &quot;<strong>Elon</strong> <strong>Musk</strong> reveals what his tunnel under LA has to do with Mars&quot;. Mashable. Retrieved June 6, 2026. ... Ralph, Eric (May 23, 2018). &quot;<strong>SpaceX</strong> to leverage <strong>Boring</strong> Co. tunneling tech to help humans settle Mars&quot;. TESLARATI."
+        },
+        {
+          "source_url": "https://www.businessinsider.com/elon-musk-the-boring-company",
+          "snippet": "<strong>Elon Musk founded The Boring Company in 2016 as a part of SpaceX</strong>."
+        },
+        {
+          "source_url": "https://www.ebsco.com/research-starters/engineering/boring-company-tbc",
+          "snippet": "The Boring Company (TBC), founded by Elon Musk in 2017, is <strong>a civil engineering firm focused on creating underground transportation systems</strong>. The company&#x27;s initial vision included high-speed pods that would transport passengers at remarkable speeds ..."
+        },
+        {
+          "source_url": "https://royalsociety.org/people/elon-musk-13829/",
+          "snippet": "<strong>Elon Musk is the CEO and co-founder of SpaceX, Tesla, Neuralink and The Boring Company</strong>. As lead designer at SpaceX, Elon oversees the development of rockets and spacecraft for missions to Earth orbit and ultimately to other planets."
+        }
+      ],
+      "notes": "Publicly verified founder of The Boring Company.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "employment",
+      "employer": "Neuralink",
+      "title": "Co-founder",
+      "start": "2016",
+      "end": "Present",
+      "assertion": "Worked as Co-founder at Neuralink (2016 to Present).",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://www.reddit.com/r/fednews/comments/1iryut5/fda_employees_reviewing_musks_neuralink_were/",
+          "snippet": "&quot;Both sources said they did not believe the employees were specifically targeted because of their work on Neuralink&#x27;s applications.&quot; ... I can read the article just fine and it appears so can over 2,000 others. Shortening the title does not change rhe context. You must be quite the riot at parties. ... CHANGING the title is deceptive - your change implies that Elon Musk fired everyone at the FDA that was reviewing Neuralink.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://popular.info/p/musks-neuralink-falsified-federal",
+          "snippet": "On April 24, Elon Musk&#x27;s $9 billion neurotechnology company falsely self-certified as a &quot;small disadvantaged business&quot; (SDB) on a federal filing, a designation that qualifies the company for preferential treatment as part of a racial and ethnic diversity initiative. The SDB designation can also only be legally claimed by companies owned by &quot;economically disadvantaged individuals.&quot; Neuralink, which is developing implantable brain-computer interfaces, registered with the government as an SDB while Musk leveraged his position at the White House to cut federal funding for diversity, equity, and inclusion programs.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.reuters.com/world/us/fda-staff-reviewing-musks-neuralink-were-included-doge-employee-firings-sources-2025-02-17/",
+          "snippet": "Feb 17 (Reuters) - U.S. Food and Drug Administration employees reviewing Elon Musk\u2019s brain implant company Neuralink were fired over the weekend as part of a broader purge of the federal workforce, according to two sources with knowledge of the matter.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://www.pcrm.org/news/news-releases/sec-reopens-investigation-elon-musks-neuralink-likely-launched-medical-ethics",
+          "snippet": "In September 2023, the nonprofit Physicians Committee for Responsible Medicine requested that the SEC investigate Musk and Neuralink for securities fraud following a false and misleading X post in which Musk claimed, \u201cNo monkey has died as a result of a Neuralink implant.\u201d He added, \u201cFirst our early implants, to minimize risk to healthy monkeys, we chose terminal mon[k]eys (close to death already).\u201d Yet public records obtained by the Physicians Committee through an ongoing lawsuit reveal that, while three monkeys were used by Neuralink in terminal experiments in which they did not recover from surgery, 12 previously healthy animals were euthanized by Neuralink as a direct result of problems with the company\u2019s implant.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Business_career_of_Elon_Musk",
+          "snippet": "<strong>Elon</strong> <strong>Musk</strong> is a businessman and entrepreneur, known predominantly for his leading roles in the automotive company <strong>Tesla</strong>, Inc. and the space company <strong>SpaceX</strong>. <strong>Musk</strong> is also known for his ownership of technology company X Corp. and his role in the founding of The Boring Company, xAI, <strong>Neuralink</strong>, and ..."
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Elon_Musk",
+          "snippet": "In 2015, <strong>Musk</strong> <strong>co</strong>-founded OpenAI ... of <strong>SpaceX</strong> in 2026. In 2022, he acquired Twitter, a social networking service; he implemented significant changes and rebranded it as X in 2023. His other businesses include <strong>Neuralink</strong>, a neurotechnology company that he <strong>co</strong>-founded in 2016, and the Boring Company, a tunneling company that he founded in 2017. In November 2025, <strong>Tesla</strong> approved a pay package worth $1 trillion for <strong>Musk</strong>, which he ..."
+        },
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Neuralink",
+          "snippet": "It was founded by <strong>Elon</strong> <strong>Musk</strong> and a team of eight scientists and engineers. <strong>Neuralink</strong> was launched in 2016 and first publicly reported in March 2017. The company is based in Fremont, California, with plans to build a three-story building with office and manufacturing space in Del Valle, about 10 miles east of Gigafactory Texas, <strong>Tesla</strong>..."
+        },
+        {
+          "source_url": "https://www.britannica.com/money/Elon-Musk",
+          "snippet": "<strong>He founded Neuralink with a team of eight neuroscientists, engineers, and biomedical researchers to develop neural lace technology</strong> (inspired in part by the science fiction of Ian M."
+        }
+      ],
+      "notes": "Publicly verified co-founder of Neuralink.",
+      "expected_footprint": "high"
+    },
+    {
+      "type": "employment",
+      "employer": "",
+      "title": "Claimed to be one of the top 20 Diablo IV players in the world and among the best Path of Exile 2 players",
+      "start": "",
+      "end": "",
+      "assertion": "To be one of the top 20 Diablo IV players in the world and among the best Path of Exile 2 players.",
+      "tier": "UNVERIFIED",
+      "evidence": [
+        {
+          "source_url": "https://timesofindia.indiatimes.com/technology/gaming/elon-musks-gaming-stats-questioned-by-top-players-he-literally-has-no-idea/articleshow/117123093.cms",
+          "snippet": "<strong>Elon Musk is reportedly one of the top players in popular dungeon-crawling games like Diablo IV and Path of Exile 2.</strong> The world\u2019s richest man was able to achieve this feat even after having demanding roles as CEO of Tesla and SpaceX, owner ..."
+        },
+        {
+          "source_url": "https://www.ms.now/top-stories/latest/elon-musk-video-game-path-of-exile-2-livestream-rcna189602",
+          "snippet": "<strong>Beyond Path of Exile 2,</strong> Musk has said he\u2019s a global top-20 player in the action RPG Diablo IV, shown off his \u2014 according to at least one gamer, \u201chilariously bad\u201d \u2014 character build in the fantasy RPG Elden Ring, and even suggested he ..."
+        },
+        {
+          "source_url": "https://www.rollingstone.com/culture/rs-gaming/elon-musk-cheating-gaming-diablo-iv-1235234041/",
+          "snippet": "In an interview for Joe Rogan\u2018s ... <strong>Musk, who besides leading a suite of major tech companies and campaigning for Donald Trump, claimed that he was ranked among the top 20 players worldwide of the video game Diablo IV.</strong>..."
+        },
+        {
+          "source_url": "https://icon-era.com/threads/elon-musk-confirms-he-cheated-to-become-a-top-player-in-path-of-exile-2-and-diablo-iv.15488/",
+          "snippet": "<strong>Elon Musk has admitted that he broke the terms of service, or the rules, for both Path of Exile 2 and Diablo IV in order to achieve his world-renowned global top 20 rank.</strong> The Elon Musk gaming controversy began when Musk hosted a live stream ..."
+        }
+      ],
+      "notes": "Gaming rankings are self-reported and lack independent, verifiable public leaderboards or third-party confirmation.",
+      "expected_footprint": "low"
+    },
+    {
+      "type": "education",
+      "employer": "University of Pennsylvania",
+      "title": "BS Physics and BS Economics",
+      "start": "1992",
+      "end": "1997",
+      "assertion": "Studied BS Physics and BS Economics at University of Pennsylvania.",
+      "tier": "CONFIRMED",
+      "evidence": [
+        {
+          "source_url": "https://en.wikipedia.org/wiki/Elon_Musk",
+          "snippet": "Copies <strong>of</strong> <strong>Musk</strong>&#x27;s records show that ... in <strong>economics</strong> <strong>and</strong> <strong>physics</strong> in May 1997. O&#x27;Reilly also subpoenaed the registrar&#x27;s office at Stanford to verify <strong>Musk</strong>&#x27;s admittance in 1995 for his doctorate work in <strong>physics</strong>. &quot;Based on the information you provided, we are unable to locate a record in our office for <strong>Elon</strong> <strong>Musk</strong>,&quot; wrote the director of graduate admissions. ... Meisenzahl, Elizabeth. &quot;<strong>SpaceX</strong>, founded by Penn graduate <strong>Elon</strong> <strong>Musk</strong>, launches U.S. astronauts into space&quot;. The Daily Pennsylvanian..."
+        },
+        {
+          "source_url": "https://www.snopes.com/fact-check/musk-physics-degree/",
+          "snippet": "Upon information and belief, <strong>Musk&#x27;s only known undergraduate degree is a Bachelor&#x27;s of Science in Economics, obtained from the University of Pennsylvania in 1997</strong>. The suit, which ended with a ruling in Musk&#x27;s favor, entered into the public record ..."
+        },
+        {
+          "source_url": "https://www.spoliamag.com/what-degrees-does-elon-musk-have/",
+          "snippet": "<strong>Elon Musk holds two undergraduate degrees: a Bachelor of Science in Physics and a Bachelor of Arts in Economics</strong>, both from the University of Pennsylvania. Musk was a desperate student moving across continents long before he could build rockets ..."
+        },
+        {
+          "source_url": "https://www.bestcolleges.com/news/analysis/2021/10/19/did-elon-musk-go-to-college/",
+          "snippet": "The SpaceX and Tesla CEO is currently leading government efficiency in the second Trump administration. Musk holds two bachelor\u2019s degrees from the University of Pennsylvania."
+        },
+        {
+          "source_url": "https://www.timesnownews.com/education/are-elon-musks-degrees-fake-heres-all-you-need-to-know-about-the-twitter-chiefs-education-qualification-article-95619420",
+          "snippet": "As per reports, Elon Musk went to Queen\u2019s University, Ontario and later transferred to University to Pennsylvania where he completed his Bachelors in Arts, BA Physics degree. He later on joined Wharton School of Business where he received BSc Degree in Economics. In Pictures | Elon Musk: Career path of one of the top tech entrepreneurs \u00b7 A twitter thread by the user CapitolHunters has alleged that the SpaceX and Tesla CEO has paid money to the universities and secured a degree to him.\u201d Elon Musk has lied for 27 years about his credentials.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://skeptics.stackexchange.com/questions/54065/did-elon-musk-falsely-claim-to-have-a-degree-in-science",
+          "snippet": "\u2026 the University of Pennsylvania, where he completed studies for a Bachelor of Arts degree in physics and a Bachelor of Science degree in economics \u2026 \u2026 In 1995, he was accepted to a Doctor of Philosophy (PhD) program in materials science at Stanford University. However, Musk decided to join the Internet boom, instead dropping out \u2014 Elon Musk - Wikipedia \u00b7 However, various websites and some celebrities recently have claimed that Musk lied about his degrees and that he does not have a bachelor&#x27;s in physics or in science in general, some of them claiming that there is evidence of this in court transcripts.",
+          "query_role": "adversarial"
+        },
+        {
+          "source_url": "https://x.com/avenaim/status/1593416883696390144",
+          "snippet": "This entire thread on why Elon musk is a fraud is a must read. ... Someone has to say it: Elon Musk has lied for 27 years about his credentials. He does not have a BS in Physics, or any technical field. Did not get into a PhD program. Dropped out in 1995 &amp; was illegal. Later, investors quietly arranged a diploma - but not in science. 1/ ... The University of Pennsylvania ...",
+          "query_role": "adversarial"
+        }
+      ],
+      "notes": "University records confirm his degrees, despite persistent internet rumors to the contrary.",
+      "expected_footprint": "high"
+    }
+  ],
+  "larp_score": 1,
+  "verdict": "The subject's professional history and educational credentials are well-documented and verified. While his claims regarding gaming rankings remain unverifiable, they do not constitute a pattern of deception. This dossier is clear.",
+  "buildability": null,
+  "founder_larp_score": null,
+  "company_larp_score": null,
+  "metric_breakdown": [],
+  "generated_at": "2026-07-19T01:17:50.388449+00:00"
+}
