@@ -1,5 +1,7 @@
 # LARP Detector for macOS
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 LARP Detector is a local macOS app that turns a LinkedIn profile or company URL
 into an evidence-backed dossier. It checks public career claims, product
 reality, public GitHub work, role attribution, and web-app behavior, then shows
@@ -410,5 +412,12 @@ The repository excludes:
 Before publishing a fork, inspect the exact staged files and run a secret
 scanner. See [SECURITY.md](SECURITY.md) and [PRIVACY.md](PRIVACY.md).
 
-No license has been granted yet. Public visibility does not by itself grant
-permission to copy, modify, or redistribute the code.
+## License and reuse
+
+LARP Detector is open-source software licensed under the
+[MIT License](LICENSE). You may use, copy, modify, merge, publish, distribute,
+sublicense, and sell copies, provided that the copyright and permission notice
+remain included in copies or substantial portions of the software.
+
+Bundled fonts and other third-party components retain their original licenses.
+See [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) for attribution details.

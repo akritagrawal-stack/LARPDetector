@@ -2,6 +2,7 @@
   "name": "larp-detector-overlay",
   "version": "0.1.0",
   "description": "Floating macOS overlay for the LARP Detector: streams evidence, then renders an overall LARP score with founder and company breakdowns.",
+  "license": "MIT",
   "private": true,
   "main": "electron/main.js",
   "scripts": {
