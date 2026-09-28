@@ -308,7 +308,11 @@ Real profile, with a live LinkedIn fetch:
 
 The CLI defaults to `ManualProvider`, which writes operator jobs under
 `queue/`. The Electron app selects the Codex reviewer when the bundled Codex
-CLI is available. An optional separately metered Gemini path requires both an
+CLI is available, and otherwise falls back to Claude Code (`claude -p`) when
+it is installed at `~/.local/bin/claude` or `/opt/homebrew/bin/claude`. Set `LARP_SERVICE_PROVIDER=claude`
+or pass `--provider claude` to use Claude Code directly; it runs through your
+Claude login with no API key. `LARP_CLAUDE_MODEL` optionally picks the model
+and `LARP_CLAUDE_CLI` overrides the executable path. An optional separately metered Gemini path requires both an
 explicit provider selection and `GEMINI_API_KEY`.
 
 ## Tests

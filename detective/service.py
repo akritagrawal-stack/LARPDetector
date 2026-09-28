@@ -213,6 +213,7 @@ from . import search
 from .llm import (
     ApiProvider,
     ApiProviderError,
+    ClaudeProvider,
     CodexProvider,
     ManualProvider,
     QUEUE_DIR,
@@ -1549,9 +1550,11 @@ def _select_provider(job_id: str, is_demo: bool):
     opt-in, even now that ApiProvider actually calls Gemini (see llm.py).
 
     Set LARP_SERVICE_PROVIDER=codex to use a fresh, read-only Codex CLI
-    reviewer authenticated through ChatGPT, with no API key. Set it to api to
-    opt into Gemini explicitly. Both settings affect only real, non-demo
-    scans. If either automated provider fails, _run_job catches
+    reviewer authenticated through ChatGPT, with no API key. Set it to claude
+    to use a fresh Claude Code (`claude -p`) reviewer through the user's
+    Claude login, also with no API key. Set it to api to
+    opt into Gemini explicitly. These settings affect only real, non-demo
+    scans. If any automated provider fails, _run_job catches
     ApiProviderError and falls back to the ManualProvider queue flow.
 
     ManualProvider is constructed with job_id=job_id so its queue file is
@@ -1560,6 +1563,8 @@ def _select_provider(job_id: str, is_demo: bool):
     configured = os.environ.get("LARP_SERVICE_PROVIDER", "manual").strip().lower()
     if not is_demo and configured == "codex" and CodexProvider.available():
         return CodexProvider()
+    if not is_demo and configured == "claude" and ClaudeProvider.available():
+        return ClaudeProvider()
     wants_api = configured == "api"
     if not is_demo and wants_api:
         anthropic_key = os.environ.get("ANTHROPIC_API_KEY", "").strip()

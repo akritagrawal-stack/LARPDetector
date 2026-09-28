@@ -29,7 +29,8 @@ A live scan can contact:
 
 When the Codex reviewer is enabled, the profile claims and gathered evidence
 needed for judgment are processed through the Codex CLI and the user's ChatGPT
-login. Optional API providers process the same task through the provider the
+login. When the Claude reviewer is enabled, the same data is processed through
+Claude Code (`claude -p`) and the user's Claude login. Optional API providers process the same task through the provider the
 operator explicitly configures.
 
 The browser companion sends only the active LinkedIn profile URL to the local

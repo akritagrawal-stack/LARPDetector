@@ -490,9 +490,9 @@ export default function App() {
         setPhase('idle');
         return Promise.resolve(false);
       }
-      if (window.overlay && setupStatus && !setupStatus.codex_ready) {
+      if (window.overlay && setupStatus && !setupStatus.reviewer_ready) {
         setNeedsUrlNotice(
-          'The ChatGPT desktop app and its Codex login are required for automatic scoring.'
+          'The ChatGPT desktop app (Codex) or Claude Code is required for automatic scoring.'
         );
         setPhase('idle');
         return Promise.resolve(false);
