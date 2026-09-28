@@ -65,9 +65,10 @@ def _build_parser() -> argparse.ArgumentParser:
     )
     p.add_argument(
         "--provider",
-        choices=["manual", "api"],
+        choices=["manual", "api", "claude"],
         default="manual",
-        help="Reasoning brain: 'manual' (default, $0 queue file) or 'api' (Gemini key).",
+        help="Reasoning brain: 'manual' (default, $0 queue file), 'api' (Gemini key), "
+        "or 'claude' (Claude Code `claude -p`, uses your Claude login).",
     )
     p.add_argument(
         "--engine",
@@ -115,9 +116,13 @@ def _build_parser() -> argparse.ArgumentParser:
 
 
 def _make_provider(name: str):
-    from .llm import ManualProvider, ApiProvider
+    from .llm import ManualProvider, ApiProvider, ClaudeProvider
 
-    return ApiProvider() if name == "api" else ManualProvider()
+    if name == "api":
+        return ApiProvider()
+    if name == "claude":
+        return ClaudeProvider()
+    return ManualProvider()
 
 
 def _demo_profile() -> dict:

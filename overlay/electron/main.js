@@ -368,6 +368,10 @@ const DEFAULT_LINKEDIN_PROFILE_DIR = path.join(
   'linkedin-profile'
 );
 const DEFAULT_CODEX_CLI = '/Applications/ChatGPT.app/Contents/Resources/codex';
+const CLAUDE_CLI_CANDIDATES = [
+  path.join(os.homedir(), '.local', 'bin', 'claude'),
+  '/opt/homebrew/bin/claude'
+];
 const PROJECT_GITHUB_CLI = path.join(ENGINE_ROOT, '.runtime', 'github-cli', 'gh');
 const ENGINE_READY_TIMEOUT_MS = 20000;
 const ENGINE_POLL_INTERVAL_MS = 400;
@@ -460,6 +464,10 @@ function trySpawnPython(candidates) {
     }
     if (!childEnv.LARP_SERVICE_PROVIDER && childEnv.LARP_CODEX_CLI) {
       childEnv.LARP_SERVICE_PROVIDER = 'codex';
+    }
+    // No ChatGPT app: fall back to Claude Code if it is installed.
+    if (!childEnv.LARP_SERVICE_PROVIDER && CLAUDE_CLI_CANDIDATES.some((p) => fs.existsSync(p))) {
+      childEnv.LARP_SERVICE_PROVIDER = 'claude';
     }
     let settled = false;
     let child;
@@ -671,7 +679,7 @@ async function getSetupStatus() {
     platform: process.platform,
     linkedin_authenticated: await hasLinkedInSession(),
     linkedin_login_running: !!(linkedinLoginProcess && linkedinLoginProcess.exitCode == null),
-    codex_ready: fs.existsSync(DEFAULT_CODEX_CLI),
+    reviewer_ready: fs.existsSync(DEFAULT_CODEX_CLI) || CLAUDE_CLI_CANDIDATES.some((p) => fs.existsSync(p)),
     github_authenticated: hasGitHubAuth(),
     screen_recording: screenRecording,
     screen_recording_optional: true,

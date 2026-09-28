@@ -54,7 +54,7 @@ export default function IdleView({
   const setupNeedsAttention =
     !!setupStatus &&
     (!setupStatus.linkedin_authenticated ||
-      !setupStatus.codex_ready ||
+      !setupStatus.reviewer_ready ||
       (setupStatus.platform === 'darwin' &&
         !setupStatus.browser_companion_installed &&
         !setupStatus.browser_companion_connected));
@@ -122,9 +122,9 @@ export default function IdleView({
                 )}
               </div>
               <div className="idle__setup-row">
-                <span>Codex reviewer</span>
-                <span className={setupStatus.codex_ready ? 'idle__setup-ok' : 'idle__setup-warn'}>
-                  {setupStatus.codex_ready ? 'Ready' : 'ChatGPT app required'}
+                <span>AI reviewer</span>
+                <span className={setupStatus.reviewer_ready ? 'idle__setup-ok' : 'idle__setup-warn'}>
+                  {setupStatus.reviewer_ready ? 'Ready' : 'ChatGPT or Claude Code required'}
                 </span>
               </div>
               <div className="idle__setup-row">
